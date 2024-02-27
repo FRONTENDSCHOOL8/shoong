@@ -45,6 +45,9 @@ export default {
       fontFamily: {
         suit: ['SUIT', 'noto-sans-kr', 'sans-serif'],
       },
+      backgroundImage: {
+        customBg: 'linear-gradient(180deg, #D0CEFF 0%, #FDFDFF 50%, #FFF 100%)',
+      },
     },
   },
   plugins: [],
