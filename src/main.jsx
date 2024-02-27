@@ -2,16 +2,25 @@ import '@/styles/tailwind.css';
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import RootLayout from './Layout/RootLayout/RootLayout';
 import App from './App';
 
-const rootElement = document.getElementById('root');
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      {
+        path: '/',
+        element: <App />,
+      },
+    ],
+  },
+]);
 
-if (rootElement) {
-  const root = createRoot(rootElement);
-
-  root.render(
-    <StrictMode>
-      <App />
-    </StrictMode>
-  );
-}
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <RouterProvider router={router} />
+  </StrictMode>
+);

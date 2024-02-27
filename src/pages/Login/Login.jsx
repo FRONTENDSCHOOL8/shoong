@@ -1,1 +1,3 @@
-//로그인 컴포넌트
+export default function Login() {
+  return <div>Login</div>;
+}
