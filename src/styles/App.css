@@ -5,3 +5,23 @@
   text-align: center;
   font-family: SUIT Variable, sans-serif;
 }
+
+.biasContainer {
+  /* IE, Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  /* Chrome, Safari, Opera */
+  display: none;
+}
+
+.draggable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
