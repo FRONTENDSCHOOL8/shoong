@@ -10,13 +10,12 @@ import PhocaLikeCount from './PhocaLikeCount';
  *
  * @param {{
  *   title: string,
- *   imgUrl: string,
  *   altText: string,
  *   likes: number,
  * }} props
  * @returns {JSX.Element}
  */
-const PhocaItem = ({ title, imgUrl, altText, likes }) => {
+const PhocaItem = ({ title, altText, likes }) => {
   return (
     <Link
       to="/"
@@ -26,11 +25,11 @@ const PhocaItem = ({ title, imgUrl, altText, likes }) => {
     >
       <PhocaImg />
       <div className="flex gap-2">
-        <ArtistLogo imgUrl={imgUrl} altText={altText} />
+        <ArtistLogo imgUrl="../../../public/blackPink.jpeg" altText={altText} />
         <ArtistInfo />
       </div>
       <div className="flex flex-col items-start mb-10">
-        <PhocaTitle title={title} />
+        <PhocaTitle title="PhocaTitle" />
         <PhocaLikeCount likes={likes} />
       </div>
     </Link>
