@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 import { range } from 'lodash';
 
 const pxToRem = (px, base = 16) => `${px / base}rem`;
