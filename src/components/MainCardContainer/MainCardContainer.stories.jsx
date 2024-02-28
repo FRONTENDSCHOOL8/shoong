@@ -6,9 +6,9 @@ export default {
   args: {
     title: '제목',
     subTitle: '부제목',
-    children: {},
+    children: '',
   },
 };
 
 /**@type{import('@storybook/react').StoryObj} */
-export const 기본 = {};
+export const Primary = {};

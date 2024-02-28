@@ -10,8 +10,8 @@ export default function MainCardContainer({ title, subTitle, children }) {
   return (
     <section className="flex flex-col">
       <div className="flex flex-col items-start">
-        <h2 className="font-bold text-contentPrimary text-[22px]">{title}</h2>
-        <p className="text-contentSecondary text-[16px]">{subTitle}</p>
+        <h2 className="font-bold text-contentPrimary text-xb05">{title}</h2>
+        <p className="text-contentSecondary text-sb03">{subTitle}</p>
       </div>
       {children}
     </section>
