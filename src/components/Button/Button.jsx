@@ -1,5 +1,5 @@
 // 버튼 컴포넌트
-export default function Button({ small, disabled, children }) {
+export default function Button({ small, disabled, children, ...restProps }) {
   let width, height, backgroundColor, fontWeight, paddingX, paddingY;
   if (small) {
     (width = 'w-[69px]'),
@@ -24,6 +24,7 @@ export default function Button({ small, disabled, children }) {
   return (
     <button
       className={`${width} ${height} ${paddingX} ${paddingY} ${backgroundColor} rounded-[10px] justify-center items-center gap-2.5 inline-flex`}
+      {...restProps}
     >
       <div
         className={`text-white text-sm ${fontWeight} font-['SUIT Variable'] leading-tight`}
