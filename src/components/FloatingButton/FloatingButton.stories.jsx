@@ -1,9 +1,8 @@
-import FloattingButton from './FloattingButton';
+import FloattingButton from './FloatingButton';
 
 /**@type{import('@storybook/react').Meta} */
 export default {
   component: FloattingButton,
-  args:
 };
 
 /**@type{import('@storybook/react').StoryObj} */
