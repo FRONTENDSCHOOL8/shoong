@@ -28,5 +28,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     // Hooks에서 의존성 배열을 올바르게 관리하도록 권장
     'react-hooks/exhaustive-deps': 'warn',
+    // props validation off
+    'react/prop-types': 'off',
   },
 };
