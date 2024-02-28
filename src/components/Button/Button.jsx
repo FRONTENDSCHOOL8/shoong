@@ -2,17 +2,17 @@
 export default function Button({ small, disabled, children, ...restProps }) {
   let width, height, backgroundColor, fontWeight, paddingX, paddingY;
   if (small) {
-    (width = 'w-[69px]'),
-      (height = 'h-7'),
+    (width = 'w-69pxr'),
+      (height = 'h-28pxr'),
       (fontWeight = 'medium'),
-      (paddingX = 'px-2.5'),
-      (paddingY = 'py-1');
+      (paddingX = 'px-10pxr'),
+      (paddingY = 'py-4pxr');
   } else {
-    (width = 'w-[265px]'),
-      (height = 'h-11'),
+    (width = 'w-265pxr'),
+      (height = 'h-44pxr'),
       (fontWeight = 'semibold'),
-      (paddingX = 'px-[91px]'),
-      (paddingY = 'py-3');
+      (paddingX = 'px-91pxr'),
+      (paddingY = 'py-12pxr');
   }
 
   if (disabled) {
@@ -23,7 +23,7 @@ export default function Button({ small, disabled, children, ...restProps }) {
 
   return (
     <button
-      className={`${width} ${height} ${paddingX} ${paddingY} ${backgroundColor} rounded-[10px] justify-center items-center gap-2.5 inline-flex`}
+      className={`${width} ${height} ${paddingX} ${paddingY} ${backgroundColor} rounded-[10px] justify-center items-center gap-10pxr inline-flex`}
       {...restProps}
     >
       <div
