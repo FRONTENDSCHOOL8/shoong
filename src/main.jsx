@@ -8,6 +8,8 @@ import Exchange from './pages/Exchange/Exchange';
 import MeetUp from './pages/MeetUp/MeetUps';
 import Profile from './pages/Profile/Profile';
 import Home from './pages/Home/Home';
+import Chatting from './pages/Chatting/Chatting';
+import Alerts from './pages/Alerts/Alerts';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
     ],
+  },
+  {
+    path: '/chatting',
+    element: <Chatting />,
+  },
+  {
+    path: '/alerts',
+    element: <Alerts />,
   },
 ]);
 
