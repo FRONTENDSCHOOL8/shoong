@@ -1,8 +1,9 @@
 import PhocaLikeButton from './PhocaLikeButton';
+import pb from '@/api/pocketbase';
 
 export default function PhocaImg() {
   return (
-    <div className="mb-4 min-w-[176px] mobile:w-44 relative">
+    <div className="mb-4 min-w-[176px] relative">
       <img
         src="../../../public/phoca.jpeg "
         style={{ borderRadius: '10px' }}
