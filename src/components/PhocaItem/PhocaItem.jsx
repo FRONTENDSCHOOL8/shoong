@@ -21,6 +21,17 @@ import { useState, useEffect } from 'react';
  */
 
 export default function PhocaItem({ title, altText, likes, imgUrl }) {
+  const [phocaImg, setPhocaImg] = useState([]);
+
+  useEffect(() => {
+    const phocaImg = pb.collection('photoCards').getFullList();
+    pb.autoCancellation(false);
+    phocaImg.then((res) => {
+      setPhocaImg(res);
+      console.log(res);
+    });
+  }, []);
+
   return (
     <li
       className="list-none m-0 p-0 w-44 h-[353px] relative"

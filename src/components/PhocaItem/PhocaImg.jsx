@@ -1,14 +1,12 @@
 import PhocaLikeButton from './PhocaLikeButton';
-import pb from '@/api/pocketbase';
 
-export default function PhocaImg() {
+export default function PhocaImg({ src, alt }) {
   return (
-    <div className="mb-4 min-w-[176px] relative">
+    <div className="mb-4 min-w-176pxr relative">
       <img
-        src="../../../public/phoca.jpeg "
-        style={{ borderRadius: '10px' }}
-        className="h-full w-full object-cover"
-        alt="포토카드"
+        src={src}
+        className="h-full w-full object-cover rounded-xl"
+        alt={alt}
       />
       <div className="absolute bottom-3 right-4">
         <PhocaLikeButton />
