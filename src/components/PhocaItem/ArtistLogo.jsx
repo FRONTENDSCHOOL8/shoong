@@ -5,7 +5,7 @@
  * @param {string} props.altText
  * @returns {React.ReactElement}
  */
-export default function ArtistLogo({ imgUrl, altText }) {
+export default function ArtistLogo({ logoImgUrl, logoAltText }) {
   const style = {
     width: '2.5rem',
     height: '2.5rem',
@@ -14,5 +14,5 @@ export default function ArtistLogo({ imgUrl, altText }) {
     marginTop: '0.1rem',
   };
 
-  return <img src={imgUrl} alt={altText} style={style} />;
+  return <img src={logoImgUrl} alt={logoAltText} style={style} />;
 }
