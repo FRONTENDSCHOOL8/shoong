@@ -1,11 +1,11 @@
 /**
  *
  * @param {Object} props
- * @param {string} props.imgUrl
- * @param {string} props.altText
+ * @param {string} props.logoImgSrc
+ * @param {string} props.groupName
  * @returns {React.ReactElement}
  */
-export default function ArtistLogo({ logoImgUrl, logoAltText }) {
+export default function ArtistLogo({ logoImgSrc, groupName }) {
   const style = {
     width: '2.5rem',
     height: '2.5rem',
@@ -14,5 +14,5 @@ export default function ArtistLogo({ logoImgUrl, logoAltText }) {
     marginTop: '0.1rem',
   };
 
-  return <img src={logoImgUrl} alt={logoAltText} style={style} />;
+  return <img src={logoImgSrc} alt={`${groupName} 로고`} style={style} />;
 }

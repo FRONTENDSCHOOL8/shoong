@@ -20,21 +20,23 @@ import { useState, useEffect } from 'react';
  * @returns {JSX.Element}
  */
 
-export default function PhocaItem({ title, altText, likes, imgUrl }) {
-  const [phocaImg, setPhocaImg] = useState([]);
+export default function PhocaItem({ props }) {
+  const [phoca, setPhoca] = useState([]);
 
   useEffect(() => {
-    const phocaImg = pb.collection('photoCards').getFullList();
+    const phoca = pb.collection('groups').getFullList({
+      expand: 'photoCards',
+    });
     pb.autoCancellation(false);
-    phocaImg.then((res) => {
-      setPhocaImg(res);
+    phoca.then((res) => {
+      setPhoca(res);
       console.log(res);
     });
   }, []);
 
   return (
     <ul>
-      {phocaImg.map((item, index) => {
+      {phoca.map((item, index) => {
         return (
           <li
             key={index}
@@ -43,17 +45,23 @@ export default function PhocaItem({ title, altText, likes, imgUrl }) {
           >
             <a
               to="/"
-              aria-label={`${title} 카드 디테일 페이지로 이동`}
+              aria-label={`${item.title} 카드 디테일 페이지로 이동`}
               className="flex flex-col"
             >
               <PhocaImg />
               <div className="flex gap-2">
-                <ArtistLogo imgUrl={imgUrl} altText={altText} />
-                <ArtistInfo />
+                <ArtistLogo
+                  logoImgSrc={`https://shoong.pockethost.io/api/files/groups/${item.id}/${item.logoImage}`}
+                  logoAltText={item.groupName}
+                />
+                <ArtistInfo
+                  groupName={item.group}
+                  artistName={item.memberName}
+                />
               </div>
               <div className="flex flex-col items-start">
-                <PhocaTitle title={title} />
-                <PhocaLikeCount likes={likes} />
+                <PhocaTitle title={item.title} />
+                <PhocaLikeCount likes={item.likeCount} />
               </div>
             </a>
           </li>

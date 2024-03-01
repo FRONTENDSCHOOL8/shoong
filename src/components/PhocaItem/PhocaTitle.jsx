@@ -1,7 +1,7 @@
 /**
  *
  * @param {{ title: string }} props
- * @param {string} props.title
+ * @param {string} props.phocaTitle
  * @returns {JSX.Element}
  */
 export default function PhocaTitle({ title }) {
