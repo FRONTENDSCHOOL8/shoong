@@ -1,3 +1,12 @@
+/**
+ *
+ * @param {{
+ *  groupName: string
+ *  artistName: string
+ * }} props
+ * @returns
+ */
+
 export default function ArtistInfo({ groupName, artistName }) {
   return (
     <div className="flex flex-col items-start">

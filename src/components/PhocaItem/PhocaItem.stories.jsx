@@ -1,4 +1,5 @@
 import PhocaItem from './PhocaItem';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 /**@type{import('@storybook/react').Meta} */
 export default {
@@ -6,14 +7,11 @@ export default {
   component: PhocaItem,
 };
 
-const Template = (args) => <PhocaItem {...args} />;
+const Template = (args) => (
+  <Router>
+    <PhocaItem {...args} />
+  </Router>
+);
 
 /**@type{import('@storybook/react').StoryObj} */
-export const Default = {
-  args: {
-    title: '샘플 타이틀',
-    altText: '샘플 아티스트 로고',
-    likes: 123,
-    imgUrl: '../../../public/blackPink.jpeg',
-  },
-};
+export const Default = {};

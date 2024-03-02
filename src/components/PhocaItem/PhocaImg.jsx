@@ -1,5 +1,14 @@
 import PhocaLikeButton from './PhocaLikeButton';
 
+/**
+ *
+ * @param {{
+ *  phocaImgSrc: string
+ *  phocaImgAlt: string
+ * }} props
+ * @returns
+ */
+
 export default function PhocaImg({ phocaImgSrc, phocaImgAlt }) {
   return (
     <div className="mb-4 min-w-176pxr relative">

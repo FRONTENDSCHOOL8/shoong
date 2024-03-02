@@ -1,18 +1,18 @@
 /**
  *
- * @param {Object} props
- * @param {string} props.logoImgSrc
- * @param {string} props.groupName
- * @returns {React.ReactElement}
+ * @param {{
+ *  logoImgSrc: string
+ *  groupName: string
+ * }} props
+ * @returns
  */
-export default function ArtistLogo({ logoImgSrc, groupName }) {
-  const style = {
-    width: '2.5rem',
-    height: '2.5rem',
-    borderRadius: '50%',
-    objectFit: 'cover',
-    marginTop: '0.1rem',
-  };
 
-  return <img src={logoImgSrc} alt={`${groupName} 로고`} style={style} />;
+export default function ArtistLogo({ logoImgSrc, groupName }) {
+  return (
+    <img
+      src={logoImgSrc}
+      alt={`${groupName} 로고`}
+      className="w-10 h-10 rounded-full object-cover mt-1"
+    />
+  );
 }

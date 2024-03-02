@@ -1,4 +1,3 @@
-import React from 'react';
 import PhocaImg from './PhocaImg';
 import ArtistLogo from './ArtistLogo';
 import ArtistInfo from './ArtistInfo';
@@ -14,10 +13,10 @@ import { useState, useEffect } from 'react';
  * @param {{
  *   title: string,
  *   altText: string,
- *   likes: number,
+ *   likeCount: number,
  *   imgUrl : string
  * }} props
- * @returns {JSX.Element}
+ * @returns
  */
 
 export default function PhocaItem({ props }) {
@@ -27,45 +26,51 @@ export default function PhocaItem({ props }) {
     const phoca = pb.collection('groups').getFullList({
       expand: 'photoCards',
     });
-    pb.autoCancellation(false);
-    phoca.then((res) => {
-      setPhoca(res);
-      console.log(res);
+    pb.autoCancellation();
+    phoca.then((phocaData) => {
+      setPhoca(phocaData);
+      // console.log(phocaData);
     });
   }, []);
 
   return (
     <ul>
-      {phoca.map((item, index) => {
-        return (
-          <li
-            key={index}
-            className="list-none m-0 p-0 w-44 h-[353px] relative"
-            style={{ width: '11rem', height: '22rem' }}
-          >
-            <a
-              to="/"
-              aria-label={`${item.title} 카드 디테일 페이지로 이동`}
-              className="flex flex-col"
+      {phoca.map((group, groupIndex) => {
+        console.log(group);
+        return group.photoCards.map((card, cardIndex) => {
+          // console.log('Card:', card);
+          return (
+            <li
+              key={`${groupIndex}-${cardIndex}`}
+              className="list-none m-0 p-0 w-44 h-353pxr relative"
             >
-              <PhocaImg />
-              <div className="flex gap-2">
-                <ArtistLogo
-                  logoImgSrc={`https://shoong.pockethost.io/api/files/groups/${item.id}/${item.logoImage}`}
-                  logoAltText={item.groupName}
+              <Link
+                to="/"
+                aria-label={`${card.title} 카드 디테일 페이지로 이동`}
+                className="flex flex-col"
+              >
+                <PhocaImg
+                  phocaImgSrc={`https://shoong.pockethost.io/api/files/photoCards/${card.id}/${card.cardImg}`}
+                  phocaImgAlt={`${card.title}`}
                 />
-                <ArtistInfo
-                  groupName={item.group}
-                  artistName={item.memberName}
-                />
-              </div>
-              <div className="flex flex-col items-start">
-                <PhocaTitle title={item.title} />
-                <PhocaLikeCount likes={item.likeCount} />
-              </div>
-            </a>
-          </li>
-        );
+                <div className="flex gap-2">
+                  <ArtistLogo
+                    logoImgSrc={`https://shoong.pockethost.io/api/files/groups/${group.id}/${group.logoImage}`}
+                    logoAltText={group.groupName}
+                  />
+                  <ArtistInfo
+                    groupName={group.groupName}
+                    artistName={card.memberName}
+                  />
+                </div>
+                <div className="flex flex-col items-start">
+                  <PhocaTitle title={card.title} />
+                  <PhocaLikeCount likes={card.likeCount} />
+                </div>
+              </Link>
+            </li>
+          );
+        });
       })}
     </ul>
   );
