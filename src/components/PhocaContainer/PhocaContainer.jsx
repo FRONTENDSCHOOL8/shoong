@@ -17,8 +17,8 @@ export default function PhocaContainer() {
   }, []);
 
   return (
-    <div className="">
-      <ul>
+    <div>
+      <ul className=" flex gap-4 overflow-x-scroll">
         {phoca.map((group, groupIndex) => {
           return group.expand.photoCards.map((card, cardIndex) => (
             <li

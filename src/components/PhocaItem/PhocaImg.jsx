@@ -11,13 +11,13 @@ import PhocaLikeButton from './PhocaLikeButton';
 
 export default function PhocaImg({ phocaImgSrc, phocaImgAlt }) {
   return (
-    <div className="mb-4 w-176pxr relative">
+    <div className="mb-4 w-44 h-260pxr relative">
       <img
         src={phocaImgSrc}
         className="h-full w-full object-cover rounded-xl"
         alt={phocaImgAlt}
       />
-      <div className="absolute bottom-3 right-4">
+      <div className="absolute bottom-2 right-4">
         <PhocaLikeButton />
       </div>
     </div>
