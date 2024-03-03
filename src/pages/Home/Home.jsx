@@ -14,10 +14,7 @@ export default function Home() {
 
   return (
     <div>
-      <SortingBar />
-      <BiasContainer></BiasContainer>
       <PhocaContainer></PhocaContainer>
-      {/* <PhocaContainer></PhocaContainer> */}
       <NavBar />
     </div>
   );

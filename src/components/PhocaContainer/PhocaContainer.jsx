@@ -17,13 +17,13 @@ export default function PhocaContainer() {
   }, []);
 
   return (
-    <div>
-      <ul className=" flex gap-4 overflow-x-scroll">
+    <div className="draggable mb-7 mt-7">
+      <ul className=" draggable flex gap-4 overflow-x-scroll">
         {phoca.map((group, groupIndex) => {
           return group.expand.photoCards.map((card, cardIndex) => (
             <li
               key={`${groupIndex}-${cardIndex}`}
-              className="list-none m-0 p-0 w-44 h-353pxr relative"
+              className="list-none m-0 p-0 w-44 relative"
             >
               <PhocaItem
                 ariaLabel={`${card.title} 카드 디테일 페이지로 이동`}
