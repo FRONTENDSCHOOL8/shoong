@@ -8,14 +8,14 @@ import PhocaLikeCount from './PhocaLikeCount';
 
 /**
  *
- * @param {
+ * @param {{
  *   title: string,
  *   phocaImgSrc: string,
  *   logoImgSrc: string,
  *   groupName: string,
  *   memberName: string,
  *   likeCount: number,
- * } props
+ * }} props
  * @returns
  */
 
