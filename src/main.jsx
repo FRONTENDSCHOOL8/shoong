@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import RootLayout from './Layout/RootLayout/RootLayout';
 import Exchange from './pages/Exchange/Exchange';
+import { biasPhocaData } from './loader/index';
 import MeetUp from './pages/MeetUp/MeetUps';
 import Profile from './pages/Profile/Profile';
 import Home from './pages/Home/Home';
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+        loader: biasPhocaData,
       },
       {
         path: '/exchange',

@@ -11,7 +11,7 @@ import PhocaLikeButton from './PhocaLikeButton';
 
 export default function PhocaImg({ phocaImgSrc, phocaImgAlt }) {
   return (
-    <div className="mb-4 min-w-176pxr relative">
+    <div className="mb-4 w-176pxr relative">
       <img
         src={phocaImgSrc}
         className="h-full w-full object-cover rounded-xl"

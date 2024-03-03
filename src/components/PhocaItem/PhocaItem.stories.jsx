@@ -14,4 +14,13 @@ const Template = (args) => (
 );
 
 /**@type{import('@storybook/react').StoryObj} */
-export const Default = {};
+export const Default = {
+  args: {
+    title: 'PhocaTitle',
+    phocaImgSrc: '../../../public/phoca.jpeg',
+    logoImgSrc: '../../../public/blackpink.jpeg',
+    groupName: '블랙핑크',
+    memberName: '제니',
+    likeCount: 123,
+  },
+};
