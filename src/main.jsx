@@ -20,6 +20,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+        loader: phocaData,
       },
       {
         path: '/exchange',
