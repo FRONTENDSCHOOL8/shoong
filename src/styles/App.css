@@ -25,23 +25,3 @@
   -ms-user-select: none;
   user-select: none;
 }
-
-.biasContainer {
-  /* IE, Edge */
-  -ms-overflow-style: none;
-  /* Firefox */
-  scrollbar-width: none;
-  overflow-y: scroll;
-}
-
-::-webkit-scrollbar {
-  /* Chrome, Safari, Opera */
-  display: none;
-}
-
-.draggable {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
