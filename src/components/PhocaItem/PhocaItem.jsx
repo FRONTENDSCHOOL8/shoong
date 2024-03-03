@@ -32,14 +32,14 @@ export default function PhocaItem({
       <a
         to="/"
         aria-label={`${title} 카드 디테일 페이지로 이동`}
-        className="flex flex-col cursor-pointer hover:scale-95 transition-transform duration-300 w-176pxr"
+        className="flex flex-col cursor-pointer hover:scale-95 transition-transform duration-300 w-176pxr bg-blue-300 "
       >
         <PhocaImg phocaImgSrc={phocaImgSrc} phocaImgAlt={title} />
         <div className="flex gap-2">
           <ArtistLogo logoImgSrc={logoImgSrc} groupName={groupName} />
-          <ArtistInfo groupName={groupName} artistName={memberName} />
+          <ArtistInfo groupName={groupName} memberName={memberName} />
         </div>
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start bg-pink-100">
           <PhocaTitle title={title} />
           <PhocaLikeCount likeCount={likeCount} />
         </div>

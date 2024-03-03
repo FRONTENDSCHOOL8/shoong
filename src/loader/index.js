@@ -1,1 +1,1 @@
-export { default as biasPhocaData } from './biasPhocaData';
+export { default as phocaData } from './phocaData';

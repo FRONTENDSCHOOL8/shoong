@@ -9,7 +9,7 @@ export default function PhocaContainer() {
     const phoca = pb.collection('groups').getFullList({
       expand: 'photoCards',
     });
-    pb.autoCancellation();
+    pb.autoCancellation(false);
     phoca.then((phocaData) => {
       setPhoca(phocaData);
       console.log(phocaData);
@@ -20,7 +20,7 @@ export default function PhocaContainer() {
     <div className="">
       <ul>
         {phoca.map((group, groupIndex) => {
-          return group.photoCards.map((card, cardIndex) => (
+          return group.expand.photoCards.map((card, cardIndex) => (
             <li
               key={`${groupIndex}-${cardIndex}`}
               className="list-none m-0 p-0 w-44 h-353pxr relative"
@@ -31,8 +31,8 @@ export default function PhocaContainer() {
                 phocaImgAlt={`${card.title} 카드`}
                 logoImgSrc={`https://shoong.pockethost.io/api/files/groups/${group.id}/${group.logoImage}`}
                 logoAltText={group.groupName}
-                groupName={group.groupName}
-                artistName={card.memberName}
+                groupName={card.groupName}
+                memberName={card.memberName}
                 title={card.title}
                 likeCount={card.likeCount}
               />
