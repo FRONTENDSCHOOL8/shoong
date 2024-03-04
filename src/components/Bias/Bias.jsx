@@ -1,11 +1,12 @@
 /**
  *
  * @param {{
- *    children?: string
- *    style?:string
- *    src?:string
  *    alt?:string
+ *    src?:string
+ *    style?:string
  *    value?:string
+ *    groupName?:string
+ *    children?: string
  *    fakeRef?:import('react').MutableRefObject
  *    handle?:import('react').MouseEventHandler
  * }} props
@@ -13,28 +14,30 @@
  */
 
 export default function Bias({
-  src = '/src/assets/icons/bias.svg',
   alt = '내 최애 로고',
+  src = '/src/assets/icons/bias.svg',
+  style = 'w-100pxr h-50pxr m-auto',
   value,
-  style = 'w-50pxr h-50pxr m-auto',
+  groupName,
   handle,
-  children,
   fakeRef,
+  children,
 }) {
   return (
     <>
       <figure>
-        <button
-          type="button"
-          value={value}
-          onClick={handle}
-          className="flex flex-col gap-7pxr"
-        >
-          <img ref={fakeRef} className={style} src={src} alt={alt} />
-          <figcaption className="text-sb02 text-center w-100pxr font-sb02">
-            {children}
-          </figcaption>
+        <button type="button" value={value} onClick={handle} id={groupName}>
+          <img
+            ref={fakeRef}
+            className={style}
+            src={src}
+            alt={alt}
+            title={groupName}
+          />
         </button>
+        <figcaption className="text-sb02 text-center w-100pxr font-sb02">
+          {children}
+        </figcaption>
       </figure>
     </>
   );
