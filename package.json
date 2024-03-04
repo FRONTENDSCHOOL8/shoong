@@ -43,6 +43,7 @@
     "lodash": "^4.17.21",
     "postcss": "^8.4.35",
     "postcss-import": "^16.0.1",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "prop-types": "^15.8.1",
     "storybook": "^7.6.17",
     "tailwindcss": "^3.4.1",
