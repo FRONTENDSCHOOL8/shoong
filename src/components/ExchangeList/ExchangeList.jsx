@@ -1,10 +1,7 @@
 import { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useLocation } from 'react-router-dom';
 
 export default function ExchangeList() {
-  const param = useLoaderData();
-  console.log(param);
-
   return (
     <div className="flexCenter w-11/12 flex-col py-5">
       <div className="w-9/12 rounded-md border border-stone-300 bg-white p-2  text-gray-500">

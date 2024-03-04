@@ -35,6 +35,7 @@ export default function PhocaContainer() {
                 memberName={card.memberName}
                 title={card.title}
                 likeCount={card.likeCount}
+                phocaId={card.id}
               />
             </li>
           ));
