@@ -5,6 +5,7 @@ import PhocaContainer from '../../components/PhocaContainer/PhocaContainer';
 import { useLoaderData } from 'react-router';
 import BiasContainer from '../../components/BiasContainer/BiasContainer';
 import SortingBar from '../../components/SortingBar/SortingBar';
+import FloatingButton from '@/components/FloatingButton/FloatingButton';
 
 export default function Home() {
   const 그룹데이터 = useLoaderData();
@@ -14,6 +15,7 @@ export default function Home() {
 
   return (
     <div>
+      <FloatingButton />
       <PhocaContainer></PhocaContainer>
       <NavBar />
     </div>

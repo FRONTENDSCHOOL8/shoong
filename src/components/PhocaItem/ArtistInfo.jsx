@@ -10,6 +10,7 @@
  * @returns
  */
 
+
 export default function ArtistInfo({ groupName, memberName, infoClass, groupClass, memberClass }) {
   return (
     <div className={infoClass}>
