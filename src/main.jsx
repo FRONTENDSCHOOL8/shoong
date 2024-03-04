@@ -11,6 +11,8 @@ import Profile from './pages/Profile/Profile';
 import Home from './pages/Home/Home';
 import Chatting from './pages/Chatting/Chatting';
 import Alerts from './pages/Alerts/Alerts';
+import Like from './pages/Like/Like';
+import Login from './pages/Login/Login';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
+      },
+      {
+        path: '/Like',
+        element: <Like />,
+      },
+      {
+        path: '/Login',
+        element: <Login />,
       },
     ],
   },
