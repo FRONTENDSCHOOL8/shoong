@@ -1,3 +1,9 @@
+import ExchangeList from '@/components/ExchangeList/ExchangeList';
+
 export default function Exchange() {
-  return <div>Exchange</div>;
+  return (
+    <div className="flexCenter">
+      <ExchangeList />
+    </div>
+  );
 }
