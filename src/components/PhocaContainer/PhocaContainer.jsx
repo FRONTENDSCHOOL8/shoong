@@ -2,7 +2,22 @@ import PhocaItem from '../PhocaItem/PhocaItem';
 import pb from '@/api/pocketbase';
 import { useState, useEffect } from 'react';
 
-export default function PhocaContainer() {
+
+/**
+ *
+ * @param {{
+ *  phocaImgSrc: string,
+ *  logoImgSrc: string,
+ *  groupName: string,
+ *  memberName: string,
+ *  title: string,
+ *  likeCount: number,
+ * }} props
+ * @returns
+ */
+
+
+export default function PhocaContainer({phocaImgSrc,logoImgSrc,groupName,memberName,title,likeCount}) {
   const [phoca, setPhoca] = useState([]);
 
   useEffect(() => {
@@ -26,11 +41,8 @@ export default function PhocaContainer() {
               className="list-none m-0 p-0 w-44 relative"
             >
               <PhocaItem
-                ariaLabel={`${card.title} 카드 디테일 페이지로 이동`}
                 phocaImgSrc={`https://shoong.pockethost.io/api/files/photoCards/${card.id}/${card.cardImg}`}
-                phocaImgAlt={`${card.title} 카드`}
                 logoImgSrc={`https://shoong.pockethost.io/api/files/groups/${group.id}/${group.logoImage}`}
-                logoAltText={group.groupName}
                 groupName={card.groupName}
                 memberName={card.memberName}
                 title={card.title}
