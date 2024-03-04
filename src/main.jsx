@@ -5,9 +5,12 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import RootLayout from './Layout/RootLayout/RootLayout';
 import Exchange from './pages/Exchange/Exchange';
+import { phocaData } from './loader/index';
 import MeetUp from './pages/MeetUp/MeetUps';
 import Profile from './pages/Profile/Profile';
 import Home from './pages/Home/Home';
+import Chatting from './pages/Chatting/Chatting';
+import Alerts from './pages/Alerts/Alerts';
 
 const router = createBrowserRouter([
   {
@@ -17,10 +20,12 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+        loader: phocaData,
       },
       {
         path: '/exchange',
         element: <Exchange />,
+        loader: phocaData,
       },
       {
         path: '/meetup',
@@ -31,6 +36,14 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
     ],
+  },
+  {
+    path: '/chatting',
+    element: <Chatting />,
+  },
+  {
+    path: '/alerts',
+    element: <Alerts />,
   },
 ]);
 
