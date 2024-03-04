@@ -1,20 +1,9 @@
-import { useEffect } from 'react';
-import pb from '@/api/pocketbase';
-import PhocaItem from '../PhocaItem/PhocaItem';
 import { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 export default function ExchangeList() {
-  const [poca, setPhoca] = useState(null);
-  // useEffect(() => {
-  //   const phoca = pb.collection('photoCards').getFullList({
-  //     expand: 'photoCards',
-  //   });
-  //   pb.autoCancellation(false);
-  //   phoca.then((phocaData) => {
-  //     setPhoca(phocaData);
-  //     console.log(phocaData);
-  //   });
-  // }, []);
+  const param = useLoaderData();
+  console.log(param);
 
   return (
     <div className="flexCenter w-11/12 flex-col py-5">
@@ -31,13 +20,18 @@ export default function ExchangeList() {
           **
         </p>
       </div>
-      <div className="self-start">
-        <span className="font-['SUIT Variable'] text-xl font-extrabold leading-7 text-neutral-600">
+      <div className="mt-8 self-start">
+        <span className="text-xl font-extrabold leading-7 text-neutral-600">
           10
         </span>
-        <span className="font-['SUIT Variable'] text-xl font-bold leading-7 text-neutral-500">
+        <span className="text-xl font-bold leading-7 text-neutral-500">
           개의 코멘트
         </span>
+      </div>
+      <div className="">
+        <ul>
+          <li className="rounded-15pxr w-80 bg-white"></li>
+        </ul>
       </div>
     </div>
   );

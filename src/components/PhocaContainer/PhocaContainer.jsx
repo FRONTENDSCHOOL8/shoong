@@ -23,7 +23,7 @@ export default function PhocaContainer() {
           return group.expand.photoCards.map((card, cardIndex) => (
             <li
               key={`${groupIndex}-${cardIndex}`}
-              className="list-none m-0 p-0 w-44 relative"
+              className="relative m-0 w-44 list-none p-0"
             >
               <PhocaItem
                 ariaLabel={`${card.title} 카드 디테일 페이지로 이동`}
