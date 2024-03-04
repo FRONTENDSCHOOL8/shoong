@@ -2,8 +2,9 @@ import PhocaImg from './PhocaImg';
 import ArtistLogo from './ArtistLogo';
 import ArtistInfo from './ArtistInfo';
 import PhocaTitle from './PhocaTitle';
+import PhocaLikeButton from './PhocaLikeButton';
 import PhocaLikeCount from './PhocaLikeCount';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { Link, redirect, useOutletContext } from 'react-router-dom';
 
 /**
