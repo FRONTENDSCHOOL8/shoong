@@ -41,6 +41,7 @@ export default function PhocaItem({
   memberClass,
   linkClass,
   logoImgClass,
+
 }) {
   return (
     <>
@@ -50,17 +51,17 @@ export default function PhocaItem({
         className={linkClass}
       >
         <div>
-        <PhocaImg phocaImgSrc={phocaImgSrc} phocaImgAlt={title} imgClass={imgClass}>
-          <PhocaLikeButton />
-        </PhocaImg>
-        <div className="flex gap-2 items-start ">
-          <ArtistLogo logoImgSrc={logoImgSrc} groupName={groupName} logoImgClass={logoImgClass}/>
-          <ArtistInfo groupName={groupName} memberName={memberName} infoClass={infoClass} groupClass={groupClass} memberClass={memberClass} />
-        </div>
-        <div className="flex flex-col items-start ">
-          <PhocaTitle title={title} titleClass={titleClass}/>
-          <PhocaLikeCount likeCount={likeCount} />
-        </div>
+          <PhocaImg phocaImgSrc={phocaImgSrc} phocaImgAlt={title} imgClass={imgClass}>
+            <PhocaLikeButton />
+          </PhocaImg>
+          <div className="flex gap-2 items-start ">
+            <ArtistLogo logoImgSrc={logoImgSrc} groupName={groupName} logoImgClass={logoImgClass}/>
+            <ArtistInfo groupName={groupName} memberName={memberName} infoClass={infoClass} groupClass={groupClass} memberClass={memberClass} />
+          </div>
+          <div className="flex flex-col items-start ">
+            <PhocaTitle title={title} titleClass={titleClass}/>
+            <PhocaLikeCount likeCount={likeCount} />
+          </div>
         </div>
       </Link>
     </>
