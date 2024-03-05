@@ -47,7 +47,7 @@ export default function PhocaContainerEx({
         {phoca.map((group, groupIndex) => {
           return group.expand.photoCards.map((card, cardIndex) => (
             <li
-              key={`${groupIndex}-${cardIndex}`} // key 값을 보다 유일하게 만들기 위해 수정
+              key={cardIndex}
               className="list-none m-0 p-0 w-44 relative"
             >
               <PhocaItem

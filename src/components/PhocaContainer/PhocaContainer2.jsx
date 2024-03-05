@@ -16,6 +16,7 @@ import PhocaItem from '../PhocaItem/PhocaItem';
 *  titleClass: string,
 *  likeCount: number,
 *  linkClass: string,
+*  logoImgClass: string,
  * }} props
  * @returns
  */
@@ -25,27 +26,27 @@ export default function PhocaContainer2({
   phocaImgSrc,
   logoImgSrc,
   groupName,
-  imgClass,
-  infoClass,
-  groupClass,
-  memberClass,
   memberName,
   title,
-  titleClass,
   likeCount,
-  linkClass,
+  imgClass="mb-3 w-44 h-260pxr relative",
+  infoClass="flex flex-col items-start",
+  groupClass="text-m04 font-m04 text-contentSecondary",
+  memberClass="text-r01 font-r01 text-contentSecondary",
+  titleClass="w-44 overflow-hidden whitespace-nowrap truncate text-sb03 font-sb03 text-gray600 mb-1 mt-1",
+  linkClass="flex flex-col items-center cursor-pointer hover:scale-95 transition-transform duration-300 w-186pxr rounded-xl",
+  logoImgClass="w-10 h-10 rounded-full object-cover mt-1"
 }) {
 
   const phoca = useLoaderData();
 
-  // console.log(phoca);
 
   // 전체 그룹에 있는 모든 photoCards를 하나의 배열로 통합
   const allPhoca = phoca.reduce((acc, group) => {
     return acc.concat(group.expand.photoCards);
   }, []);
 
-  // console.log(allPhoca);
+
 
  // 통합된 photoCards 배열을 likeCount 필드 기준으로 내림차순으로 정렬
  const topLikeCountPhoca = allPhoca.sort((a, b) => b.likeCount - a.likeCount).slice(0, 10);
@@ -60,7 +61,6 @@ export default function PhocaContainer2({
               className="list-none m-0 p-0 w-44 relative"
             >
               <PhocaItem
-                linkClass={linkClass}
                 phocaImgSrc={`https://shoong.pockethost.io/api/files/photoCards/${card.id}/${card.cardImg}`}
                 logoImgSrc={`https://shoong.pockethost.io/api/files/photoCards/${card.id}/${card.logoImage}`}
                 groupName={card.groupName}
@@ -72,6 +72,8 @@ export default function PhocaContainer2({
                 infoClass={infoClass}
                 groupClass={groupClass}
                 memberClass={memberClass}
+                linkClass={linkClass}
+                logoImgClass={logoImgClass}
               />
             </li>
           ))}
