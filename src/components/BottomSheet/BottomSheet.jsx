@@ -1,7 +1,12 @@
-import React, { useId } from 'react';
+import React, { useState } from 'react';
 import Button from '../Button/Button';
 
 export default function BottomSheetRadio({ itemList }) {
+  const [checkedName, setCheckedName] = useState(itemList[0]);
+  const handleClick = (e) => {
+    setCheckedName(e.target.name);
+    console.log(e.target);
+  };
   return (
     // 왜 rounded에는 pxr 적용이 안 되지?
     <>
@@ -9,20 +14,31 @@ export default function BottomSheetRadio({ itemList }) {
         <div className="mb-12pxr mt-10pxr h-5pxr w-38pxr rounded-[5px] bg-zinc-100" />
         {itemList.map((item, index) => (
           <div className="w-10/12" key={index}>
-            <RadioItem>{item}</RadioItem>
+            <RadioItem
+              name={item}
+              onChange={handleClick}
+              checkedName={checkedName}
+            >
+              {item}
+            </RadioItem>
             {index < itemList.length - 1 && <BorderLine />}
           </div>
         ))}
-        <Button style="mt-16pxr">확인</Button>
+        <Button style="mt-8pxr">확인</Button>
       </div>
     </>
   );
 }
 
-function RadioItem({ children }) {
+function RadioItem({ children, name, onChange, checkedName }) {
   return (
-    <label className="my-12pxr flex flex-row gap-16pxr pl-16pxr">
-      <input type="radio" />
+    <label className="my-14pxr flex flex-row gap-16pxr pl-16pxr">
+      <input
+        type="radio"
+        name={name}
+        onChange={onChange}
+        checked={name === checkedName}
+      />
       <span className="font-semiboldtext-neutral-600 grow text-left text-sm">
         {children}
       </span>
