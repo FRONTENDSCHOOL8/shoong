@@ -1,6 +1,6 @@
 import NavBar from '@/components/NavBar/NavBar';
 import PhocaContainer from '../../components/PhocaContainer/PhocaContainer';
-import PhocaContainer2 from '@/components/PhocaContainer/PhocaContainer2';
+import { usePhocaDataByLikeCount, usePhocaDataByCreated } from '../../loader/usePhocaData';
 import { useLoaderData } from 'react-router';
 import BiasContainer from '../../components/BiasContainer/BiasContainer';
 import SortingBar from '../../components/SortingBar/SortingBar';
@@ -8,13 +8,13 @@ import FloatingButton from '@/components/FloatingButton/FloatingButton';
 
 
 export default function Home() {
-  const 그룹데이터 = useLoaderData();
-  const 포카데이터 = 그룹데이터.map((item) => {
+  const group = useLoaderData();
+  const phoca = group.map((item) => {
     return item.expand.photoCards;
   });
 
-
-
+  const phocaDataByCreated = usePhocaDataByCreated();
+  const phocaDataByLikeCount = usePhocaDataByLikeCount();
 
 
 
@@ -22,9 +22,9 @@ export default function Home() {
     <div>
       <FloatingButton />
       최신순
-      <PhocaContainer />
+      <PhocaContainer phocaData={phocaDataByCreated} />
       인기순
-      <PhocaContainer2 />
+      <PhocaContainer phocaData={phocaDataByLikeCount}/>
       <NavBar />
     </div>
   );

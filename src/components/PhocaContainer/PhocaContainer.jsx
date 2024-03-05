@@ -1,10 +1,11 @@
-import { useLoaderData } from 'react-router';
+
 import PhocaItem from '../PhocaItem/PhocaItem';
 
 
 /**
  *
  * @param {{
+ * phocaData: any,
 *  phocaImgSrc: string,
 *  logoImgSrc: string,
 *  groupName: string,
@@ -24,6 +25,7 @@ import PhocaItem from '../PhocaItem/PhocaItem';
 
 
 export default function PhocaContainer({
+  phocaData,
   phocaImgSrc,
   logoImgSrc,
   groupName,
@@ -39,27 +41,11 @@ export default function PhocaContainer({
   logoImgClass="w-10 h-10 rounded-full object-cover mt-1"
 }) {
 
-  const phoca = useLoaderData();
-
-
-  // 전체 그룹에 있는 모든 photoCards를 하나의 배열로 통합
-  const allPhoca = phoca.reduce((acc, group) => {
-    return acc.concat(group.expand.photoCards);
-  }, []);
-
-
-  // 통합된 photoCards 배열을 created 필드 기준으로 최신순으로 정렬
-  const latestCreatedPhoca = allPhoca.sort((a, b) => new Date(b.created) - new Date(a.created));
-
-  // 상위 10개의 photoCards만 선택
-  const latestCreatedTop10Phoca = latestCreatedPhoca.slice(0, 10);
-// console.log(latestCreatedTop10Phoca)
-
 
   return (
     <div className="draggable mb-7 mt-7">
       <ul className=" draggable flex gap-4 overflow-x-scroll">
-      {latestCreatedTop10Phoca.map((card, index) => (
+      {phocaData.map((card, index) => (
             <li
               key={index}
               className="list-none m-0 p-0 w-44 relative"
@@ -85,3 +71,5 @@ export default function PhocaContainer({
     </div>
   );
 }
+
+
