@@ -1,6 +1,5 @@
 import { IoIosInformationCircleOutline as Information } from 'react-icons/io';
 import { FaChevronLeft as LeftArrow } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import useBottomSheet from '../BottomSheet/useBottomSheet';
 import BottomSheet from '../BottomSheet/BottomSheet';
@@ -14,7 +13,6 @@ export default function DetailHeader({ children }) {
   console.log(button);
   return (
     <>
-      {' '}
       <div className="flex h-7 w-full items-center justify-between">
         <LeftArrow onClick={() => navigate(-1)} />
         <div className="font-bold text-neutral-800">{children}</div>
@@ -22,6 +20,7 @@ export default function DetailHeader({ children }) {
           <Information size="1.2rem" />
         </div>
       </div>
+
       <div ref={bottomSheet}>
         {/* <BottomSheet radio itemList={['전체', '앨범', '특전', '팬싸']} /> */}
         <BottomSheet>
