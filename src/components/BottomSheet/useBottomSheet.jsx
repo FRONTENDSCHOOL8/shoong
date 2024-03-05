@@ -4,6 +4,7 @@ export default function useBottomSheet() {
   const [isOpen, setIsOpen] = useState(false);
   const button = useRef(null);
   const bottomSheet = useRef(null);
+
   useEffect(() => {
     const handleBottomSheet = (e) => {
       setIsOpen((isOpen) => !isOpen);
@@ -14,5 +15,6 @@ export default function useBottomSheet() {
       button.current.removeEventListener('click', handleBottomSheet);
     };
   });
+
   return { button, bottomSheet };
 }
