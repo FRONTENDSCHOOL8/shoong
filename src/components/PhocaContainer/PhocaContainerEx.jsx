@@ -28,22 +28,22 @@ export default function PhocaContainerEx({
   phocaImgSrc,
   logoImgSrc,
   groupName,
-  imgClass,
-  infoClass,
-  groupClass,
-  memberClass,
   memberName,
   title,
-  titleClass,
   likeCount,
-  linkClass,
-  logoImgClass,
+  imgClass="mb-2 w-150pxr h-215pxr rounded-xl relative",
+  infoClass="flex flex-col items-start mb-1",
+  groupClass="text-sb01 font-sb01 text-gray500",
+  memberClass="text-sb01 font-sb01 text-contentSecondary",
+  titleClass="w-150pxr overflow-hidden whitespace-nowrap truncate text-m03 font-m03 text-gray600 text-left ",
+  linkClass="flex flex-col items-center justify-center cursor-pointer hover:scale-95 transition-transform duration-300 w-158pxr h-312pxr bg-gray-100 rounded-xl",
+  logoImgClass="w-8 h-8 rounded-full object-cover mt-0.5",
 }) {
   const phoca = useLoaderData();
 
   return (
-    <div className="mb-7 mt-7">
-      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 col-gap-8 gap-4">
+    <div className="mb-7 mt-7 flex justify-center">
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 col-gap-8 gap-4 justify-content-center">
         {phoca.map((group, groupIndex) => {
           return group.expand.photoCards.map((card, cardIndex) => (
             <li

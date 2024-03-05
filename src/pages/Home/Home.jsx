@@ -13,16 +13,18 @@ export default function Home() {
     return item.expand.photoCards;
   });
 
+
+
+
+
+
   return (
     <div>
       <FloatingButton />
-      <PhocaContainer 
-
-        />
-
-      <PhocaContainer2
-
-        />
+      최신순
+      <PhocaContainer />
+      인기순
+      <PhocaContainer2 />
       <NavBar />
     </div>
   );
