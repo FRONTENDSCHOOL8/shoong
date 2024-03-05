@@ -43,7 +43,7 @@ export default function PhocaContainerEx({
 
   return (
     <div className="mb-7 mt-7 flex justify-center">
-      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 col-gap-8 gap-4 justify-content-center">
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 col-gap-8 gap-4 ">
         {phoca.map((group, groupIndex) => {
           return group.expand.photoCards.map((card, cardIndex) => (
             <li
