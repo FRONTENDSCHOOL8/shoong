@@ -6,17 +6,14 @@ import { useNavigate } from 'react-router-dom';
 // 리액트 라우터 - 뒤로가기 구현 시 참고한 자료
 // https://velog.io/@jellyjw/React-useNavigate로-뒤로가기-기능-구현하기
 
-export default function DetailHeader({ backLink, children }) {
+export default function DetailHeader({ children }) {
   const navigate = useNavigate();
   return (
-    <div className="w-full h-7 justify-between items-center inline-flex">
-      {/* <Link to={`/${backLink}`}>
-        <LeftArrow />
-      </Link> */}
+    <div className="inline-flex h-7 w-full items-center justify-between">
       <div onClick={() => navigate(-1)}>
         <LeftArrow />
       </div>
-      <div className="text-neutral-800 text-base font-bold font-['SUIT Variable'] leading-snug">
+      <div className="font-['SUIT Variable'] text-base font-bold leading-snug text-neutral-800">
         {children}
       </div>
       <Information size="1.2rem" />
