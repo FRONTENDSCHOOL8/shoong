@@ -5,9 +5,9 @@ import { useId } from 'react';
 export default function NavBar() {
   const navItems = [
     { id: useId(), togo: '/', icon: GoHome, label: '홈' },
-    { id: useId(), togo: 'exchange', icon: GoArrowSwitch, label: '교환' },
-    { id: useId(), togo: 'meetup', icon: GoLocation, label: '밋업' },
-    { id: useId(), togo: 'profile', icon: GoPerson, label: '프로필' },
+    { id: useId(), togo: '/exchange', icon: GoArrowSwitch, label: '교환' },
+    { id: useId(), togo: '/meetup', icon: GoLocation, label: '밋업' },
+    { id: useId(), togo: '/profile', icon: GoPerson, label: '프로필' },
   ];
   return (
     <div>
