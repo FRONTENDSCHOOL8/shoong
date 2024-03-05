@@ -29,6 +29,5 @@ export default function Button({
   const defaultClassNames = `${width} ${height} ${paddingX} ${paddingY} ${backgroundColor} rounded-[10px] justify-center items-center gap-10pxr inline-flex text-white text-sm ${fontWeight} font-['SUIT Variable'] leading-tight`;
   const classNames = `${customClassNames} ${defaultClassNames}`.trim();
 
-  console.log(classNames);
   return <button className={classNames}>{children}</button>;
 }
