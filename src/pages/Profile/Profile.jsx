@@ -1,7 +1,8 @@
 import ProfileHeader from "@/components/ProfileTitle/ProfileHeader";
 
+
 export default function Profile() {
-  return <div className="bg-blue-200">
-    <ProfileHeader />
+  return <div className="min-w-360pxr">
+    <ProfileHeader/>
   </div>;
 }

@@ -5,10 +5,11 @@ export default function ProfileInfo() {
   const profileImage = useProfileImage();
   const user = useLoaderData();
   return (
-    <div className="inline-flex"><p>{user.name}</p>
-            <img
-          className="w-55pxr h-55pxr rounded-full"
+    <div className="flex gap-x-2 items-center">
+       <img
+          className="w-42pxr h-42pxr rounded-full"
           src={profileImage}
-        /></div>
+        />
+      <p className="text-contentPrimary text-xl">{user.name}</p></div>    
   )
 }
