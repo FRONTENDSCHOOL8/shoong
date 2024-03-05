@@ -1,31 +1,50 @@
 import React, { useState } from 'react';
 import Button from '../Button/Button';
 
-export default function BottomSheetRadio({ itemList }) {
+export default function BottomSheet({
+  itemList = [],
+  radio = false,
+  children,
+}) {
   const [checkedName, setCheckedName] = useState(itemList[0]);
   const handleClick = (e) => {
     setCheckedName(e.target.name);
   };
+
+  const radioLayout = (
+    <>
+      {itemList.map((item, index) => (
+        <div className="w-10/12" key={index}>
+          <RadioItem
+            name={item}
+            onChange={handleClick}
+            checkedName={checkedName}
+          >
+            {item}
+          </RadioItem>
+          {index < itemList.length - 1 && <BorderLine />}
+        </div>
+      ))}
+      <Button style="mt-8pxr">확인</Button>
+    </>
+  );
+
+  const textLayout = (
+    <div className="mx-60pxr mb-40pxr mt-20pxr text-left text-xs font-medium text-gray-500">
+      {children}
+    </div>
+  );
+
+  const bottomSheetHeight = radio ? 'h-296pxr' : '';
+
   return (
     // 왜 rounded에는 pxr 적용이 안 되지?
-    <>
-      <div className="flex h-296pxr flex-col items-center rounded-tl-[30px] rounded-tr-[30px] bg-indigo-200">
-        <div className="mb-12pxr mt-10pxr h-5pxr w-38pxr rounded-[5px] bg-zinc-100" />
-        {itemList.map((item, index) => (
-          <div className="w-10/12" key={index}>
-            <RadioItem
-              name={item}
-              onChange={handleClick}
-              checkedName={checkedName}
-            >
-              {item}
-            </RadioItem>
-            {index < itemList.length - 1 && <BorderLine />}
-          </div>
-        ))}
-        <Button style="mt-8pxr">확인</Button>
-      </div>
-    </>
+    <div
+      className={`flex ${bottomSheetHeight} w-full flex-col items-center rounded-tl-[30px] rounded-tr-[30px] bg-indigo-200`}
+    >
+      <div className="mb-12pxr mt-10pxr h-5pxr w-38pxr rounded-[5px] bg-zinc-100" />
+      {radio ? radioLayout : textLayout}
+    </div>
   );
 }
 
