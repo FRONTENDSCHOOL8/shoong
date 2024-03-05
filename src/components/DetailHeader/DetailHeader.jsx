@@ -9,13 +9,11 @@ import { useNavigate } from 'react-router-dom';
 export default function DetailHeader({ children }) {
   const navigate = useNavigate();
   return (
-    <div className="inline-flex h-7 w-full items-center justify-between">
+    <div className="flex h-7 w-full items-center justify-between">
       <div onClick={() => navigate(-1)}>
         <LeftArrow />
       </div>
-      <div className="font-['SUIT Variable'] text-base font-bold leading-snug text-neutral-800">
-        {children}
-      </div>
+      <div className="font-bold text-neutral-800">{children}</div>
       <Information size="1.2rem" />
     </div>
   );
