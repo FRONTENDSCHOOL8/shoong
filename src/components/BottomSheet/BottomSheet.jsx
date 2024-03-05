@@ -5,7 +5,6 @@ export default function BottomSheetRadio({ itemList }) {
   const [checkedName, setCheckedName] = useState(itemList[0]);
   const handleClick = (e) => {
     setCheckedName(e.target.name);
-    console.log(e.target);
   };
   return (
     // 왜 rounded에는 pxr 적용이 안 되지?
@@ -31,6 +30,10 @@ export default function BottomSheetRadio({ itemList }) {
 }
 
 function RadioItem({ children, name, onChange, checkedName }) {
+  let radioStyle = { background: "url('../radioUnchecked.svg') no-repeat" };
+  if (name === checkedName) {
+    radioStyle.background = "url('../radioChecked.svg') no-repeat";
+  }
   return (
     <label className="my-14pxr flex flex-row gap-16pxr pl-16pxr">
       <input
@@ -38,8 +41,10 @@ function RadioItem({ children, name, onChange, checkedName }) {
         name={name}
         onChange={onChange}
         checked={name === checkedName}
+        className="absolute h-22pxr w-22pxr appearance-none"
       />
-      <span className="font-semiboldtext-neutral-600 grow text-left text-sm">
+      <span className="h-22pxr w-22pxr" style={radioStyle} />
+      <span className="grow text-left text-sm font-semibold text-neutral-600">
         {children}
       </span>
     </label>
