@@ -5,3 +5,8 @@ export const globalState = create((set) => ({
   init: 'RIIZE',
   change: (data) => set(() => ({ init: data })),
 }));
+
+export const searchStore = create((set) => ({
+  search: '',
+  setSearch: (text) => set({ search: text }),
+}));

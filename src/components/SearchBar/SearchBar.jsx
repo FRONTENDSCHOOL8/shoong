@@ -1,6 +1,8 @@
+import { searchStore } from '@/store/store';
 import { debounce } from 'lodash';
-import { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
+
+// import { useNavigate } from 'react-router';
 
 /**
  * @param {string} props.name
@@ -8,10 +10,11 @@ import { BsSearch } from 'react-icons/bs';
  * @returns
  */
 export default function SearchBar({ name, placeholder, bgStyle }) {
-  const [search, setSearch] = useState('');
+  const { search, setSearch } = searchStore();
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
+  console.log(search);
   return (
     <form
       className={`${bgStyle} py-1.5 px-4 rounded-[30px] flex-row justify-start items-start gap-2 inline-flex`}
@@ -20,7 +23,7 @@ export default function SearchBar({ name, placeholder, bgStyle }) {
       <label htmlFor={name}></label>
       <input
         type="text"
-        name={name}
+        id={name}
         placeholder={placeholder}
         className="bg-transparent"
         onChange={debounce(handleSearch, 500)}
