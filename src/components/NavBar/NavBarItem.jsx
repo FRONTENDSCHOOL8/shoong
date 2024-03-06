@@ -15,8 +15,8 @@ export default function NavBarItem({ togo, label, icon: Icon }) {
     <li className="cursor-pointer text-contentTertiary hover:text-primary">
       <NavLink
         to={togo}
-        className={({ isAcive }) =>
-          isAcive
+        className={({ isActive }) =>
+          isActive
             ? 'flex flex-col items-center text-primary'
             : 'flex flex-col items-center'
         }
