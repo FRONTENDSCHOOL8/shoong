@@ -49,9 +49,9 @@ export default function BottomSheet({
 }
 
 function RadioItem({ children, name, onChange, checkedName }) {
-  let radioStyle = { background: "url('../radioUnchecked.svg') no-repeat" };
+  let radioStyle = { background: "url('/radioUnchecked.svg') no-repeat" };
   if (name === checkedName) {
-    radioStyle.background = "url('../radioChecked.svg') no-repeat";
+    radioStyle.background = "url('/radioChecked.svg') no-repeat";
   }
   return (
     <label className="my-14pxr flex flex-row gap-16pxr pl-16pxr">
