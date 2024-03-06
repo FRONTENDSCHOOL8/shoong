@@ -1,5 +1,6 @@
 /** @type { import('@storybook/react').Preview } */
 import '../src/styles/tailwind.css';
+import { MemoryRouter } from 'react-router-dom';
 
 const preview = {
   parameters: {

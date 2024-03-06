@@ -3,19 +3,16 @@ import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
-    <div className="w-360pxr h-55pxr pl-20pxr pr-26pxr pt-8pxr pb-11pxr bg-white justify-start items-center gap-142pxr inline-flex">
-      <Link to="./">
-        <img
-          className="w-100pxr h-36pxr justify-center items-center inline-flex"
-          src="../icons/shoongLogo.svg"
-        />
+    <div className="flex h-55pxr w-full items-center justify-between bg-white ">
+      <Link to="./" className="px-10pxr">
+        <img className="flex h-36pxr w-100pxr" src="/icons/shoongLogo.svg" />
       </Link>
-      <div className="justify-center items-center gap-20pxr inline-flex">
+      <div className="flex gap-20pxr px-10pxr">
         <Link to="/chatting">
-          <BsChat className="w-26pxr h-26pxr relative"></BsChat>
+          <BsChat className="h-26pxr w-26pxr"></BsChat>
         </Link>
         <Link to="/alerts">
-          <BsBell className="w-26pxr h-26pxr relative"></BsBell>
+          <BsBell className="h-26pxr w-26pxr"></BsBell>
         </Link>
       </div>
     </div>

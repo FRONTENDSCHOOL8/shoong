@@ -1,5 +1,10 @@
 // 버튼 컴포넌트
-export default function Button({ small, disabled, children, ...restProps }) {
+export default function Button({
+  small,
+  disabled,
+  style: customClassNames = '',
+  children,
+}) {
   let width, height, backgroundColor, fontWeight, paddingX, paddingY;
   if (small) {
     (width = 'w-69pxr'),
@@ -21,16 +26,8 @@ export default function Button({ small, disabled, children, ...restProps }) {
     backgroundColor = 'bg-indigo-500';
   }
 
-  return (
-    <button
-      className={`${width} ${height} ${paddingX} ${paddingY} ${backgroundColor} rounded-[10px] justify-center items-center gap-10pxr inline-flex`}
-      {...restProps}
-    >
-      <div
-        className={`text-white text-sm ${fontWeight} font-['SUIT Variable'] leading-tight`}
-      >
-        {children}
-      </div>
-    </button>
-  );
+  const defaultClassNames = `${width} ${height} ${paddingX} ${paddingY} ${backgroundColor} rounded-[10px] justify-center items-center gap-10pxr inline-flex text-white text-sm ${fontWeight} font-['SUIT Variable'] leading-tight`;
+  const classNames = `${customClassNames} ${defaultClassNames}`.trim();
+
+  return <button className={classNames}>{children}</button>;
 }
