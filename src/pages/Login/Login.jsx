@@ -23,20 +23,18 @@ export default function Login() {
         value={formData.email}
         onChange={handleChange}
         type="text"
-      >
-        이메일
-      </Input>
+        placeholder="이메일"
+      />
       <Input
         name="pwd"
         value={formData.pwd}
         onChange={handleChange}
         type="password"
+        placeholder="비밀번호"
         mt={2}
-      >
-        비밀번호
-      </Input>
+      />
 
-      <Button style="mt-26pxr">로그인</Button>
+      <Button customClassNames="mt-26pxr">로그인</Button>
 
       <div className="mt-18pxr text-xs font-medium text-neutral-800">
         <span>계정찾기</span>
