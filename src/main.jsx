@@ -13,6 +13,7 @@ import Chatting from './pages/Chatting/Chatting';
 import Alerts from './pages/Alerts/Alerts';
 import Like from './pages/Like/Like';
 import Login from './pages/Login/Login';
+import userData from './loader/userData';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
+        loader: userData,
       },
       {
         path: '/Like',
