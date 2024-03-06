@@ -2,7 +2,7 @@
 export default function Button({
   small,
   disabled,
-  style: customClassNames = '',
+  customClassNames = '',
   children,
 }) {
   let width, height, backgroundColor, fontWeight, paddingX, paddingY;
