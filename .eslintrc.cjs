@@ -30,5 +30,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     // props validation off
     'react/prop-types': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
 };

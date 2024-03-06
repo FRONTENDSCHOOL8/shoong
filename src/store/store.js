@@ -12,3 +12,8 @@ export const globalState = create(
     { name: 'bias' }
   )
 );
+
+export const searchStore = create((set) => ({
+  search: '',
+  setSearch: (text) => set({ search: text }),
+}));

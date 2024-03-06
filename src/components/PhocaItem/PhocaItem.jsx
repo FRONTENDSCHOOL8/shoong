@@ -4,7 +4,7 @@ import ArtistInfo from './ArtistInfo';
 import PhocaTitle from './PhocaTitle';
 import PhocaLikeButton from './PhocaLikeButton';
 import PhocaLikeCount from './PhocaLikeCount';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { Link, redirect, useOutletContext } from 'react-router-dom';
 
 /**
@@ -21,42 +21,64 @@ import PhocaLikeCount from './PhocaLikeCount';
  *   infoClass: string,
  *   groupClass: string,
  *   memberClass: string,
+ *   linkClass: string,
+ *  logoImgClass: string,
+ *  phocaId: string,
  * }} props
  * @returns
  */
 
 export default function PhocaItem({
   title,
-  titleClass="w-44 overflow-hidden whitespace-nowrap truncate text-sb03 font-sb03 text-gray600",
+  titleClass,
   phocaImgSrc,
   logoImgSrc,
-  imgClass="mb-4 w-44 h-260pxr relative",
+  imgClass,
   groupName,
   memberName,
   likeCount,
-  infoClass="flex flex-col items-start",
-  groupClass="text-m04 font-m04 text-contentSecondary",
-  memberClass="text-r01 font-r01 text-contentSecondary",
+  infoClass,
+  groupClass,
+  memberClass,
+  linkClass,
+  logoImgClass,
+  phocaId,
 }) {
   return (
     <>
-      <a
-        to="/"
+      <Link
+        to={`/exchangeDetail/${phocaId}`}
         aria-label={`${title} 카드 디테일 페이지로 이동`}
-        className="flex flex-col cursor-pointer hover:scale-95 transition-transform duration-300 w-176pxr"
+        className={linkClass}
       >
-        <PhocaImg phocaImgSrc={phocaImgSrc} phocaImgAlt={title} imgClass={imgClass}>
-          <PhocaLikeButton />
-        </PhocaImg>
-        <div className="flex gap-2">
-          <ArtistLogo logoImgSrc={logoImgSrc} groupName={groupName} />
-          <ArtistInfo groupName={groupName} memberName={memberName} infoClass={infoClass} groupClass={groupClass} memberClass={memberClass} />
+        <div>
+          <PhocaImg
+            phocaImgSrc={phocaImgSrc}
+            phocaImgAlt={title}
+            imgClass={imgClass}
+          >
+            <PhocaLikeButton />
+          </PhocaImg>
+          <div className="flex items-start gap-2 ">
+            <ArtistLogo
+              logoImgSrc={logoImgSrc}
+              groupName={groupName}
+              logoImgClass={logoImgClass}
+            />
+            <ArtistInfo
+              groupName={groupName}
+              memberName={memberName}
+              infoClass={infoClass}
+              groupClass={groupClass}
+              memberClass={memberClass}
+            />
+          </div>
+          <div className="flex flex-col items-start ">
+            <PhocaTitle title={title} titleClass={titleClass} />
+            <PhocaLikeCount likeCount={likeCount} />
+          </div>
         </div>
-        <div className="flex flex-col items-start ">
-          <PhocaTitle title={title} titleClass={titleClass}/>
-          <PhocaLikeCount likeCount={likeCount} />
-        </div>
-      </a>
+      </Link>
     </>
   );
 }
