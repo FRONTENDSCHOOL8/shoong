@@ -5,7 +5,6 @@ import PhocaTitle from './PhocaTitle';
 import PhocaLikeButton from './PhocaLikeButton';
 import PhocaLikeCount from './PhocaLikeCount';
 import { Link } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 // import { Link, redirect, useOutletContext } from 'react-router-dom';
 
 /**
@@ -46,7 +45,7 @@ export default function PhocaItem({
   return (
     <>
       <Link
-        to={`/exchangeDetail/${phocaId}`}
+        to={`/exchangeDetail`}
         aria-label={`${title} 카드 디테일 페이지로 이동`}
         className={linkClass}
       >

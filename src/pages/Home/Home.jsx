@@ -1,4 +1,3 @@
-import NavBar from '@/components/NavBar/NavBar';
 import PhocaItem from '@/components/PhocaItem/PhocaItem';
 import PhocaContainer from '../../components/PhocaContainer/PhocaContainer';
 import {
@@ -26,7 +25,6 @@ export default function Home() {
       <PhocaContainer phocaData={phocaDataByCreated} />
       인기순
       <PhocaContainer phocaData={phocaDataByLikeCount} />
-      <NavBar />
     </div>
   );
 }
