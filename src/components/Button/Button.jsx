@@ -2,32 +2,29 @@
 export default function Button({
   small,
   disabled,
+  bgClassName = '',
+  textColorClassName = '',
   customClassNames = '',
   children,
 }) {
-  let width, height, backgroundColor, fontWeight, paddingX, paddingY;
+  let width, height, fontWeight, backgroundColor, textColor;
   if (small) {
-    (width = 'w-69pxr'),
-      (height = 'h-28pxr'),
-      (fontWeight = 'medium'),
-      (paddingX = 'px-10pxr'),
-      (paddingY = 'py-4pxr');
+    (width = 'w-69pxr'), (height = 'h-28pxr'), (fontWeight = 'medium');
   } else {
-    (width = 'w-265pxr'),
-      (height = 'h-44pxr'),
-      (fontWeight = 'semibold'),
-      (paddingX = 'px-91pxr'),
-      (paddingY = 'py-12pxr');
+    (width = 'w-265pxr'), (height = 'h-44pxr'), (fontWeight = 'semibold');
   }
 
-  if (disabled) {
-    backgroundColor = 'bg-gray-400';
-  } else {
-    backgroundColor = 'bg-indigo-500';
-  }
+  bgClassName
+    ? (backgroundColor = bgClassName)
+    : (backgroundColor = disabled ? 'bg-gray-400' : 'bg-indigo-500');
 
-  const defaultClassNames = `${width} ${height} ${paddingX} ${paddingY} ${backgroundColor} rounded-[10px] justify-center items-center gap-10pxr inline-flex text-white text-sm ${fontWeight} font-['SUIT Variable'] leading-tight`;
-  const classNames = `${customClassNames} ${defaultClassNames}`.trim();
+  textColorClassName
+    ? (textColor = textColorClassName)
+    : (textColor = 'text-white');
+
+  const defaultClassNames = `${width} ${height} ${fontWeight} rounded-[10px] text-sm`;
+  const classNames =
+    `${textColor} ${backgroundColor} ${customClassNames} ${defaultClassNames}`.trim();
 
   return <button className={classNames}>{children}</button>;
 }
