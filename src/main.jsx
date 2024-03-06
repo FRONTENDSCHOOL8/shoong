@@ -31,7 +31,7 @@ const router = createBrowserRouter([
       {
         path: '/exchange',
         element: <Exchange />,
-        loader: exchangeDetailData,
+        // loader: exchangeDetailData,
       },
       {
         path: '/exchangeDetail/:id',
