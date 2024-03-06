@@ -9,7 +9,7 @@ export default function Input({
   label,
   mt = 0,
 }) {
-  const defaultClassNames = `h-44pxr w-265pxr rounded-[0.625rem] bg-black pl-20pxr pt-2pxr text-sm font-medium text-contentTertiary outline-none`;
+  const defaultClassNames = `h-44pxr w-265pxr rounded-[0.625rem] bg-black pl-20pxr text-sm font-medium text-contentTertiary outline-none`;
   const classNames = `${customClassNames} ${defaultClassNames}`.trim();
 
   return (
