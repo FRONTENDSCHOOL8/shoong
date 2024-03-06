@@ -14,6 +14,7 @@ import Chatting from './pages/Chatting/Chatting';
 import Alerts from './pages/Alerts/Alerts';
 import Like from './pages/Like/Like';
 import Login from './pages/Login/Login';
+import ColloectBookDetail from './pages/ColloectBookDetail/ColloectBookDetail';
 import userData from './loader/userData';
 import ExchangeDetail from './pages/ExchangeDetail/ExchangeDetail';
 
@@ -44,7 +45,12 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
-        loader: userData,
+        loader: phocaData,
+      },
+      {
+        path: '/collectBook/:group/:id',
+        element: <ColloectBookDetail />,
+        loader: phocaData,
       },
       {
         path: '/Like',
