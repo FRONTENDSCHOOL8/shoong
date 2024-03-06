@@ -23,6 +23,7 @@ import { Link } from 'react-router-dom';
  *   memberClass: string,
  *   linkClass: string,
  *  logoImgClass: string,
+ *  phocaId: string,
  * }} props
  * @returns
  */
@@ -41,25 +42,39 @@ export default function PhocaItem({
   memberClass,
   linkClass,
   logoImgClass,
-
+  phocaId,
 }) {
   return (
     <>
       <Link
-        to="/"
+        to={`/exchangeDetail/${phocaId}`}
         aria-label={`${title} 카드 디테일 페이지로 이동`}
         className={linkClass}
       >
         <div>
-          <PhocaImg phocaImgSrc={phocaImgSrc} phocaImgAlt={title} imgClass={imgClass}>
+          <PhocaImg
+            phocaImgSrc={phocaImgSrc}
+            phocaImgAlt={title}
+            imgClass={imgClass}
+          >
             <PhocaLikeButton />
           </PhocaImg>
-          <div className="flex gap-2 items-start ">
-            <ArtistLogo logoImgSrc={logoImgSrc} groupName={groupName} logoImgClass={logoImgClass}/>
-            <ArtistInfo groupName={groupName} memberName={memberName} infoClass={infoClass} groupClass={groupClass} memberClass={memberClass} />
+          <div className="flex items-start gap-2 ">
+            <ArtistLogo
+              logoImgSrc={logoImgSrc}
+              groupName={groupName}
+              logoImgClass={logoImgClass}
+            />
+            <ArtistInfo
+              groupName={groupName}
+              memberName={memberName}
+              infoClass={infoClass}
+              groupClass={groupClass}
+              memberClass={memberClass}
+            />
           </div>
           <div className="flex flex-col items-start ">
-            <PhocaTitle title={title} titleClass={titleClass}/>
+            <PhocaTitle title={title} titleClass={titleClass} />
             <PhocaLikeCount likeCount={likeCount} />
           </div>
         </div>

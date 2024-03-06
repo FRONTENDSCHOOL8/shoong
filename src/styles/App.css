@@ -1,9 +1,10 @@
 #root {
-  max-width: 1280px;
+  min-width: 360px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  font-family: SUIT Variable, sans-serif;
+  font-family:
+    SUIT Variable,
+    sans-serif;
+  background-image: linear-gradient(180deg, #d0ceff 0%, #fdfdff 70%, #fff 100%);
 }
 
 .biasContainer {
