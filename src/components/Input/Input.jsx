@@ -3,22 +3,31 @@ export default function Input({
   value,
   onChange,
   type,
-  children,
-  mt = 0,
+  placeholder,
+  customClassNames = '',
   labeled = false,
+  label,
+  mt = 0,
 }) {
+  const defaultClassNames = `h-44pxr w-265pxr rounded-[0.625rem] bg-black pl-20pxr pt-2pxr text-sm font-medium text-contentTertiary outline-none`;
+  const classNames = `${customClassNames} ${defaultClassNames}`.trim();
+
   return (
-    <>
-      {labeled && <label htmlFor={name}>{children}</label>}
+    <div className={`mt-${mt} flex flex-col`}>
+      {labeled && (
+        <label htmlFor={name} className="text-xs font-semibold text-primary">
+          {label}
+        </label>
+      )}
       <input
         id={name}
         name={name}
         value={value}
         onChange={onChange}
         type={type}
-        placeholder={children}
-        className={`mt-${mt} h-44pxr w-265pxr rounded-[0.625rem] bg-white pl-20pxr pt-4pxr text-sm font-medium text-zinc-400 outline-none`}
+        placeholder={placeholder}
+        className={classNames}
       />
-    </>
+    </div>
   );
 }
