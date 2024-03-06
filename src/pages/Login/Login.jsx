@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Input from '@/components/Input/Input';
 import Button from '@/components/Button/Button';
 
 export default function Login() {
@@ -31,7 +31,7 @@ export default function Login() {
         value={formData.pwd}
         onChange={handleChange}
         type="password"
-        mt={8}
+        mt={2}
       >
         비밀번호
       </Input>
@@ -62,22 +62,5 @@ export default function Login() {
         다음에 할게요
       </span>
     </div>
-  );
-}
-
-function Input({ name, value, onChange, type, children, mt = 0 }) {
-  return (
-    <label
-      className={`relative mt-${mt}pxr h-44pxr w-265pxr rounded-[0.625rem] bg-white`}
-    >
-      <input
-        name={name}
-        value={value}
-        onChange={onChange}
-        type={type}
-        placeholder={children}
-        className="absolute left-20pxr top-12pxr text-sm font-medium text-zinc-400 outline-none"
-      />
-    </label>
   );
 }
