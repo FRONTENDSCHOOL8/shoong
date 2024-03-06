@@ -11,7 +11,6 @@ import { useLocation, useLoaderData } from 'react-router-dom';
 export default function ExchangeDetail() {
   // @ts-ignore
   const photoCardData = useLoaderData();
-
   return (
     <div>
       <ExchangeList

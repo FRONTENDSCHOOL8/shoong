@@ -4,18 +4,9 @@ export default async function exchangeDetailData({ params }) {
   const { id } = params;
   try {
     const photoCardData = await pb.collection('photoCards').getOne(id, {
-      expand: 'exchangeList',
+      expand: 'exchangeList, exchangeList.writer',
     });
 
-    // const exchangeListId = photoCardData.exchangeList.id;
-
-    // const exchangeListData = await pb
-    //   .collection('exchangeList')
-    //   .getOne(exchangeListId, {
-    //     expand: 'writer',
-    //   });
-
-    // const writerData = exchangeListData.writer;
     return photoCardData;
   } catch (error) {
     console.error('Error Loading Data:', error);

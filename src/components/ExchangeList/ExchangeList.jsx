@@ -1,27 +1,21 @@
-import { useState } from 'react';
-import { useLoaderData, useLocation } from 'react-router-dom';
+// @ts-ignore
 import PhocaImg from '../PhocaItem/PhocaImg';
 import PhocaLikeButton from '../PhocaItem/PhocaLikeButton';
 import PhocaTitle from '../PhocaItem/PhocaTitle';
 import ArtistInfo from '../PhocaItem/ArtistInfo';
 import ArtistLogo from '../PhocaItem/ArtistLogo';
-import { useEffect } from 'react';
-import pb from '@/api/pocketbase';
 
 export default function ExchangeList({ phocaData }) {
-  const [exchangeList, setExchangeList] = useState([]);
-  useEffect(() => {
-    const exchanges = pb.collection('exchangeList').getOne('gghahtcrcfz7wgg', {
-      expand: 'writer',
-    });
-    pb.autoCancellation(false);
-    exchanges.then((data) => {
-      console.log(data);
-      setExchangeList(data);
-    });
-  }, []);
   const { cardImg, groupName, id, label, logoImage, memberName, title } =
     phocaData;
+  const exchangeListData = phocaData.expand.exchangeList;
+  const { created, description, status } = exchangeListData;
+  const writerData = exchangeListData.expand.writer;
+  const { username, exchangeStatus, avatar } = writerData;
+
+  console.log('포카데이터: ', phocaData);
+  console.log('교환리스트데이터: ', exchangeListData);
+  console.log('글작성유저데이터', writerData);
 
   return (
     <div className="flexCenter mx-auto my-5 w-11/12 flex-col">
