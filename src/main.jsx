@@ -6,7 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import RootLayout from './Layout/RootLayout/RootLayout';
 import Exchange from './pages/Exchange/Exchange';
 import { phocaData } from './loader/index';
-import detailData from './loader/phocaDetail';
+import exchangeDetailData from './loader/exchangeDetailData';
 import MeetUp from './pages/MeetUp/MeetUps';
 import Profile from './pages/Profile/Profile';
 import Home from './pages/Home/Home';
@@ -30,12 +30,12 @@ const router = createBrowserRouter([
       {
         path: '/exchange',
         element: <Exchange />,
-        loader: detailData,
+        loader: exchangeDetailData,
       },
       {
         path: '/exchangeDetail/:id',
         element: <ExchangeDetail />,
-        loader: detailData,
+        loader: exchangeDetailData,
       },
       {
         path: '/meetup',
