@@ -3,7 +3,7 @@ import PhocaItem from '../PhocaItem/PhocaItem';
 /**
  *
  * @param {{
- * phocaData: any,
+ *  phocaData: any,
  *  phocaImgSrc: string,
  *  logoImgSrc: string,
  *  groupName: string,
@@ -43,6 +43,7 @@ export default function PhocaContainer({
         {phocaData.map((card, index) => (
           <li key={index} className="relative m-0 w-44 list-none p-0">
             <PhocaItem
+              phocaId={card.id}
               phocaImgSrc={`https://shoong.pockethost.io/api/files/photoCards/${card.id}/${card.cardImg}`}
               logoImgSrc={`https://shoong.pockethost.io/api/files/photoCards/${card.id}/${card.logoImage}`}
               groupName={card.groupName}

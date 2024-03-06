@@ -23,6 +23,7 @@ import { Link } from 'react-router-dom';
  *   memberClass: string,
  *   linkClass: string,
  *  logoImgClass: string,
+ *  phocaId: string,
  * }} props
  * @returns
  */
@@ -41,11 +42,12 @@ export default function PhocaItem({
   memberClass,
   linkClass,
   logoImgClass,
+  phocaId,
 }) {
   return (
     <>
       <Link
-        to={`/exchangeDetail`}
+        to={`/exchangeDetail/${phocaId}`}
         aria-label={`${title} 카드 디테일 페이지로 이동`}
         className={linkClass}
       >
