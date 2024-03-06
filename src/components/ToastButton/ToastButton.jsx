@@ -15,10 +15,12 @@ export default function ToastButton({
     <button
       className={`inline-flex h-30pxr w-100pxr items-center justify-center gap-2.5 rounded px-5 py-5pxr ${buttonStyle}`}
       onClick={() => {
-        const data = {
-          cardInfo: [...phocaID, ...addID],
-        };
-        pb.collection('collectBook').update(id, data);
+        if (result === 'success') {
+          const data = {
+            cardInfo: [...phocaID, ...addID],
+          };
+          pb.collection('collectBook').update(id, data);
+        }
         handleToast(ment, result);
       }}
     >
