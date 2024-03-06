@@ -8,7 +8,7 @@ export default function FloatingButton() {
   return (
     <Link to={isLogIn ? '/Like' : '/Login'}>
       <button
-        type="button"
+          type="button"
         aria-label="찜목록으로 가기"
         className="fixed z-10 bottom-32 right-5 w-59pxr h-59pxr bg-gradient-to-b from-red-400 to-indigo-500 rounded-full shadow-lg"
       >
