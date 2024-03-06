@@ -2,16 +2,22 @@ import ExchangeList from '@/components/ExchangeList/ExchangeList';
 import { useLocation, useLoaderData } from 'react-router-dom';
 
 /**
- * data : string;
- * @returns
+ * @typedef {Object} PhotoCardData
+ * @typedef {Object} ExchangeListData
+ * @typedef {Object} WriterData
+ * @returns {JSX.Element}
  */
 
 export default function ExchangeDetail() {
-  const data = useLoaderData();
-  console.log('data', data);
+  // @ts-ignore
+  const photoCardData = useLoaderData();
+
   return (
     <div>
-      <ExchangeList data={data} />
+      <ExchangeList
+        // @ts-ignore
+        phocaData={photoCardData}
+      />
     </div>
   );
 }
