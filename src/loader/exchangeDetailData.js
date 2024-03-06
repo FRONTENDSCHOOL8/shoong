@@ -4,10 +4,10 @@ export default async function exchangeDetailData({ params }) {
   const { id } = params;
   try {
     const photoCardData = await pb.collection('photoCards').getOne(id, {
-      expand: 'exchangeList, exchangeList.writer',
+      expand: 'exchangeList',
     });
 
-    return photoCardData;
+    return { photoCardData };
   } catch (error) {
     console.error('Error Loading Data:', error);
 
