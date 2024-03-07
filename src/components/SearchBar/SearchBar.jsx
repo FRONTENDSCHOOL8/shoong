@@ -5,8 +5,10 @@ import { BsSearch } from 'react-icons/bs';
 // import { useNavigate } from 'react-router';
 
 /**
- * @param {string} props.name
- * @param {string} props.placeholder
+ * @param {{
+ * name:string,
+ * placeholder:string,
+ * bgStyle:string}} props
  * @returns
  */
 export default function SearchBar({ name, placeholder, bgStyle }) {
