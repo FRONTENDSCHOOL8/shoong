@@ -3,7 +3,6 @@
 import pb from '@/api/pocketbase';
 import CollectBookItemContainer from '@/components/CollectBookItemContainer/CollectBookItemContainer';
 import DragonSphere from '@/components/DragonSphere/DragonSphere';
-import NavBar from '@/components/NavBar/NavBar';
 import ToastAlert from '@/components/ToastAlert/ToastAlert';
 import { useState } from 'react';
 import { useRef } from 'react';
