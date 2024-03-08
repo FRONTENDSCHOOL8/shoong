@@ -21,7 +21,7 @@ export default function CollectBook() {
 
   return (
     <>
-      <div className="mx-3 flex gap-2">
+      <div className="mx-3 flex h-150pxr gap-2">
         {book.length !== 0
           ? book.map((item) => {
               return (
