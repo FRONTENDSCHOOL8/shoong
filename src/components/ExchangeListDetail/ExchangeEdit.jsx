@@ -1,8 +1,13 @@
 import pb from '@/api/pocketbase';
 import { useState } from 'react';
 
-export default function ExchangeEdit({ onExchangeAdded }) {
+export default function ExchangeEdit({
+  photoCardData,
+  exchangeListData,
+  setExchangeListData,
+}) {
   const [comment, setComment] = useState('');
+  const { id, exchangeList } = photoCardData;
 
   const handleCommentChange = (event) => {
     setComment(event.target.value);
@@ -21,22 +26,37 @@ export default function ExchangeEdit({ onExchangeAdded }) {
     }
 
     const newExchangeData = {
-      writer: 'ctjl558hrfcvczo',
+      writer: 'ctjl558hrfcvczo', //로그인된 유저의 ID
       description: comment,
       status: '교환대기중',
     };
 
     try {
+      // exchangeList에 새로운 교환 글을 추가
       const newRecord = await pb
         .collection('exchangeList')
         .create(newExchangeData);
 
-      onExchangeAdded(newRecord.id);
+      // 현재 포토카드의 exchangeList 필드에 새 레코드 ID 추가
+      const updatedPhotoCardData = await pb
+        .collection('photoCards')
+        .update(id, {
+          ...photoCardData.exchangeList,
+          exchangeList: [...exchangeList, newRecord.id],
+        });
+      setExchangeListData([...exchangeListData, newRecord]);
       setComment(''); // 코멘트 초기화
       alert('교환 글이 성공적으로 저장되었습니다.');
     } catch (error) {
       console.error('데이터를 저장하는 중 에러가 발생했습니다:', error);
       alert('데이터를 저장하는 데 실패했습니다.');
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    // Enter 키의 keyCode는 13입니다.
+    if (event.keyCode === 13) {
+      handleSubmit(event);
     }
   };
 
@@ -66,6 +86,7 @@ export default function ExchangeEdit({ onExchangeAdded }) {
               maxLength={150}
               value={comment}
               onChange={handleCommentChange}
+              onKeyDown={handleKeyDown}
               aria-required="true"
             ></textarea>
             <span className="absolute bottom-60pxr right-2 text-xs text-gray-500">

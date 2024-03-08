@@ -20,30 +20,14 @@ import ExchangeArticle from '../ExchangeListDetail/ExchangeArticle';
 
 export default function ExchangeList({ photoCardData }) {
   const [users, setUsers] = useState([]);
-  const [phocaData, setPhocaData] = useState(photoCardData);
-  console.log(photoCardData);
-
-  const handleExchangeAdd = (newExchangeId) => {
-    setPhocaData((currentData) => {
-      // 새로운 교환 글 ID를 photoCardData의 exchangeList에 추가
-      const updatedExchangeList = [...currentData.exchangeList, newExchangeId];
-      return {
-        ...currentData,
-        exchangeList: updatedExchangeList,
-      };
-    });
-  };
-
-  // photoCardData의 exchangeList를 계산하여 메모리에 저장
-  const exchangeList = useMemo(() => {
-    // photoCardData가 undefined이거나 exchangeList가 없으면 빈 배열을 반환
-    return photoCardData?.expand?.exchangeList || [];
-  }, [photoCardData]);
-
-  // const updatedExchangeList = [...photoCardData.exchangeList, newExchangeId];
+  // const [phocaData, setPhocaData] = useState(photoCardData);
+  // console.log(phocaData);
+  const [exchangeListData, setExchangeListData] = useState(
+    photoCardData?.expand?.exchangeList || []
+  );
 
   useEffect(() => {
-    const writerIds = exchangeList
+    const writerIds = exchangeListData
       .map((exchangeData) => exchangeData?.writer)
       .filter((id) => id);
 
@@ -63,7 +47,7 @@ export default function ExchangeList({ photoCardData }) {
       };
       fetchUsersData();
     }
-  }, [exchangeList]);
+  }, [exchangeListData]);
 
   return (
     <div className="flexCenter mx-auto my-5 w-11/12 flex-col">
@@ -79,15 +63,19 @@ export default function ExchangeList({ photoCardData }) {
       </div>
       <div className="mx-auto mt-10 w-10/12 self-start">
         <span className="text-xl font-extrabold leading-7 text-neutral-600">
-          {photoCardData.exchangeList ? photoCardData.exchangeList.length : 0}
+          {exchangeListData ? exchangeListData.length : 0}
         </span>
         <span className="text-xl font-bold leading-7 text-neutral-500">
           개의 교환글
         </span>
       </div>
       <div className="mx-auto mt-4 w-10/12">
-        <ExchangeEdit onExchangeAdded={handleExchangeAdd} />
-        <ExchangeArticle exchangeList={exchangeList} users={users} />
+        <ExchangeEdit
+          photoCardData={photoCardData}
+          exchangeListData={exchangeListData}
+          setExchangeListData={setExchangeListData}
+        />
+        <ExchangeArticle exchangeList={exchangeListData} users={users} />
       </div>
     </div>
   );
