@@ -1,8 +1,8 @@
 import pb from '@/api/pocketbase';
 
 export default function ToastButton({
-  phocaID,
-  addID,
+  phocaId,
+  editId,
   id,
   handleToast,
   ment,
@@ -17,7 +17,7 @@ export default function ToastButton({
       onClick={() => {
         if (result === 'success') {
           const data = {
-            cardInfo: [...phocaID, ...addID],
+            cardInfo: [...editId],
           };
           pb.collection('collectBook').update(id, data);
         }

@@ -16,15 +16,15 @@ export default function ColloectBookDetail() {
   const { group, id } = useParams();
   const editButton = useRef(null);
   const [phocaInfo, setPhocaInfo] = useState([]);
-  const [phocaID, setPhocaID] = useState([]);
-  const [addID, setAddID] = useState([]);
+  const [phocaId, setPhocaId] = useState([]);
+  const [editId, setEditId] = useState([]);
 
   // 선택한 카드 저장
   const handleSave = () => {
     editButton.current.disabled = true;
 
     toast(
-      <ToastAlert ref={editButton} phocaID={phocaID} addID={addID} id={id} />,
+      <ToastAlert ref={editButton} phocaId={phocaId} editId={editId} id={id} />,
       {
         duration: Infinity,
         position: 'bottom-center',
@@ -34,17 +34,17 @@ export default function ColloectBookDetail() {
 
   // 카드 클릭 시 색상 변화
   const handleCard = (e) => {
-    const pocaIdExtraction = e.target.src.split('/');
+    const pocaIdExtraction = e.target.src.split('/')[6];
 
-    if (e.target.style.filter === 'none') {
-      e.target.style.filter = 'grayscale(100%)';
-      const copy = [...addID];
-      const index = copy.indexOf(pocaIdExtraction[6]);
-      if (index !== -1) copy.splice(index, 1);
-      setAddID(copy);
+    if (e.target.className.includes('grayscale')) {
+      e.target.className = 'h-full w-full object-cover rounded-xl';
+      setEditId([...editId, pocaIdExtraction]);
     } else {
-      e.target.style.filter = 'none';
-      setAddID([...addID, pocaIdExtraction[6]]);
+      e.target.className = 'h-full w-full object-cover rounded-xl grayscale';
+      const copy = [...editId];
+      const index = copy.indexOf(pocaIdExtraction);
+      if (index !== -1) copy.splice(index, 1);
+      setEditId(copy);
     }
   };
 
@@ -66,7 +66,8 @@ export default function ColloectBookDetail() {
         const secondPocaID = secondPocaInfo.map((item) => {
           return item.id;
         });
-        setPhocaID(secondPocaID);
+        setPhocaId(secondPocaID);
+        setEditId(secondPocaID);
       },
       { expand: 'cardInfo' }
     );
@@ -86,7 +87,8 @@ export default function ColloectBookDetail() {
       const firstPocaID = firstPocaInfo.map((item) => {
         return item.id;
       });
-      setPhocaID(firstPocaID);
+      setPhocaId(firstPocaID);
+      setEditId(firstPocaID);
     });
 
     return () => pb.collection('collectBook').unsubscribe(id);
@@ -119,9 +121,9 @@ export default function ColloectBookDetail() {
           title="보유중"
           state={true}
           phocaData={phocaData}
-          phocaID={phocaID}
-          imgFilter="h-full w-full object-cover rounded"
-          // imgFilter="rounded h-full w-full object-cover"
+          phocaId={phocaId}
+          handleCard={handleCard}
+          imgFilter="h-full w-full object-cover rounded-xl"
           pb="pb-5"
         />
         <hr className="mb-5" />
@@ -129,9 +131,9 @@ export default function ColloectBookDetail() {
           title="미보유"
           state={false}
           phocaData={phocaData}
-          phocaID={phocaID}
+          phocaId={phocaId}
           handleCard={handleCard}
-          imgFilter="h-full w-full object-cover rounded grayscale"
+          imgFilter="h-full w-full object-cover rounded-xl grayscale"
           pb="pb-110pxr"
         />
       </div>
