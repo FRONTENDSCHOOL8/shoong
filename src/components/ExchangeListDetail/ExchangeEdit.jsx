@@ -1,7 +1,7 @@
 import pb from '@/api/pocketbase';
 import { useState } from 'react';
 
-export default function ExchangeEdit() {
+export default function ExchangeEdit({ onExchangeAdded }) {
   const [comment, setComment] = useState('');
 
   const handleCommentChange = (event) => {
@@ -15,15 +15,23 @@ export default function ExchangeEdit() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (!comment.trim()) {
+      alert('교환 글 내용을 입력해주세요.');
+      return;
+    }
+
+    const newExchangeData = {
+      writer: 'ctjl558hrfcvczo',
+      description: comment,
+      status: '교환대기중',
+    };
+
     try {
-      const exchangeData = {
-        writer: 'ctjl558hrfcvczo',
-        description: comment,
-        status: '교환대기중',
-      };
+      const newRecord = await pb
+        .collection('exchangeList')
+        .create(newExchangeData);
 
-      await pb.collection('exchangeList').create(exchangeData);
-
+      onExchangeAdded(newRecord.id);
       setComment(''); // 코멘트 초기화
       alert('교환 글이 성공적으로 저장되었습니다.');
     } catch (error) {

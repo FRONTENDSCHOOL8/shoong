@@ -28,7 +28,7 @@ export const usePhotoCardStore = create((set) => ({
         expand: {
           ...state.photoCardData.expand,
           exchangeList: [
-            ...state.photoCardData.expand.exchangeList,
+            ...(state.photoCardData.expand?.exchangeList || []),
             newExchange,
           ],
         },
