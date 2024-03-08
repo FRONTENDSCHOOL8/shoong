@@ -17,3 +17,21 @@ export const searchStore = create((set) => ({
   search: '',
   setSearch: (text) => set({ search: text }),
 }));
+
+// 새 교환 글이 추가
+export const usePhotoCardStore = create((set) => ({
+  photoCardData: null,
+  addExchangeToPhoca: (newExchange) =>
+    set((state) => ({
+      photoCardData: {
+        ...state.photoCardData,
+        expand: {
+          ...state.photoCardData.expand,
+          exchangeList: [
+            ...(state.photoCardData.expand?.exchangeList || []),
+            newExchange,
+          ],
+        },
+      },
+    })),
+}));
