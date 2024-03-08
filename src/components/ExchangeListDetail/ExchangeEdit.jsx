@@ -2,12 +2,12 @@ import pb from '@/api/pocketbase';
 import { useState } from 'react';
 
 export default function ExchangeEdit({
-  photoCardData,
+  // setPhocaData,
   exchangeListData,
   setExchangeListData,
 }) {
   const [comment, setComment] = useState('');
-  const { id, exchangeList } = photoCardData;
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCommentChange = (event) => {
     setComment(event.target.value);
@@ -26,7 +26,7 @@ export default function ExchangeEdit({
     }
 
     const newExchangeData = {
-      writer: 'ctjl558hrfcvczo', //로그인된 유저의 ID
+      writer: 'sg01ds76ccvmji7', //로그인된 유저의 ID
       description: comment,
       status: '교환대기중',
     };
@@ -38,12 +38,11 @@ export default function ExchangeEdit({
         .create(newExchangeData);
 
       // 현재 포토카드의 exchangeList 필드에 새 레코드 ID 추가
-      const updatedPhotoCardData = await pb
-        .collection('photoCards')
-        .update(id, {
-          ...photoCardData.exchangeList,
-          exchangeList: [...exchangeList, newRecord.id],
-        });
+      // const updatedPhotoCardData = await pb
+      //   .collection('photoCards')
+      //   .update(id, {
+      //     'exchangeList+': newRecord.id,
+      //   });
       setExchangeListData([...exchangeListData, newRecord]);
       setComment(''); // 코멘트 초기화
       alert('교환 글이 성공적으로 저장되었습니다.');
@@ -60,6 +59,10 @@ export default function ExchangeEdit({
     }
   };
 
+  const handleToggleModal = () => {
+    setIsModalOpen((prev) => !prev);
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -68,11 +71,6 @@ export default function ExchangeEdit({
       <fieldset>
         <legend className="sr-only">교환글 작성 폼</legend>
         <div className="flex items-start space-x-4">
-          {/* <ArtistLogo
-                logoImgSrc={`https://shoong.pockethost.io/api/files/users/${writerData.id}/${avatar}`}
-                groupName={username}
-                logoImgClass={'w-10 h-10 rounded-full object-cover mt-1'}
-              /> */}
           <div className="relative flex-1">
             <label htmlFor="exchangeArticle" className="sr-only">
               교환 글을 입력하세요
@@ -96,14 +94,14 @@ export default function ExchangeEdit({
               <div className="flex space-x-2">
                 <button
                   type="submit"
-                  className="rounded bg-blue-500 px-4 py-2 text-white transition duration-300 hover:bg-blue-700"
+                  className="rounded bg-primary px-4 py-2 text-white transition duration-300 hover:bg-violet-700"
                 >
                   저장
                 </button>
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="rounded bg-blue-500 px-4 py-2 text-white transition duration-300 hover:bg-blue-700"
+                  className="rounded bg-primary px-4 py-2 text-white transition duration-300 hover:bg-violet-700"
                 >
                   취소
                 </button>

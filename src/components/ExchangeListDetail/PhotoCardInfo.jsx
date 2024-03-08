@@ -31,7 +31,7 @@ export default function PhotoCardInfo({ photoCardData }) {
         </div>
         <PhocaTitle
           title={title}
-          titleClass={'mt-1 self-start text-2xl font-bold '}
+          titleClass={'mt-1 self-start text-xl font-bold '}
         />
         <span className="mb-6 mt-3 self-start rounded-2xl border border-neutral-800 px-4 py-1pxr text-sm">
           {label}

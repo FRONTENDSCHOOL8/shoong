@@ -7,6 +7,7 @@ import { useMemo } from 'react';
 import PhotoCardInfo from '../ExchangeListDetail/PhotoCardInfo';
 import ExchangeEdit from '../ExchangeListDetail/ExchangeEdit';
 import ExchangeArticle from '../ExchangeListDetail/ExchangeArticle';
+import Modal from '../Modal/Modal';
 
 /**
  * ExchangeList 컴포넌트는 photoCardData로부터 포토카드와 관련된 교환 글을 표시합니다.
@@ -21,7 +22,6 @@ import ExchangeArticle from '../ExchangeListDetail/ExchangeArticle';
 export default function ExchangeList({ photoCardData }) {
   const [users, setUsers] = useState([]);
   // const [phocaData, setPhocaData] = useState(photoCardData);
-  // console.log(phocaData);
   const [exchangeListData, setExchangeListData] = useState(
     photoCardData?.expand?.exchangeList || []
   );
@@ -55,15 +55,14 @@ export default function ExchangeList({ photoCardData }) {
     <div className="flexCenter mx-auto my-5 w-11/12 flex-col">
       {/* <DetailHeader>자세히</DetailHeader> */}
       <PhotoCardInfo photoCardData={photoCardData} />
-      <div className="w-8/12 rounded-md border border-stone-300 bg-white p-4 text-center text-gray-500 ">
-        <p className="font-medium">
-          포토카드 교환 상대를 찾아 대화를 시도해 보세요!
-        </p>
-        <p className="text-x font-medium">
-          프로필 이미지를 클릭해 대화를 시작하실 수 있습니다.
-        </p>
-      </div>
-      <div className="mx-auto mt-10 w-10/12 self-start">
+      <Modal
+        isOpen={undefined}
+        onClose={undefined}
+        title={undefined}
+        content={undefined}
+      />
+      <div className="mx-auto my-4 w-10/12 border-t border-gray-200"></div>
+      <div className="mx-auto mt-8 w-10/12 self-start">
         <span className="text-xl font-extrabold leading-7 text-neutral-600">
           {exchangeListData ? exchangeListData.length : 0}
         </span>
@@ -73,9 +72,9 @@ export default function ExchangeList({ photoCardData }) {
       </div>
       <div className="mx-auto mt-4 w-10/12">
         <ExchangeEdit
-          photoCardData={photoCardData}
           exchangeListData={exchangeListData}
           setExchangeListData={setExchangeListData}
+          // setPhocaData={setPhocaData}
         />
         <ExchangeArticle
           exchangeListData={exchangeListData}
