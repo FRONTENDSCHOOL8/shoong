@@ -27,10 +27,12 @@ export default function ExchangeList({ photoCardData }) {
   );
 
   useEffect(() => {
+    // 교환글에서 작성자들의 id들을 추출
     const writerIds = exchangeListData
       .map((exchangeData) => exchangeData?.writer)
       .filter((id) => id);
 
+    // 작성자가 있을 경우엔, users에서 해당하는 유저의 정보 가져오기
     if (writerIds.length > 0) {
       const fetchUsersData = async () => {
         try {
@@ -75,7 +77,11 @@ export default function ExchangeList({ photoCardData }) {
           exchangeListData={exchangeListData}
           setExchangeListData={setExchangeListData}
         />
-        <ExchangeArticle exchangeList={exchangeListData} users={users} />
+        <ExchangeArticle
+          exchangeListData={exchangeListData}
+          users={users}
+          setExchangeListData={setExchangeListData}
+        />
       </div>
     </div>
   );
