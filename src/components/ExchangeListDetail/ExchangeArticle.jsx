@@ -1,13 +1,49 @@
 import pb from '@/api/pocketbase';
+import { useState } from 'react';
 import { useEffect } from 'react';
-import { userData } from '@/loader';
-import { RiDeleteBin6Line } from 'react-icons/ri';
+import { GoTrash, GoPencil } from 'react-icons/go';
+import { RiDeleteBin6Line, RiEditLine } from 'react-icons/ri';
 
 export default function ExchangeArticle({
   exchangeListData,
   setExchangeListData,
   users,
 }) {
+  // 수정 상태와 현재 수정 중인 교환글의 ID를 관리합니다.
+  const [isEditing, setIsEditing] = useState(null);
+  const [editingContent, setEditingContent] = useState('');
+
+  const handleEdit = (exchangeData) => {
+    setIsEditing(exchangeData.id);
+    setEditingContent(exchangeData.description);
+  };
+
+  const handleEditSubmit = async (exchangeId) => {
+    try {
+      const updatedRecord = await pb
+        .collection('exchangeList')
+        .update(exchangeId, {
+          'description+': editingContent,
+        });
+      // 상태를 업데이트하여 UI에 반영합니다.
+      setExchangeListData((prevData) =>
+        prevData.map((data) => (data.id === exchangeId ? updatedRecord : data))
+      );
+      // 수정 상태 종료
+      setIsEditing(null);
+      setEditingContent('');
+      alert('교환 글이 수정되었습니다.');
+    } catch (error) {
+      console.error('교환 글 수정 중 에러가 발생했습니다:', error);
+      alert('교환 글 수정에 실패했습니다.');
+    }
+  };
+
+  const handleEditCancel = () => {
+    setIsEditing(null);
+    setEditingContent('');
+  };
+
   // users 배열을 id를 키로 사용하는 객체로 변환
   const usersById = {};
   users.forEach((user) => {
@@ -31,7 +67,7 @@ export default function ExchangeArticle({
     }
   };
 
-  const loggedInUserId = 'ctjl558hrfcvczo'; //임시 유저 ID
+  const loggedInUserId = 'sg01ds76ccvmji7'; //임시 유저 ID
 
   return (
     <ul className="mt-5">
@@ -48,12 +84,15 @@ export default function ExchangeArticle({
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <img
-                  className="h-10 w-10 rounded-full"
-                  src={`https://shoong.pockethost.io/api/files/users/${user.id}/${user.avatar}`}
-                  alt={`${user.username} 프로필 사진`}
-                  aria-hidden="true" // 스크린 리더에서는 숨김 처리
-                />
+                <div className="h-11 w-10 ">
+                  <img
+                    className="h-full w-full rounded-full object-cover"
+                    src={`https://shoong.pockethost.io/api/files/users/${user.id}/${user.avatar}`}
+                    alt={`${user.username} 프로필 사진`}
+                    aria-hidden="true" // 스크린 리더에서는 숨김 처리
+                  />
+                </div>
+
                 <div className="ml-3">
                   <p className="font-semibold" aria-label="작성자 이름">
                     {user.username}
@@ -68,22 +107,56 @@ export default function ExchangeArticle({
                 </div>
               </div>
               {isUserTheWriter && (
-                <RiDeleteBin6Line
-                  className="mr-1 h-5 w-5 cursor-pointer"
-                  onClick={() => handleDelete(exchangeData.id)}
-                  aria-label="교환 글 삭제"
-                />
+                // <GoTrash
+                //   className="mr-1 h-5 w-5 cursor-pointer"
+                //   onClick={() => handleDelete(exchangeData.id)}
+                //   aria-label="교환 글 삭제"
+                // />
+                <div className="flex gap-1">
+                  <GoPencil
+                    className="mr-1 h-6 w-6 cursor-pointer text-primary"
+                    onClick={() => handleEdit(exchangeData)}
+                  />
+                  <GoTrash
+                    className="mr-1 h-6 w-6 cursor-pointer text-primary"
+                    onClick={() => handleDelete(exchangeData.id)}
+                  />
+                </div>
               )}
             </div>
-            <div className="mt-3">
-              <p className="text-gray-700" aria-label="메시지 내용">
-                {exchangeData.description}
-              </p>
-            </div>
+            {isEditing === exchangeData.id ? (
+              <div className="mt-3">
+                <textarea
+                  className="w-full rounded border px-2 py-1 text-gray-700"
+                  value={editingContent}
+                  onChange={(e) => setEditingContent(e.target.value)}
+                />
+                <div className="mt-2 flex justify-end">
+                  <button
+                    className="mr-2 rounded bg-gray-300 px-4 py-2 text-sm"
+                    onClick={handleEditCancel}
+                  >
+                    취소
+                  </button>
+                  <button
+                    className="rounded bg-blue-500 px-4 py-2 text-sm text-white"
+                    onClick={() => handleEditSubmit(exchangeData.id)}
+                  >
+                    저장
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="mt-3">
+                <p className="text-gray-700" aria-label="메시지 내용">
+                  {exchangeData.description}
+                </p>
+              </div>
+            )}
             <div className="mt-4 flex justify-end">
               <button
                 type="button"
-                className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="rounded bg-primary px-4 py-2 text-white hover:bg-indigo-700 focus:bg-indigo-700 focus:outline-none focus:ring-2"
               >
                 대화하기
               </button>
