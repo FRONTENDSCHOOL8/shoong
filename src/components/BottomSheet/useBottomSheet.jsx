@@ -1,25 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import BottomSheet from './BottomSheet';
 
 export default function useBottomSheet() {
   const [isOpen, setIsOpen] = useState(false);
   const button = useRef(null);
-  const bottomSheet = useRef(null);
-  console.log(button.current);
+  const linkedBottomSheet = useRef(null);
+
+  const handleBottomSheet = (e) => {
+    setIsOpen((isOpen) => !isOpen);
+  };
 
   useEffect(() => {
-    const handleBottomSheet = (e) => {
-      setIsOpen((isOpen) => !isOpen);
-    };
-
     button.current.addEventListener('click', handleBottomSheet);
 
-    bottomSheet.current.className =
-      'transition-all duration-500 ease-in-out absolute w-full left-0';
-
+    console.log(linkedBottomSheet);
+    // bottomSheet.current.className =
+    //   'transition-all duration-1000 w-1/12 left-0';
+    console.log(isOpen);
     if (isOpen) {
-      bottomSheet.current.style.bottom = '0px';
+      //296px=18.5rem
+      linkedBottomSheet.current.style.height = '18.5rem';
     } else {
-      bottomSheet.current.style.bottom = `-${getComputedStyle(bottomSheet.current).height}`;
+      linkedBottomSheet.current.style.height = '0';
     }
 
     //eslint가 이렇게 변수에 담으라고 해서 담았는데 왜 이렇게 해줘야 되는지는 모르겠음..
@@ -29,5 +31,5 @@ export default function useBottomSheet() {
     };
   });
 
-  return { button, bottomSheet };
+  return { button, linkedBottomSheet };
 }
