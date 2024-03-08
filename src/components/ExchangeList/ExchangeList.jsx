@@ -55,6 +55,7 @@ export default function ExchangeList({ photoCardData }) {
     <div className="flexCenter mx-auto my-5 w-11/12 flex-col">
       {/* <DetailHeader>자세히</DetailHeader> */}
       <PhotoCardInfo photoCardData={photoCardData} />
+      <PhotoCardInfo photoCardData={photoCardData} />
       <div className="w-8/12 rounded-md border border-stone-300 bg-white p-4 text-center text-gray-500 ">
         <p className="font-medium">
           포토카드 교환 상대를 찾아 대화를 시도해 보세요!
@@ -65,6 +66,7 @@ export default function ExchangeList({ photoCardData }) {
       </div>
       <div className="mx-auto mt-10 w-10/12 self-start">
         <span className="text-xl font-extrabold leading-7 text-neutral-600">
+          {exchangeListData ? exchangeListData.length : 0}
           {exchangeListData ? exchangeListData.length : 0}
         </span>
         <span className="text-xl font-bold leading-7 text-neutral-500">
