@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 export default function Footer() {
   return (
     <footer>
-      <div className="flex h-11 w-full items-center justify-between bg-gray100 px-6 text-b01 font-m02 text-gray500">
+      <div className="flex h-11 w-full items-center justify-between bg-gray100 px-6 text-b01 font-m02 text-gray500 lg:px-10">
         <div className="flex flex-grow items-center justify-center">
           <Link to="/">회사소개</Link>
         </div>
@@ -21,7 +21,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mb-10 flex flex-col items-start bg-gray500 px-6 pb-20 text-white">
+      <div className="mb-10 flex flex-col items-start bg-gray500 px-6 pb-20 text-white lg:px-10">
         <div className="flex flex-col items-start justify-center pb-4 pt-5 ">
           <p className=" text-b03 font-b03">SHOONG</p>
           <p className="mt-1 text-b01 ">(주)훅컴퍼니</p>

@@ -17,6 +17,7 @@ import Login from './pages/Login/Login';
 import ColloectBookDetail from './pages/ColloectBookDetail/ColloectBookDetail';
 import userData from './loader/userData';
 import ExchangeDetail from './pages/ExchangeDetail/ExchangeDetail';
+import ProfileSetting from './pages/ProfileSetting/ProfileSetting';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
         path: '/profile',
         element: <Profile />,
         loader: phocaData,
+      },
+      {
+        path: '/profileSetting',
+        element: <ProfileSetting />,
       },
       {
         path: '/collectBook/:group/:id',
