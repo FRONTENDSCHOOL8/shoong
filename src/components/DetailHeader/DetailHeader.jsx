@@ -9,7 +9,7 @@ import BottomSheet from '../BottomSheet/BottomSheet';
 
 export default function DetailHeader({ children }) {
   const navigate = useNavigate();
-  const { button, linkedBottomSheet } = useBottomSheet();
+  const { button, linkedBottomSheet, isOpen, setIsOpen } = useBottomSheet();
 
   return (
     <>
@@ -25,6 +25,8 @@ export default function DetailHeader({ children }) {
         radio
         itemList={['전체', '앨범', '특전', '팬싸', '시즌그리팅', '팬미팅']}
         linkedBottomSheet={linkedBottomSheet}
+        isOpen
+        setIsOpen={setIsOpen}
       />
       {/* <BottomSheet>
           ** 포토카드 이미지는 거래의 이해를 돕는 식별 목적으로 사용하고

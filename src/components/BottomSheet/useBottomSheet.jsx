@@ -14,13 +14,13 @@ export default function useBottomSheet() {
     button.current.addEventListener('click', handleBottomSheet);
 
     console.log(linkedBottomSheet);
-    // bottomSheet.current.className =
-    //   'transition-all duration-1000 w-1/12 left-0';
-    console.log(isOpen);
+
     if (isOpen) {
+      console.log(isOpen);
       //296px=18.5rem
       linkedBottomSheet.current.style.height = '18.5rem';
     } else {
+      console.log(isOpen);
       linkedBottomSheet.current.style.height = '0';
     }
 
@@ -31,5 +31,5 @@ export default function useBottomSheet() {
     };
   });
 
-  return { button, linkedBottomSheet };
+  return { button, linkedBottomSheet, isOpen, setIsOpen };
 }
