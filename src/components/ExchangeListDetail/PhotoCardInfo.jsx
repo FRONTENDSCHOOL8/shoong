@@ -1,5 +1,4 @@
 import PhocaImg from '../PhocaItem/PhocaImg';
-import PhocaLikeButton from '../PhocaItem/PhocaLikeButton';
 import PhocaTitle from '../PhocaItem/PhocaTitle';
 import ArtistInfo from '../PhocaItem/ArtistInfo';
 import ArtistLogo from '../PhocaItem/ArtistLogo';
@@ -24,7 +23,7 @@ export default function PhotoCardInfo({ photoCardData }) {
           <ArtistInfo
             groupName={groupName}
             memberName={memberName}
-            infoClass={'ml-2 flex gap-2 text-16pxr font-bold text-gray-500'}
+            infoClass={'ml-2 flex gap-1 text-16pxr font-bold text-gray-500'}
             groupClass={''}
             memberClass={''}
           />

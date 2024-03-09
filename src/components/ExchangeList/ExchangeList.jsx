@@ -1,9 +1,7 @@
 // @ts-ignore
-import { useState, useEffect } from 'react';
-// import { usePhotoCardStore } from '@/store/store';
+import { useState, useEffect, useMemo } from 'react';
 import pb from '@/api/pocketbase';
 import DetailHeader from '../DetailHeader/DetailHeader';
-import { useMemo } from 'react';
 import PhotoCardInfo from '../ExchangeListDetail/PhotoCardInfo';
 import ExchangeEdit from '../ExchangeListDetail/ExchangeEdit';
 import ExchangeArticle from '../ExchangeListDetail/ExchangeArticle';
@@ -11,7 +9,6 @@ import Modal from '../Modal/Modal';
 
 /**
  * ExchangeList 컴포넌트는 photoCardData로부터 포토카드와 관련된 교환 글을 표시합니다.
- *
  * @param {Object} props - 컴포넌트 props 객체입니다.
  * @param {Object} props.photoCardData - 포토카드 데이터 객체입니다. expand 객체 내의 exchangeList 배열을 포함할 수 있습니다.
  * @param {string} [props.title] - (선택적) 컴포넌트 타이틀입니다.
@@ -21,10 +18,26 @@ import Modal from '../Modal/Modal';
 
 export default function ExchangeList({ photoCardData }) {
   const [users, setUsers] = useState([]);
-  // const [phocaData, setPhocaData] = useState(photoCardData);
+  const [phocaData, setPhocaData] = useState(photoCardData);
   const [exchangeListData, setExchangeListData] = useState(
     photoCardData?.expand?.exchangeList || []
   );
+
+  // useEffect(() => {
+  //   const fetchExchangeListData = async () => {
+  //     try {
+  //       // 예시로, 'exchangeList' 컬렉션에서 모든 교환글 데이터를 불러오는 로직을 가정합니다.
+  //       const response = await pb.collection('exchangeList').getFullList();
+  //       if (response) {
+  //         setExchangeListData(response);
+  //       }
+  //     } catch (error) {
+  //       console.error('교환글 데이터를 불러오는 중 오류 발생:', error);
+  //     }
+  //   };
+
+  //   fetchExchangeListData();
+  // }, [])
 
   useEffect(() => {
     // 교환글에서 작성자들의 id들을 추출
@@ -72,6 +85,7 @@ export default function ExchangeList({ photoCardData }) {
       </div>
       <div className="mx-auto mt-4 w-10/12">
         <ExchangeEdit
+          photoCardData={photoCardData}
           exchangeListData={exchangeListData}
           setExchangeListData={setExchangeListData}
           // setPhocaData={setPhocaData}

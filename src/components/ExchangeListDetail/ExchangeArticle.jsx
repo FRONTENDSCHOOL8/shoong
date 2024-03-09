@@ -2,7 +2,6 @@ import pb from '@/api/pocketbase';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { GoTrash, GoPencil } from 'react-icons/go';
-import { RiDeleteBin6Line, RiEditLine } from 'react-icons/ri';
 
 export default function ExchangeArticle({
   exchangeListData,
@@ -20,16 +19,23 @@ export default function ExchangeArticle({
 
   const handleEditSubmit = async (exchangeId) => {
     try {
-      const updatedRecord = await pb
-        .collection('exchangeList')
-        .update(exchangeId, {
-          'description+': editingContent,
-        });
-      // 상태를 업데이트하여 UI에 반영합니다.
+      // const updatedRecord = await pb
+      //   .collection('exchangeList')
+      //   .update(exchangeId, {
+      //     'description+': editingContent,
+      //   });
+
+      // 상태 업데이트 로직 수정
       setExchangeListData((prevData) =>
-        prevData.map((data) => (data.id === exchangeId ? updatedRecord : data))
+        prevData.map(
+          (data) =>
+            data.id === exchangeId
+              ? { ...data, description: editingContent }
+              : data // 직접 수정된 내용 반영
+        )
       );
-      // 수정 상태 종료
+
+      // 수정 상태 종료 및 알림
       setIsEditing(null);
       setEditingContent('');
       alert('교환 글이 수정되었습니다.');
@@ -107,11 +113,6 @@ export default function ExchangeArticle({
                 </div>
               </div>
               {isUserTheWriter && (
-                // <GoTrash
-                //   className="mr-1 h-5 w-5 cursor-pointer"
-                //   onClick={() => handleDelete(exchangeData.id)}
-                //   aria-label="교환 글 삭제"
-                // />
                 <div className="flex gap-1">
                   <GoPencil
                     className="mr-1 h-6 w-6 cursor-pointer text-primary"

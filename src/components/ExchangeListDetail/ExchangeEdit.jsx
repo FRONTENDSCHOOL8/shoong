@@ -2,6 +2,7 @@ import pb from '@/api/pocketbase';
 import { useState } from 'react';
 
 export default function ExchangeEdit({
+  photoCardData,
   // setPhocaData,
   exchangeListData,
   setExchangeListData,
@@ -38,11 +39,12 @@ export default function ExchangeEdit({
         .create(newExchangeData);
 
       // 현재 포토카드의 exchangeList 필드에 새 레코드 ID 추가
-      // const updatedPhotoCardData = await pb
-      //   .collection('photoCards')
-      //   .update(id, {
-      //     'exchangeList+': newRecord.id,
-      //   });
+      if (newRecord) {
+        await pb.collection('photoCards').update(photoCardData.id, {
+          'exchangeList+': newRecord.id,
+        });
+      }
+
       setExchangeListData([...exchangeListData, newRecord]);
       setComment(''); // 코멘트 초기화
       alert('교환 글이 성공적으로 저장되었습니다.');
