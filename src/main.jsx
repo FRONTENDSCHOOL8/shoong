@@ -17,6 +17,9 @@ import Login from './pages/Login/Login';
 import ColloectBookDetail from './pages/ColloectBookDetail/ColloectBookDetail';
 import userData from './loader/userData';
 import ExchangeDetail from './pages/ExchangeDetail/ExchangeDetail';
+import MeetUpDetail from './components/MeetUpDetail/MeetUpDetail';
+import meetUpData from './loader/meetUpData';
+import { meetUpDetail } from './loader/meetUpDeatailData';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +44,12 @@ const router = createBrowserRouter([
       {
         path: '/meetup',
         element: <MeetUp />,
+        loader: meetUpData,
+      },
+      {
+        path: '/meetup/:id',
+        element: <MeetUpDetail />,
+        loader: meetUpDetail,
       },
       {
         path: '/profile',
