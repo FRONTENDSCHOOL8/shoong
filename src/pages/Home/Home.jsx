@@ -10,6 +10,7 @@ import SortingBar from '../../components/SortingBar/SortingBar';
 import FloatingButton from '@/components/FloatingButton/FloatingButton';
 import MainCardContainer from '@/components/MainCardContainer/MainCardContainer';
 import Carousel from '@/components/Carousel/Carousel';
+import VerticalCarousel from '@/components/Carousel/VerticalCarousel';
 
 export default function Home() {
   const group = useLoaderData();
@@ -24,11 +25,12 @@ export default function Home() {
     <div>
       <FloatingButton />
       <Carousel />
-      <MainCardContainer title="최신순" subTitle='인기신상!'>
-      <PhocaContainer phocaData={phocaDataByCreated} />
+      <VerticalCarousel />
+      <MainCardContainer title="최신순" subTitle="인기신상!">
+        <PhocaContainer phocaData={phocaDataByCreated} />
       </MainCardContainer>
-      <MainCardContainer title="인기순" subTitle='찜갯수가 많은 순서대로'>
-      <PhocaContainer phocaData={phocaDataByLikeCount} />
+      <MainCardContainer title="인기순" subTitle="찜갯수가 많은 순서대로">
+        <PhocaContainer phocaData={phocaDataByLikeCount} />
       </MainCardContainer>
     </div>
   );
