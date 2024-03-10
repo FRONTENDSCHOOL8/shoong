@@ -13,17 +13,19 @@ export default function Profile() {
           <CollectBook />
         </ProfileItemContainer>
         <ProfileItemContainer title="교환현황" />
-        <NavigationTile
-          to="/"
-          text="가이드"
-          className="border-b-2 border-t-4 border-gray-200"
-        />
-        <NavigationTile
-          to="/"
-          text="제보하기"
-          className=" border-b-4 border-gray-200 "
-        />
-        <ProfileFooter />
+        <div>
+          <NavigationTile
+            to="/"
+            text="가이드"
+            className=" border-b-2 border-t-4 border-gray-200"
+          />
+          <NavigationTile
+            to="/"
+            text="제보하기"
+            className=" border-b-4 border-gray-200 "
+          />
+          <ProfileFooter />
+        </div>
       </div>
     </>
   );

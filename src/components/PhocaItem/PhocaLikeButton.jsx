@@ -14,11 +14,11 @@ export default function PhocaLikeButton({ phocaId }) {
 
   return (
     <button
-      className={`focus:outline-none ${isLiked ? 'text-red-500' : 'hover:text-red-500'}`}
+      className={`hover:text-red-500 focus:outline-none ${isLiked ? 'text-red-500' : 'text-white'}`}
       onClick={handleClick}
     >
       <GoHeartFill
-        className={`h-6 w-6 ${isLiked ? 'text-red-500' : 'text-white'}`}
+        className={`h-6 w-6 hover:text-red-500 ${isLiked ? 'text-red-500' : 'text-white'}`}
       />
     </button>
   );

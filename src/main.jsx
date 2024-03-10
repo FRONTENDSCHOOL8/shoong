@@ -20,6 +20,7 @@ import ExchangeDetail from './pages/ExchangeDetail/ExchangeDetail';
 import MeetUpDetail from './components/MeetUpDetail/MeetUpDetail';
 import meetUpData from './loader/meetUpData';
 import { meetUpDetail } from './loader/meetUpDeatailData';
+import ProfileSetting from './pages/ProfileSetting/ProfileSetting';
 
 const router = createBrowserRouter([
   {
