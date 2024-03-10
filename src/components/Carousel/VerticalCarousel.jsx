@@ -15,6 +15,7 @@ export default function VerticalCarousel() {
     speed: 1000,
     vertical: true,
     swipeToSlide: true,
+    arrows: false,
   };
 
   useEffect(() => {
@@ -30,18 +31,16 @@ export default function VerticalCarousel() {
     getMeetupData();
   }, []);
   return (
-    <div className="mx-2.5 my-2.5 rounded-lg bg-white text-center  text-contentPrimary shadow-md">
-      <Slider {...settings} className="text-contentPrimary">
+    <div className="mx-2.5 my-2.5 rounded-xl bg-white py-1  text-center text-contentPrimary shadow-md">
+      <Slider {...settings} className="cursor-pointer text-contentPrimary">
         {meetUps.map((meetUp) => (
           <Link key={meetUp.id} to={`/meetUp/${meetUp.id}`}>
-            <div className="">
-              <p>
-                {meetUp.eventTitle}
-                <span className="px-2 text-10pxr text-contentSecondary">
-                  {meetUp.date}
-                </span>
-              </p>
-            </div>
+            <p>
+              {meetUp.eventTitle}
+              <span className="px-2 text-10pxr text-contentSecondary">
+                {meetUp.date}
+              </span>
+            </p>
           </Link>
         ))}
       </Slider>
