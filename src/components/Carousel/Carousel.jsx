@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Slides from './Slides';
+import { GrPrevious, GrNext } from 'react-icons/gr';
 
 export default function Carousel() {
   const [index, setIndex] = useState(0);
@@ -13,10 +14,19 @@ export default function Carousel() {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+  const handleClick = (direction) => {
+    if (direction === 'next') {
+      return setIndex((x) => (x < 3 ? x + 1 : 0));
+    }
+    return setIndex((x) => (x > 0 ? x - 1 : 3));
+  };
   return (
-    <section className="w-full overflow-hidden" ref={container}>
+    <section
+      className="relative mb-4 w-full overflow-hidden text-white"
+      ref={container}
+    >
       <div
-        className="flex h-360pxr w-full flex-row "
+        className="dr flex h-360pxr w-full flex-row"
         style={{
           width: `400%`,
           transform: `translate3d(-${index * containerWidth}px, 0, 0)`,
@@ -28,6 +38,20 @@ export default function Carousel() {
         <Slides order="3" alt="투어스 단체" />
         <Slides order="4" alt="민지 바자 커버" />
       </div>
+      <button
+        type="button"
+        onClick={() => handleClick('prev')}
+        className="absolute left-2 top-1/2"
+      >
+        <GrPrevious className="text-2xl" />
+      </button>
+      <button
+        type="button"
+        onClick={() => handleClick('next')}
+        className="absolute right-2 top-1/2"
+      >
+        <GrNext className="text-2xl" />
+      </button>
     </section>
   );
 }
