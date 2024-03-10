@@ -1,22 +1,56 @@
 import pb from '@/api/pocketbase';
 import { useState } from 'react';
-import { useEffect } from 'react';
 import { GoTrash, GoPencil } from 'react-icons/go';
+
+/**
+ * 교환 글 목록을 표시하고 관리하는 컴포넌트입니다. 사용자는 이 컴포넌트를 통해 교환 글을 수정하거나 삭제할 수 있습니다.
+ * 각 교환 글은 작성자의 정보와 함께 표시됩니다. 로그인한 사용자가 교환 글의 작성자인 경우, 수정 및 삭제 아이콘이 표시됩니다.
+ *
+ * @param {Object} props 컴포넌트 props
+ * @param {Object[]} props.exchangeListData 교환 글 데이터의 배열. 각 객체는 교환 글의 정보를 포함합니다.
+ * @param {Function} props.setExchangeListData 교환 글 데이터를 업데이트하는 함수.
+ * @param {Object[]} props.users 사용자 정보의 배열. 각 객체는 사용자의 상세 정보를 포함합니다.
+ *
+ * @returns {React.ReactNode} 교환 글 목록을 표시하는 React 컴포넌트.
+ */
 
 export default function ExchangeArticle({
   exchangeListData,
   setExchangeListData,
   users,
 }) {
-  // 수정 상태와 현재 수정 중인 교환글의 ID를 관리합니다.
   const [isEditing, setIsEditing] = useState(null);
   const [editingContent, setEditingContent] = useState('');
+  const loggedInUserId = 'sg01ds76ccvmji7'; //임시 유저 ID
 
+  // 수정
   const handleEdit = (exchangeData) => {
     setIsEditing(exchangeData.id);
     setEditingContent(exchangeData.description);
   };
 
+  // 수정 취소
+  const handleEditCancel = () => {
+    setIsEditing(null);
+    setEditingContent('');
+  };
+
+  // 삭제
+  const handleDelete = async (exchangeId) => {
+    try {
+      // DB에서 해당 교환 글을 삭제
+      await pb.collection('exchangeList').delete(exchangeId);
+      alert('교환 글이 삭제되었습니다.');
+      setExchangeListData((prevExchangeList) =>
+        prevExchangeList.filter((exchange) => exchange.id !== exchangeId)
+      );
+    } catch (error) {
+      console.error('교환 글을 삭제하는 중 에러가 발생했습니다:', error);
+      alert('교환 글을 삭제하는 데 실패했습니다.');
+    }
+  };
+
+  // 수정 저장
   const handleEditSubmit = async (exchangeId) => {
     try {
       if (editingContent)
@@ -43,44 +77,51 @@ export default function ExchangeArticle({
     }
   };
 
-  const handleEditCancel = () => {
-    setIsEditing(null);
-    setEditingContent('');
-  };
-
   // users 배열을 id를 키로 사용하는 객체로 변환
   const usersById = {};
   users.forEach((user) => {
     usersById[user.id] = user;
   });
 
-  // userData().then((result) => console.log(result));
+  // 날짜 차이를 계산하는 함수
+  function timeSince(dateToObject) {
+    const date = new Date(Date.parse(dateToObject));
+    // @ts-ignore
+    const seconds = Math.floor((new Date() - date) / 1000);
 
-  const handleDelete = async (exchangeId) => {
-    try {
-      // DB에서 해당 교환 글을 삭제
-      await pb.collection('exchangeList').delete(exchangeId);
-      alert('교환 글이 삭제되었습니다.');
-      // 상태 업데이트 로직 추가 필요
-      setExchangeListData((prevExchangeList) =>
-        prevExchangeList.filter((exchange) => exchange.id !== exchangeId)
-      );
-    } catch (error) {
-      console.error('교환 글을 삭제하는 중 에러가 발생했습니다:', error);
-      alert('교환 글을 삭제하는 데 실패했습니다.');
+    let interval = seconds / 31536000;
+    if (interval > 1) {
+      return Math.floor(interval) + '년 전';
     }
-  };
-
-  const loggedInUserId = 'sg01ds76ccvmji7'; //임시 유저 ID
+    interval = seconds / 2592000;
+    if (interval > 1) {
+      return Math.floor(interval) + '달 전';
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return Math.floor(interval) + '일 전';
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return Math.floor(interval) + '시간 전';
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+      return Math.floor(interval) + '분 전';
+    }
+    return Math.floor(seconds) + '초 전';
+  }
 
   return (
     <ul className="mt-5">
       {exchangeListData.map((exchangeData) => {
         const user = usersById[exchangeData.writer];
         const isUserTheWriter = exchangeData.writer === loggedInUserId;
+        const timeSinceUpdated = timeSince(exchangeData.updated);
         if (!user) {
           return null;
         }
+
         return (
           <li
             key={exchangeData.id}
@@ -93,20 +134,19 @@ export default function ExchangeArticle({
                     className="h-full w-full rounded-full object-cover"
                     src={`https://shoong.pockethost.io/api/files/users/${user.id}/${user.avatar}`}
                     alt={`${user.username} 프로필 사진`}
-                    aria-hidden="true" // 스크린 리더에서는 숨김 처리
+                    aria-hidden="true"
                   />
                 </div>
-
                 <div className="ml-3">
                   <p className="font-semibold" aria-label="작성자 이름">
                     {user.username}
                   </p>
                   <time
-                    dateTime="2023-01-01T08:00"
+                    dateTime={exchangeData.updated}
                     className="text-sm text-gray-500"
                     aria-label="게시된 시간"
                   >
-                    1일 전
+                    {timeSinceUpdated}
                   </time>
                 </div>
               </div>
