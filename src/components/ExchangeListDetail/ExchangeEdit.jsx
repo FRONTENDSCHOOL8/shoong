@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 export default function ExchangeEdit({
   photoCardData,
-  // setPhocaData,
   exchangeListData,
   setExchangeListData,
 }) {
@@ -27,7 +26,7 @@ export default function ExchangeEdit({
     }
 
     const newExchangeData = {
-      writer: 'sg01ds76ccvmji7', //로그인된 유저의 ID
+      writer: 'sg01ds76ccvmji7',
       description: comment,
       status: '교환대기중',
     };
@@ -55,7 +54,6 @@ export default function ExchangeEdit({
   };
 
   const handleKeyDown = (event) => {
-    // Enter 키의 keyCode는 13입니다.
     if (event.keyCode === 13) {
       handleSubmit(event);
     }

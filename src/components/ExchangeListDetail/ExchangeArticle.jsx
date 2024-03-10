@@ -19,19 +19,17 @@ export default function ExchangeArticle({
 
   const handleEditSubmit = async (exchangeId) => {
     try {
-      // const updatedRecord = await pb
-      //   .collection('exchangeList')
-      //   .update(exchangeId, {
-      //     'description+': editingContent,
-      //   });
+      if (editingContent)
+        await pb
+          .collection('exchangeList')
+          .update(exchangeId, { description: editingContent });
 
       // 상태 업데이트 로직 수정
       setExchangeListData((prevData) =>
-        prevData.map(
-          (data) =>
-            data.id === exchangeId
-              ? { ...data, description: editingContent }
-              : data // 직접 수정된 내용 반영
+        prevData.map((data) =>
+          data.id === exchangeId
+            ? { ...data, description: editingContent }
+            : data
         )
       );
 
@@ -132,18 +130,18 @@ export default function ExchangeArticle({
                   value={editingContent}
                   onChange={(e) => setEditingContent(e.target.value)}
                 />
-                <div className="mt-2 flex justify-end">
+                <div className="mt-2 flex justify-end gap-2">
                   <button
-                    className="mr-2 rounded bg-gray-300 px-4 py-2 text-sm"
-                    onClick={handleEditCancel}
-                  >
-                    취소
-                  </button>
-                  <button
-                    className="rounded bg-blue-500 px-4 py-2 text-sm text-white"
+                    className="rounded bg-primary px-4 py-2 text-sm text-white"
                     onClick={() => handleEditSubmit(exchangeData.id)}
                   >
                     저장
+                  </button>
+                  <button
+                    className="rounded bg-primary px-4 py-2 text-sm text-white"
+                    onClick={handleEditCancel}
+                  >
+                    취소
                   </button>
                 </div>
               </div>

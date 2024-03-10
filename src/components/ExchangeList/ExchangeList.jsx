@@ -18,26 +18,9 @@ import Modal from '../Modal/Modal';
 
 export default function ExchangeList({ photoCardData }) {
   const [users, setUsers] = useState([]);
-  const [phocaData, setPhocaData] = useState(photoCardData);
   const [exchangeListData, setExchangeListData] = useState(
     photoCardData?.expand?.exchangeList || []
   );
-
-  // useEffect(() => {
-  //   const fetchExchangeListData = async () => {
-  //     try {
-  //       // 예시로, 'exchangeList' 컬렉션에서 모든 교환글 데이터를 불러오는 로직을 가정합니다.
-  //       const response = await pb.collection('exchangeList').getFullList();
-  //       if (response) {
-  //         setExchangeListData(response);
-  //       }
-  //     } catch (error) {
-  //       console.error('교환글 데이터를 불러오는 중 오류 발생:', error);
-  //     }
-  //   };
-
-  //   fetchExchangeListData();
-  // }, [])
 
   useEffect(() => {
     // 교환글에서 작성자들의 id들을 추출
