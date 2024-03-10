@@ -9,6 +9,7 @@ import BiasContainer from '../../components/BiasContainer/BiasContainer';
 import SortingBar from '../../components/SortingBar/SortingBar';
 import FloatingButton from '@/components/FloatingButton/FloatingButton';
 import MainCardContainer from '@/components/MainCardContainer/MainCardContainer';
+import Carousel from '@/components/Carousel/Carousel';
 
 export default function Home() {
   const group = useLoaderData();
@@ -22,6 +23,7 @@ export default function Home() {
   return (
     <div>
       <FloatingButton />
+      <Carousel />
       <MainCardContainer title="최신순" subTitle='인기신상!'>
       <PhocaContainer phocaData={phocaDataByCreated} />
       </MainCardContainer>
