@@ -1,5 +1,6 @@
 import { useLoaderData } from 'react-router';
 import useProfileImage from '../FloatingButton/useProfileImage';
+import MyBias from '../MyBias/MyBias';
 
 export default function ProfileInfo() {
   const profileImage = useProfileImage();
@@ -8,6 +9,7 @@ export default function ProfileInfo() {
     <div className="flex items-center gap-x-2">
       <img className="h-42pxr w-42pxr rounded-full" src={profileImage} />
       <p className="text-xl text-contentPrimary">{user.name}</p>
+      <MyBias />
     </div>
   );
 }

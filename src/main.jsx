@@ -75,6 +75,7 @@ const router = createBrowserRouter([
       {
         path: '/myBias',
         element: <MyBias />,
+        loader: phocaData,
       },
       {
         path: '/Like',
