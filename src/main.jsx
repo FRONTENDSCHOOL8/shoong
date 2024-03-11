@@ -14,8 +14,12 @@ import Chatting from './pages/Chatting/Chatting';
 import Alerts from './pages/Alerts/Alerts';
 import Like from './pages/Like/Like';
 import Login from './pages/Login/Login';
+import ColloectBookDetail from './pages/ColloectBookDetail/ColloectBookDetail';
 import userData from './loader/userData';
 import ExchangeDetail from './pages/ExchangeDetail/ExchangeDetail';
+import MeetUpDetail from './components/MeetUpDetail/MeetUpDetail';
+import meetUpData from './loader/meetUpData';
+import { meetUpDetail } from './loader/meetUpDeatailData';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +34,7 @@ const router = createBrowserRouter([
       {
         path: '/exchange',
         element: <Exchange />,
-        loader: exchangeDetailData,
+        // loader: exchangeDetailData,
       },
       {
         path: '/exchangeDetail/:id',
@@ -40,11 +44,22 @@ const router = createBrowserRouter([
       {
         path: '/meetup',
         element: <MeetUp />,
+        loader: meetUpData,
+      },
+      {
+        path: '/meetup/:id',
+        element: <MeetUpDetail />,
+        loader: meetUpDetail,
       },
       {
         path: '/profile',
         element: <Profile />,
-        loader: userData,
+        loader: phocaData,
+      },
+      {
+        path: '/collectBook/:group/:id',
+        element: <ColloectBookDetail />,
+        loader: phocaData,
       },
       {
         path: '/Like',

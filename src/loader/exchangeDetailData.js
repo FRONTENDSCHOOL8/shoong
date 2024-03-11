@@ -7,16 +7,7 @@ export default async function exchangeDetailData({ params }) {
       expand: 'exchangeList',
     });
 
-    // const exchangeListId = photoCardData.exchangeList.id;
-
-    // const exchangeListData = await pb
-    //   .collection('exchangeList')
-    //   .getOne(exchangeListId, {
-    //     expand: 'writer',
-    //   });
-
-    // const writerData = exchangeListData.writer;
-    return photoCardData;
+    return { photoCardData };
   } catch (error) {
     console.error('Error Loading Data:', error);
 

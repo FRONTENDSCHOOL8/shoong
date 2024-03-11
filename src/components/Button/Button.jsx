@@ -26,7 +26,7 @@ export default function Button({
     backgroundColor = 'bg-indigo-500';
   }
 
-  const defaultClassNames = `${width} ${height} ${paddingX} ${paddingY} ${backgroundColor} rounded-[10px] justify-center items-center gap-10pxr inline-flex text-white text-sm ${fontWeight} font-['SUIT Variable'] leading-tight`;
+  const defaultClassNames = `${width} ${height} ${paddingX} ${paddingY} ${backgroundColor} rounded-10pxr justify-center items-center gap-10pxr inline-flex text-white text-sm ${fontWeight} font-['SUIT Variable'] leading-tight`;
   const classNames = `${customClassNames} ${defaultClassNames}`.trim();
 
   return <button className={classNames}>{children}</button>;
