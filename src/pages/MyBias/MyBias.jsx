@@ -23,7 +23,7 @@ export default function MyBias({ items }) {
               key={index}
               className="flex flex-col items-center justify-center p-4"
             >
-              <button className="flex flex-col items-center justify-center gap-2 text-center">
+              <button className="flex flex-col items-center justify-center gap-2 text-center transition-transform duration-150 hover:scale-95">
                 <img
                   src={`https://shoong.pockethost.io/api/files/groups/${item.id}/${item.logoImage}`}
                   alt={item.groupName}
