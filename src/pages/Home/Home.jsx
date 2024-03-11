@@ -26,10 +26,16 @@ export default function Home() {
       <FloatingButton />
       <Carousel />
       <VerticalCarousel />
-      <MainCardContainer title="최신순" subTitle="인기신상!">
+      <MainCardContainer
+        title="최신 업데이트 포카"
+        subTitle="두근두근 오늘의 신상 포카는...!"
+      >
         <PhocaContainer phocaData={phocaDataByCreated} />
       </MainCardContainer>
-      <MainCardContainer title="인기순" subTitle="찜갯수가 많은 순서대로">
+      <MainCardContainer
+        title="가장 많이 찜한 포카"
+        subTitle="갖.고.싶.다 🥰  너두? 야 나두!"
+      >
         <PhocaContainer phocaData={phocaDataByLikeCount} />
       </MainCardContainer>
     </div>
