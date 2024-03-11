@@ -9,13 +9,14 @@ import {
   usePhocaDataByCreated,
   usePhocaDataByLikeCount,
 } from '../../loader/usePhocaData';
+// import { userData } from '@/loader';
 
 export default function Home() {
   const group = useLoaderData();
   const phoca = group.map((item) => {
     return item.expand.photoCards;
   });
-
+  // console.log(userData);
   const phocaDataByCreated = usePhocaDataByCreated();
   const phocaDataByLikeCount = usePhocaDataByLikeCount();
 

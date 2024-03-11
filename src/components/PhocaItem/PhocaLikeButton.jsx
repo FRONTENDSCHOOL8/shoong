@@ -8,7 +8,9 @@ export default function PhocaLikeButton({ phocaId }) {
   // 스토어의 toggleLike 액션을 사용하여 현재 카드의 '찜' 상태를 토글합니다.
   const toggleLike = likeStore((state) => state.toggleLike);
 
-  const handleClick = () => {
+  const handleClick = (event) => {
+    event.stopPropagation();
+    console.log(`Phoca ID: ${phocaId}`); // 클릭 시 콘솔에 Phoca ID 출력
     toggleLike(phocaId); // 클릭 이벤트 핸들러에서 '찜' 상태를 토글합니다.
   };
 

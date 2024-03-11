@@ -4,7 +4,8 @@ import ArtistInfo from './ArtistInfo';
 import PhocaTitle from './PhocaTitle';
 import PhocaLikeButton from './PhocaLikeButton';
 import PhocaLikeCount from './PhocaLikeCount';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import { Link, redirect, useOutletContext } from 'react-router-dom';
 
 /**
@@ -44,10 +45,14 @@ export default function PhocaItem({
   logoImgClass,
   phocaId,
 }) {
+  let navigate = useNavigate();
+  const handleNavigate = (event) => {
+    navigate(`/exchangeDetail/${phocaId}`);
+  };
   return (
     <>
-      <Link
-        to={`/exchangeDetail/${phocaId}`}
+      <div
+        onClick={handleNavigate}
         aria-label={`${title} 카드 디테일 페이지로 이동`}
         className={linkClass}
       >
@@ -57,7 +62,7 @@ export default function PhocaItem({
             phocaImgAlt={title}
             imgClass={imgClass}
           >
-            <PhocaLikeButton />
+            <PhocaLikeButton phocaId={phocaId} />
           </PhocaImg>
           <div className="flex items-start gap-2 ">
             <ArtistLogo
@@ -78,7 +83,7 @@ export default function PhocaItem({
             <PhocaLikeCount likeCount={likeCount} />
           </div>
         </div>
-      </Link>
+      </div>
     </>
   );
 }
