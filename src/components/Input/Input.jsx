@@ -6,7 +6,7 @@ export default function Input({
   placeholder,
   customClassNames = '',
   bgClassName = '',
-  labeled = false,
+  isLabeled = false,
   label,
   mt = 0,
 }) {
@@ -16,7 +16,7 @@ export default function Input({
 
   return (
     <div className={`mt-${mt} flex flex-col`}>
-      {labeled && (
+      {isLabeled && (
         <label htmlFor={name} className="text-xs font-semibold text-primary">
           {label}
         </label>
