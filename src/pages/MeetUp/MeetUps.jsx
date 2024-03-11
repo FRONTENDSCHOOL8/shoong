@@ -7,7 +7,7 @@ export default function MeetUp() {
   const meetUpData = useLoaderData();
 
   return (
-    <div className="relative h-screen-nav overflow-hidden">
+    <div className="relative h-screen-nav">
       <SearchBar
         name={'mapSearch'}
         placeholder={'장소,아티스트 이름'}

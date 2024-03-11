@@ -46,7 +46,7 @@ export default function MeetUpMap({ meetUpData }) {
         return (
           data.coords && (
             <EventMarker
-              key={data.id}
+              id={data.id}
               position={data.coords}
               title={data.cafeName}
             />
