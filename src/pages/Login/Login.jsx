@@ -5,7 +5,7 @@ import Button from '@/components/Button/Button';
 import pb from '../../api/pocketbase';
 
 export default function Login() {
-  const [formData, setFormData] = useState({ identity: '', password: '' });
+  const [formData, setFormData] = useState({ email: '', pwd: '' });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,7 +20,7 @@ export default function Login() {
     try {
       await pb
         .collection('users')
-        .authWithPassword(formData.identity, formData.password);
+        .authWithPassword(formData.email, formData.pwd);
 
       const { model, token } = await JSON.parse(
         localStorage.getItem('pocketbase_auth')
@@ -52,15 +52,15 @@ export default function Login() {
 
       <form onSubmit={handleSubmit}>
         <Input
-          name="identity"
-          value={formData.identity}
+          name="email"
+          value={formData.email}
           onChange={handleChange}
           type="text"
           placeholder="이메일"
         />
         <Input
-          name="password"
-          value={formData.password}
+          name="pwd"
+          value={formData.pwd}
           onChange={handleChange}
           type="password"
           placeholder="비밀번호"
