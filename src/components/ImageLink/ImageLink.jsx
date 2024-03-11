@@ -17,7 +17,7 @@ export default function ImageLink({ type }) {
   const { src, alt, to } = bannerData;
   return (
     <Link to={to} className="my-4 flex cursor-pointer flex-row justify-center">
-      <img src={src} alt={alt} className=" w-max-500pxr w-1/2 rounded-md" />
+      <img src={src} alt={alt} className=" w-max-1/2 w-500pxr rounded-md" />
     </Link>
   );
 }
