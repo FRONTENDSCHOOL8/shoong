@@ -22,6 +22,7 @@ import meetUpData from './loader/meetUpData';
 import { meetUpDetail } from './loader/meetUpDeatailData';
 import ProfileSetting from './pages/ProfileSetting/ProfileSetting';
 import LoginInfo from './pages/ProfileSetting/LoginInfo';
+import MyBias from './pages/MyBias/MyBias';
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
         path: '/collectBook/:group/:id',
         element: <ColloectBookDetail />,
         loader: phocaData,
+      },
+      {
+        path: '/myBias',
+        element: <MyBias />,
       },
       {
         path: '/Like',
