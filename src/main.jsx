@@ -21,6 +21,7 @@ import MeetUpDetail from './components/MeetUpDetail/MeetUpDetail';
 import meetUpData from './loader/meetUpData';
 import { meetUpDetail } from './loader/meetUpDeatailData';
 import ProfileSetting from './pages/ProfileSetting/ProfileSetting';
+import LoginInfo from './pages/ProfileSetting/LoginInfo';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: '/profileSetting',
         element: <ProfileSetting />,
+      },
+      {
+        path: '/loginInfo',
+        element: <LoginInfo />,
       },
       {
         path: '/collectBook/:group/:id',
