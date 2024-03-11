@@ -28,9 +28,10 @@ export default function LoginInfo() {
           <p className="pt-2 text-m03 font-m03 text-gray500">소셜 로그인</p>
         </div>
         <div className="mt-24 flex flex-col items-center justify-center gap-5 p-6">
-          <button className="rounded-lg border border-red-500 bg-white px-20 py-2 text-red-500 transition-colors duration-300 hover:bg-red-500 hover:text-white">
+          <button className="rounded-lg border border-red-500 bg-white px-20 py-2 text-red-500 transition-all duration-300 hover:font-bold">
             로그아웃
           </button>
+
           <a href="#" className="text-gray300 underline">
             서비스 탈퇴하기
           </a>
