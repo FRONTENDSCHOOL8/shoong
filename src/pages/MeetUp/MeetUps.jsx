@@ -1,4 +1,5 @@
 import MeetUpItemContainer from '@/components/MeetUpItemContainer/MeetUpItemContainer';
+import MeetUpMap from '@/components/MeetUpMap/MeetUpMap';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import { useLoaderData } from 'react-router';
 
@@ -6,13 +7,19 @@ export default function MeetUp() {
   const meetUpData = useLoaderData();
 
   return (
-    <div className="h-screen">
+    <div className="relative h-screen-nav overflow-hidden">
       <SearchBar
-        name="MeetUp"
-        placeholder="장소찾기"
-        bgStyle="bg-white  shadow-meetUp"
+        name={'mapSearch'}
+        placeholder={'장소,아티스트 이름'}
+        bgStyle={'absolute top-2 left-4 z-20 bg-white px-4 py-3 shadow-meetUp'}
       />
-      <MeetUpItemContainer meetUpData={meetUpData} />
+      <MeetUpMap meetUpData={meetUpData} />
+      <MeetUpItemContainer
+        meetUpData={meetUpData}
+        mapStyle={'absolute bottom-2 z-20 mx-4'}
+      />
     </div>
   );
 }
+
+// 마커를 클릭 시  컨테ㄴ

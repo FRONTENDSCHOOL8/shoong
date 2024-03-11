@@ -19,7 +19,7 @@ export default function SearchBar({ name, placeholder, bgStyle }) {
   console.log(search);
   return (
     <form
-      className={`${bgStyle} py-1.5 px-4 rounded-[30px] flex-row justify-start items-start gap-2 inline-flex w-3/4 mx-3`}
+      className={`${bgStyle} mx-3 inline-flex w-3/4 flex-row items-start justify-start gap-2 rounded-[30px] px-4 py-1.5`}
     >
       <BsSearch className="h-6" />
       <label htmlFor={name}></label>

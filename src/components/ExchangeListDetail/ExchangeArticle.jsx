@@ -195,7 +195,7 @@ export default function ExchangeArticle({
             <div className="mt-4 flex justify-end">
               <button
                 type="button"
-                className="rounded bg-primary px-4 py-2 text-white hover:bg-indigo-700 focus:bg-indigo-700 focus:outline-none focus:ring-2"
+                className="rounded bg-primary px-4 py-2 text-white hover:bg-indigo-700 focus:bg-indigo-700 focus:outline-none"
               >
                 대화하기
               </button>
