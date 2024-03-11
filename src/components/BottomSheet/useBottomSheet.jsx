@@ -19,7 +19,11 @@ export default function useBottomSheet() {
       console.log(isOpen);
       //296px=18.5rem
       //167px~10.4rem
-      linkedBottomSheet.current.style.height = '18.5rem';
+      if (linkedBottomSheet.current.className.includes('radio')) {
+        linkedBottomSheet.current.style.height = '18.5rem';
+      } else {
+        linkedBottomSheet.current.style.height = '10.4rem';
+      }
     } else {
       console.log(isOpen);
       linkedBottomSheet.current.style.height = '0';
