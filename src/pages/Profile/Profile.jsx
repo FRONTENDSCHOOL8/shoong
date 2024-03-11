@@ -4,7 +4,7 @@ import ProfileItemContainer from '@/components/ProfileItemContainer/ProfileItemC
 export default function Profile() {
   return (
     <>
-      <div className="flex h-dvh flex-col gap-5 py-5">
+      <div className="mt-50pxr flex h-dvh flex-col gap-5 py-5">
         <ProfileItemContainer title="콜렉트북">
           <CollectBook />
         </ProfileItemContainer>

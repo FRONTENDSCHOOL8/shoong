@@ -4,7 +4,7 @@ export default function CollectBookItem({ item, handleCard, filter }) {
       <button
         onClick={handleCard}
         type="button"
-        className="m-2 flex h-120pxr w-78pxr items-center justify-center rounded-[5px] bg-zinc-300"
+        className="h-112pxr w-72pxr rounded-[5px] bg-zinc-300"
       >
         <img
           className={filter}

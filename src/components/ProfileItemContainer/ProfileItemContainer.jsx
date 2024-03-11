@@ -18,7 +18,7 @@ export default function ProfileItemContainer({ title, children }) {
           <span>{title}</span>
         </div>
 
-        <div className="overflow-x-scroll">{children}</div>
+        <div className="mx-3 overflow-x-scroll">{children}</div>
       </div>
     </>
   );
