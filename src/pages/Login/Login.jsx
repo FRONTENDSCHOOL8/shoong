@@ -1,40 +1,75 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from '@/components/Input/Input';
 import Button from '@/components/Button/Button';
+import pb from '../../api/pocketbase';
 
 export default function Login() {
-  const [formData, setFormData] = useState({ email: '', pwd: '' });
+  const [formData, setFormData] = useState({ identity: '', password: '' });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((formData) => ({ ...formData, [name]: value }));
   };
 
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await pb
+        .collection('users')
+        .authWithPassword(formData.identity, formData.password);
+
+      const { model, token } = await JSON.parse(
+        localStorage.getItem('pocketbase_auth')
+      );
+
+      localStorage.setItem(
+        'auth',
+        JSON.stringify({
+          isAuth: !!model,
+          user: model,
+          token: token,
+        })
+      );
+
+      navigate('/');
+    } catch (error) {
+      alert('아이디 혹은 비밀번호를 확인해주세요.');
+    }
+  };
+
   return (
     <div className="flex h-screen flex-col items-center justify-center bg-tertiary">
-      {/* shoong 로고 Link 안으로 넣어야 됨 */}
-      <img
-        className="mb-72pxr h-51pxr w-143pxr"
-        src="/icons/shoongLogoLogin.svg"
-      />
+      <Link to="/">
+        <img
+          className="mb-72pxr h-51pxr w-143pxr"
+          src="/icons/shoongLogoLogin.svg"
+        />
+      </Link>
 
-      <Input
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        type="text"
-        placeholder="이메일"
-      />
-      <Input
-        name="pwd"
-        value={formData.pwd}
-        onChange={handleChange}
-        type="password"
-        placeholder="비밀번호"
-        mt={2}
-      />
-
-      <Button customClassNames="mt-26pxr">로그인</Button>
+      <form onSubmit={handleSubmit}>
+        <Input
+          name="identity"
+          value={formData.identity}
+          onChange={handleChange}
+          type="text"
+          placeholder="이메일"
+        />
+        <Input
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          type="password"
+          placeholder="비밀번호"
+          mt={2}
+        />
+        <Button type="submit" customClassNames="mt-26pxr">
+          로그인
+        </Button>
+      </form>
 
       <div className="mt-18pxr text-xs font-medium text-neutral-800">
         <span>계정찾기</span>
@@ -44,7 +79,7 @@ export default function Login() {
 
       <div className="mt-44pxr flex items-center">
         <div className="h-1pxr w-100pxr bg-primary"></div>
-        <span className="mx-15pxr text-10pxr font-medium text-indigo-500">
+        <span className="mx-15pxr text-10pxr font-medium text-primary">
           간편로그인
         </span>
         <div className="h-1pxr w-100pxr bg-primary"></div>
