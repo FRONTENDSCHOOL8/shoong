@@ -61,8 +61,3 @@ export default function MeetUpMap({ meetUpData }) {
     </Map>
   );
 }
-
-// 1. 지도 레이아웃 잡기
-// 2. 데이터 받아오기
-// 3. 주소 핀으로 표시
-// 4. 핀 클릭 시 해당 카드로 focus

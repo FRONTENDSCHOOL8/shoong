@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import { MapMarker, useMap } from 'react-kakao-maps-sdk';
 
 export default function EventMarker({ position, title }) {
-  const [isOpen, setIsOpen] = useState(false);
   const map = useMap();
 
   return (
@@ -17,8 +15,6 @@ export default function EventMarker({ position, title }) {
         },
       }}
       onClick={(marker) => map.panTo(marker.getPosition())}
-      onMouseOver={() => setIsOpen(true)}
-      onMouseOut={() => setIsOpen(false)}
     ></MapMarker>
   );
 }
