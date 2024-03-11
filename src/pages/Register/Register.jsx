@@ -3,13 +3,13 @@ import Button from '@/components/Button/Button';
 
 export default function Register() {
   return (
-    <div className="flex flex-col items-center justify-center bg-white">
+    <div className="flex flex-col items-center justify-center bg-white py-85pxr">
       <div className="flex flex-col items-center justify-center gap-6">
         <Input
           customClassNames="h-9 mt-1"
           placeholder="이름"
           bgClassName="bg-gray-100"
-          labeled
+          isLabeled
           label="이름"
           mt={16}
         />
@@ -19,10 +19,10 @@ export default function Register() {
             customClassNames="h-9 mt-1"
             placeholder="이메일"
             bgClassName="bg-gray-100"
-            labeled
+            isLabeled
             label="이메일"
           />
-          <Button small disabled customClassNames="self-end">
+          <Button isSmall isDisabled customClassNames="self-end">
             중복확인
           </Button>
         </div>
@@ -32,7 +32,7 @@ export default function Register() {
             customClassNames="h-9 mt-1"
             placeholder="비밀번호 입력 (영어+숫자 8자 이상)"
             bgClassName="bg-gray-100"
-            labeled
+            isLabeled
             label="비밀번호"
           />
           <Input
@@ -46,7 +46,7 @@ export default function Register() {
           customClassNames="h-9 mt-1"
           placeholder="휴대폰 번호"
           bgClassName="bg-gray-100"
-          labeled
+          isLabeled
           label="휴대폰 번호"
         />
 
@@ -54,7 +54,7 @@ export default function Register() {
           customClassNames="h-9 mt-1"
           placeholder="생년월일"
           bgClassName="bg-gray-100"
-          labeled
+          isLabeled
           label="생년월일"
         />
 
@@ -77,7 +77,7 @@ export default function Register() {
           </div>
         </div>
 
-        <Button disabled customClassNames="mt-4">
+        <Button isDisabled customClassNames="mt-4">
           가입하기
         </Button>
       </div>
