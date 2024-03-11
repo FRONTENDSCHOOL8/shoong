@@ -15,7 +15,6 @@ export default function Home() {
   const phoca = group.map((item) => {
     return item.expand.photoCards;
   });
-
   const phocaDataByCreated = usePhocaDataByCreated();
   const phocaDataByLikeCount = usePhocaDataByLikeCount();
 
