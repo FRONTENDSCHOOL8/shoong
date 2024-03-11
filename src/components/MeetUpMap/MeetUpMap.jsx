@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Map } from 'react-kakao-maps-sdk';
+import { CustomOverlayMap, Map } from 'react-kakao-maps-sdk';
 import EventMarker from './EventMarker';
 
 export default function MeetUpMap({ meetUpData }) {
@@ -45,11 +45,16 @@ export default function MeetUpMap({ meetUpData }) {
       {newMeetUpData.map((data) => {
         return (
           data.coords && (
-            <EventMarker
-              id={data.id}
-              position={data.coords}
-              title={data.cafeName}
-            />
+            <div key={data.id}>
+              <EventMarker position={data.coords} title={data.cafeName} />
+              <CustomOverlayMap position={data.coords} yAnchor={2.8}>
+                <div className="customoverlay">
+                  <span className="title rounded border border-primary bg-white px-1 py-1 text-sm text-primary">
+                    {data.cafeName}
+                  </span>
+                </div>
+              </CustomOverlayMap>
+            </div>
           )
         );
       })}
