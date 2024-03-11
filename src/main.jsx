@@ -66,6 +66,7 @@ const router = createBrowserRouter([
       {
         path: '/loginInfo',
         element: <LoginInfo />,
+        loader: userData,
       },
       {
         path: '/collectBook/:group/:id',
