@@ -1,9 +1,12 @@
 import Button from '../Button/Button';
 
-export function TextLayout({ children }) {
+export function TextLayout({ text = '' }) {
   return (
-    <div className="mx-60pxr mb-40pxr mt-20pxr text-left text-xs font-medium text-gray-500">
-      {children}
+    <div
+      style={{ whiteSpace: 'pre-line' }}
+      className="mx-60pxr mb-40pxr mt-20pxr text-left text-xs font-medium text-gray-500"
+    >
+      {text}
     </div>
   );
 }
