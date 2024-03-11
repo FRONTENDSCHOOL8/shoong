@@ -1,6 +1,5 @@
-// import DetailHeader from '@/components/DetailHeader/DetailHeader';
+import DetailHeader from '@/components/DetailHeader/DetailHeader';
 import SearchBar from '@/components/SearchBar/SearchBar';
-// import BiasContainer2 from '@/components/BiasContainer/BiasContainer2';
 import { useLoaderData } from 'react-router';
 
 export default function MyBias({ items }) {
@@ -10,15 +9,14 @@ export default function MyBias({ items }) {
   });
 
   return (
-    <div className="flex flex-col px-6">
+    <div className="flex flex-col items-center px-6 pt-12">
+      <DetailHeader title="내 최애" />
       <SearchBar
         name="search"
         placeholder="최애 그룹을 검색해 보세요!"
-        bgStyle="bg-white mx-6 mt-10 mb-10"
+        bgStyle="bg-white mt-16 mb-10"
       />
       <div className="mx-auto max-w-6xl">
-        {' '}
-        {/* 컨테이너에 최대 너비와 중앙 정렬을 적용 */}
         <ul className="grid grid-cols-3 gap-1">
           {phoca.map((item, index) => (
             <li
