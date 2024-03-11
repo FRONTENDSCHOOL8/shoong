@@ -1,13 +1,14 @@
-import PhocaItem from '@/components/PhocaItem/PhocaItem';
+import Carousel from '@/components/Carousel/Carousel';
+import VerticalCarousel from '@/components/Carousel/VerticalCarousel';
+import FloatingButton from '@/components/FloatingButton/FloatingButton';
+import ImageLink from '@/components/ImageLink/ImageLink';
+import MainCardContainer from '@/components/MainCardContainer/MainCardContainer';
+import { useLoaderData } from 'react-router';
 import PhocaContainer from '../../components/PhocaContainer/PhocaContainer';
 import {
-  usePhocaDataByLikeCount,
   usePhocaDataByCreated,
+  usePhocaDataByLikeCount,
 } from '../../loader/usePhocaData';
-import { useLoaderData } from 'react-router';
-import BiasContainer from '../../components/BiasContainer/BiasContainer';
-import SortingBar from '../../components/SortingBar/SortingBar';
-import FloatingButton from '@/components/FloatingButton/FloatingButton';
 
 export default function Home() {
   const group = useLoaderData();
@@ -19,12 +20,24 @@ export default function Home() {
   const phocaDataByLikeCount = usePhocaDataByLikeCount();
 
   return (
-    <div>
+    <div className="flex flex-col">
       <FloatingButton />
-      최신순
-      <PhocaContainer phocaData={phocaDataByCreated} />
-      인기순
-      <PhocaContainer phocaData={phocaDataByLikeCount} />
+      <Carousel />
+      <VerticalCarousel />
+      <MainCardContainer
+        title="최신 업데이트 포카"
+        subTitle="두근두근 오늘의 신상 포카는...!"
+      >
+        <PhocaContainer phocaData={phocaDataByCreated} />
+      </MainCardContainer>
+      <ImageLink type="like" />
+      <MainCardContainer
+        title="가장 많이 찜한 포카"
+        subTitle="갖.고.싶.다 🥰  너두? 야 나두!"
+      >
+        <PhocaContainer phocaData={phocaDataByLikeCount} />
+      </MainCardContainer>
+      <ImageLink type="faq" />
     </div>
   );
 }
