@@ -1,14 +1,15 @@
 // 버튼 컴포넌트
 export default function Button({
-  small,
-  disabled,
+  type,
+  isSmall,
+  isDisabled,
   bgClassName = '',
   textColorClassName = '',
   customClassNames = '',
   children,
 }) {
   let width, height, fontWeight, backgroundColor, textColor;
-  if (small) {
+  if (isSmall) {
     (width = 'w-69pxr'), (height = 'h-28pxr'), (fontWeight = 'medium');
   } else {
     (width = 'w-265pxr'), (height = 'h-44pxr'), (fontWeight = 'semibold');
@@ -16,7 +17,7 @@ export default function Button({
 
   bgClassName
     ? (backgroundColor = bgClassName)
-    : (backgroundColor = disabled ? 'bg-gray-400' : 'bg-indigo-500');
+    : (backgroundColor = isDisabled ? 'bg-gray-400' : 'bg-primary');
 
   textColorClassName
     ? (textColor = textColorClassName)
@@ -26,5 +27,9 @@ export default function Button({
   const classNames =
     `${textColor} ${backgroundColor} ${customClassNames} ${defaultClassNames}`.trim();
 
-  return <button className={classNames}>{children}</button>;
+  return (
+    <button type={type} className={classNames}>
+      {children}
+    </button>
+  );
 }
