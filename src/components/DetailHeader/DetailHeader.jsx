@@ -7,37 +7,40 @@ import BottomSheet from '../BottomSheet/BottomSheet';
 // 리액트 라우터 - 뒤로가기 구현 시 참고한 자료
 // https://velog.io/@jellyjw/React-useNavigate로-뒤로가기-기능-구현하기
 
-export default function DetailHeader({ children }) {
+export default function DetailHeader({
+  isBottomSheet,
+  title,
+  isRadio = false,
+  itemList = [],
+  text = '',
+}) {
   const navigate = useNavigate();
   const { button, linkedBottomSheet, isOpen, setIsOpen } = useBottomSheet();
 
+  const flexLayout = isBottomSheet ? 'justify-between' : 'gap-135pxr';
+
   return (
     <>
-      <div className="h- 2 fixed flex w-full items-center justify-between bg-white px-5">
-        <LeftArrow onClick={() => navigate(-1)} />
-        <div className="font-bold text-neutral-800">{children}</div>
-        <div ref={button}>
+      <div
+        className={`fixed flex h-12 w-full items-center ${flexLayout} bg-white px-5`}
+      >
+        <div className="w-30pxr">
+          <LeftArrow onClick={() => navigate(-1)} />
+        </div>
+        <div className="font-bold text-neutral-800">{title}</div>
+        <div ref={button} hidden={!isBottomSheet}>
           <Information size="1.6rem" />
         </div>
       </div>
 
-      {/* <BottomSheet
-        radio
-        itemList={['전체', '앨범', '특전', '팬싸', '시즌그리팅', '팬미팅']}
-        linkedBottomSheet={linkedBottomSheet}
-        isOpen
-        setIsOpen={setIsOpen}
-      /> */}
       <BottomSheet
+        isRadio={isRadio}
+        itemList={itemList}
+        text={text}
         linkedBottomSheet={linkedBottomSheet}
         isOpen
         setIsOpen={setIsOpen}
-      >
-        ** 포토카드 이미지는 거래의 이해를 돕는 식별 목적으로 사용하고 있어요**
-        <br />
-        <br />
-        ** 실제 포토카드와 이미지의 사이즈가 상이할 수 있으니 주의해주세요! **
-      </BottomSheet>
+      />
     </>
   );
 }
