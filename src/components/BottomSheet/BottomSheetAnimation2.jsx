@@ -18,7 +18,7 @@ export default function BottomSheetAnimation2(isOpen, setIsOpen) {
     console.log('bottomTouchStart of handleMove :', bottomTouchStart);
     console.log('e.clientY :', e.clientY);
     //사용자가 아래로 내렸을 경우 ("클릭 상태"에서 내리고 있어야 함)
-    if (bottomTouchStart - e.clientY < -150 && e.buttons === 1) {
+    if (bottomTouchStart - e.clientY < -10 && e.buttons === 1) {
       console.log('****************************************');
       console.log(bottomTouchStart - e.clientY);
       //바텀시트 내리기

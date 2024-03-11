@@ -18,6 +18,7 @@ export default function useBottomSheet() {
     if (isOpen) {
       console.log(isOpen);
       //296px=18.5rem
+      //167px~10.4rem
       linkedBottomSheet.current.style.height = '18.5rem';
     } else {
       console.log(isOpen);

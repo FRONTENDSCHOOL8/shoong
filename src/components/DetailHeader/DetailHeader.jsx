@@ -13,7 +13,7 @@ export default function DetailHeader({ children }) {
 
   return (
     <>
-      <div className="fixed flex h-12 w-full items-center justify-between bg-white px-5">
+      <div className="h- 2 fixed flex w-full items-center justify-between bg-white px-5">
         <LeftArrow onClick={() => navigate(-1)} />
         <div className="font-bold text-neutral-800">{children}</div>
         <div ref={button}>
@@ -21,20 +21,23 @@ export default function DetailHeader({ children }) {
         </div>
       </div>
 
-      <BottomSheet
+      {/* <BottomSheet
         radio
         itemList={['전체', '앨범', '특전', '팬싸', '시즌그리팅', '팬미팅']}
         linkedBottomSheet={linkedBottomSheet}
         isOpen
         setIsOpen={setIsOpen}
-      />
-      {/* <BottomSheet>
-          ** 포토카드 이미지는 거래의 이해를 돕는 식별 목적으로 사용하고
-          있어요**
-          <br />
-          <br />
-          ** 실제 포토카드와 이미지의 사이즈가 상이할 수 있으니 주의해주세요! **
-        </BottomSheet> */}
+      /> */}
+      <BottomSheet
+        linkedBottomSheet={linkedBottomSheet}
+        isOpen
+        setIsOpen={setIsOpen}
+      >
+        ** 포토카드 이미지는 거래의 이해를 돕는 식별 목적으로 사용하고 있어요**
+        <br />
+        <br />
+        ** 실제 포토카드와 이미지의 사이즈가 상이할 수 있으니 주의해주세요! **
+      </BottomSheet>
     </>
   );
 }
