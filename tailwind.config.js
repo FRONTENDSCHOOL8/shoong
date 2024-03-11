@@ -18,7 +18,7 @@ export default {
     extend: {
       spacing: {
         ...pxToRemFunc(0, 1000),
-        'screen-nav': 'calc(100vh - 139px)',
+        'screen-nav': 'calc(100vh - 140px)',
       }, // px을 rem으로 변환
       inset: {
         ...pxToRemFunc(0, 1000),

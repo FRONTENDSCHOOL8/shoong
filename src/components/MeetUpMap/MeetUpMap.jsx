@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Map, MapMarker, useMap } from 'react-kakao-maps-sdk';
+import { Map } from 'react-kakao-maps-sdk';
+import EventMarker from './EventMarker';
 
 export default function MeetUpMap({ meetUpData }) {
   const [newMeetUpData, setNewMeetUpData] = useState(meetUpData);
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const geocoder = new window.kakao.maps.services.Geocoder();
@@ -40,31 +40,16 @@ export default function MeetUpMap({ meetUpData }) {
   return (
     <Map
       center={{ lat: 37.566535, lng: 126.9779692 }}
-      className="h-screen-nav relative w-full overflow-hidden"
+      className="relative h-full w-full"
     >
       {newMeetUpData.map((data) => {
         return (
           data.coords && (
-            <MapMarker
+            <EventMarker
               key={data.id}
               position={data.coords}
               title={data.cafeName}
-              image={{
-                src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png', // 마커이미지의 주소입니다
-                size: {
-                  width: 30,
-                  height: 40,
-                },
-              }}
-              onMouseOver={() => setIsOpen(true)}
-              onMouseOut={() => setIsOpen(false)}
-            >
-              {isOpen && (
-                <div style={{ padding: '5px', color: '#000' }}>
-                  {data.cafeName}
-                </div>
-              )}
-            </MapMarker>
+            />
           )
         );
       })}

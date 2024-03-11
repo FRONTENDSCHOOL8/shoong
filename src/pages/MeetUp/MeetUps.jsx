@@ -7,7 +7,7 @@ export default function MeetUp() {
   const meetUpData = useLoaderData();
 
   return (
-    <div className="relative">
+    <div className="relative h-screen-nav overflow-hidden">
       <SearchBar
         name={'mapSearch'}
         placeholder={'장소,아티스트 이름'}
@@ -21,3 +21,5 @@ export default function MeetUp() {
     </div>
   );
 }
+
+// 마커를 클릭 시  컨테ㄴ
