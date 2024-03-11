@@ -17,14 +17,15 @@ export default function DetailHeader({
   const navigate = useNavigate();
   const { button, linkedBottomSheet, isOpen, setIsOpen } = useBottomSheet();
 
-  const flexLayout = isBottomSheet ? 'justify-between' : 'gap-135pxr';
+  const flexLayout = isBottomSheet ? 'justify-between' : 'justify-center';
+  const absolute = isBottomSheet ? '' : 'absolute left-5';
 
   return (
     <>
       <div
         className={`fixed flex h-12 w-full items-center ${flexLayout} bg-white px-5`}
       >
-        <div className="w-30pxr">
+        <div className={`w-30pxr ${absolute}`}>
           <LeftArrow onClick={() => navigate(-1)} />
         </div>
         <div className="font-bold text-neutral-800">{title}</div>
