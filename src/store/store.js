@@ -62,3 +62,22 @@ export const useCommentStore = create((set) => ({
   addComment: (comment) =>
     set((state) => ({ comments: [...state.comments, comment] })),
 }));
+
+// 정렬 기능
+export const sorting = create((set) => ({
+  init: '최신순',
+  change: (data) => set(() => ({ init: data })),
+}));
+
+//  로그인 유무
+export const isLogin = create(
+  persist(
+    (set) => ({
+      init: false,
+      collectBook: [],
+      login: (data) => set(() => ({ init: data })),
+      collectBookInfo: (data) => set(() => ({ collectBook: data })),
+    }),
+    { name: '로그인' }
+  )
+);

@@ -23,11 +23,13 @@ import { meetUpDetail } from './loader/meetUpDeatailData';
 import ProfileSetting from './pages/ProfileSetting/ProfileSetting';
 import LoginInfo from './pages/ProfileSetting/LoginInfo';
 import MyBias from './pages/MyBias/MyBias';
+import NotFound from './pages/NotFound/NotFound';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/',

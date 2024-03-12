@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import SortingBar from '../SortingBar/SortingBar';
 import toast from 'react-hot-toast';
 import { Toaster } from 'react-hot-toast';
+import { sorting } from '@/store/store';
 
 /**
  * @param {{
@@ -45,7 +46,7 @@ export default function PhocaContainerEx({
   const moreRef = useRef(null);
   const [phoca, SetPhoca] = useState(biasData);
   const [phocaNumber, setPhocaNumber] = useState(12);
-  const [filter, setFilter] = useState('전체');
+  const { change } = sorting();
 
   const handleMore = () => {
     if (phocaNumber >= phoca.length) {
@@ -57,25 +58,19 @@ export default function PhocaContainerEx({
 
   useEffect(() => {
     SetPhoca(biasData);
-    setFilter('최신순');
+    change('최신순');
     setPhocaNumber(12);
     moreRef.current.style.display = 'block';
-  }, [biasData]);
+  }, [biasData, change]);
 
   return (
     <>
-      <SortingBar
-        phoca={phoca}
-        SetPhoca={SetPhoca}
-        filter={filter}
-        setFilter={setFilter}
-        biasData={biasData}
-      />
+      <SortingBar phoca={phoca} SetPhoca={SetPhoca} biasData={biasData} />
 
       <div className="mb-7 mt-7 flex justify-center">
         <ul className="col-gap-8 grid h-400pxr grid-cols-2 gap-4 overflow-y-scroll md:grid-cols-3 lg:grid-cols-6">
-          {phoca.map((group, groupIndex) => {
-            if (groupIndex < phocaNumber) {
+          {phoca.map((group, index) => {
+            if (index < phocaNumber) {
               return (
                 <li key={group.id} className="relative m-0 w-44 list-none p-0">
                   <PhocaItem
