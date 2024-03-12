@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import Input from '@/components/Input/Input';
 import Button from '@/components/Button/Button';
-import { useLoaderData } from 'react-router';
-import pb from '@/api/pocketbase';
+import pb from '../../api/pocketbase';
+import getNickname from './getNickname';
+import { useLoaderData } from 'react-router-dom';
 
 export default function Register() {
   const users = useLoaderData();
@@ -11,7 +12,7 @@ export default function Register() {
     name: '',
     email: '',
     pwd: '',
-    pwdAgain: '',
+    pwdConfirm: '',
     phone: '',
     birth: '',
   });
@@ -21,9 +22,31 @@ export default function Register() {
     setFormData((formData) => ({ ...formData, [name]: value }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      email: formData.email,
+      password: formData.pwd,
+      passwordConfirm: formData.pwdConfirm,
+      birth: formData.birth,
+      phoneNumber: formData.phone,
+      name: formData.name,
+    };
+
+    try {
+      await pb.collection('users').create(data);
+    } catch (error) {
+      alert('입력사항을 다시 확인해주세요.');
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center bg-white py-85pxr">
-      <form className="flex flex-col items-center justify-center gap-6">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center justify-center gap-6"
+      >
         <Input
           name="name"
           value={formData.name}
@@ -49,7 +72,7 @@ export default function Register() {
             isLabeled
             label="이메일"
           />
-          <Button isSmall isDisabled customClassNames="self-end">
+          <Button type="button" isSmall isDisabled customClassNames="self-end">
             중복확인
           </Button>
         </div>
@@ -67,8 +90,8 @@ export default function Register() {
             label="비밀번호"
           />
           <Input
-            name="pwdAgain"
-            value={formData.pwdAgain}
+            name="pwdConfirm"
+            value={formData.pwdConfirm}
             onChange={onChange}
             type="password"
             placeholder="비밀번호 재확인"
@@ -106,6 +129,7 @@ export default function Register() {
             이용 약관 동의
           </div>
           <Button
+            type="button"
             bgClassName="bg-gray-100"
             textColorClassName="text-contentTertiary"
             customClassNames="h-9 mt-1"
@@ -120,7 +144,7 @@ export default function Register() {
           </div>
         </div>
 
-        <Button isDisabled customClassNames="mt-4">
+        <Button type="submit" isDisabled customClassNames="mt-4">
           가입하기
         </Button>
       </form>
