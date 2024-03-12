@@ -7,9 +7,7 @@ export default function RootLayout() {
   return (
     <>
       <Header />
-      <div className="pb-14 pt-55pxr">
-        <Outlet />
-      </div>
+      <Outlet />
       <Footer />
       <NavBar />
     </>
