@@ -1,34 +1,54 @@
 import { Circle } from 'rc-progress';
 
-export default function DragonSphere({ phocaInfo, phocaData, group }) {
+export default function DragonSphere({
+  phocaInfo,
+  phocaData,
+  group,
+  handleSave,
+  fakeRef,
+  logoImage,
+  groupId,
+}) {
   return (
     <>
-      <div className="absolute bottom-5 left-[50%] z-10 flex h-100pxr w-280pxr translate-x-[-50%] rounded-[10px] bg-white opacity-95 shadow">
-        <div className="m-auto flex items-center gap-8">
-          <div className="relative">
-            <Circle
-              percent={Math.round((phocaInfo.length / phocaData.length) * 100)}
-              strokeWidth={15}
-              trailColor="#DCD6FA"
-              trailWidth={13}
-              strokeColor="#6662C9"
-              className="absolute -left-5 -top-4 z-10 h-65pxr w-65pxr"
-            />
-            <img src="/icons/드래곤볼.jpg" alt="드볼 이미지" />
-          </div>
+      <div className="m-auto mb-27pxr flex h-100pxr w-340pxr rounded-xl border-2 border-slate-300 bg-white">
+        <div className="relative flex items-center pl-15pxr">
+          <Circle
+            percent={Math.round((phocaInfo.length / phocaData.length) * 100)}
+            strokeWidth={10}
+            trailColor="#DCD6FA"
+            trailWidth={10}
+            strokeColor="#6662C9"
+            className="absolute left-8pxr top-21pxr z-0 h-54pxr w-55pxr"
+          />
+          <img
+            src={`https://shoong.pockethost.io/api/files/groups/${groupId}/${logoImage}`}
+            className="h-50pxr w-50pxr object-scale-down"
+            alt="드볼 이미지"
+          />
+        </div>
 
-          <div className="inline-flex flex-col items-start justify-start gap-px">
-            <div className="inline-flex items-center justify-center gap-2.5">
-              <div className="text-base font-bold leading-snug text-neutral-800">
-                {phocaData.length}개 중 {phocaInfo.length}
-              </div>
-            </div>
-
-            <div className="text-sm font-semibold leading-tight text-gray-500">
+        <div className="flex w-full items-center justify-between px-15pxr">
+          <div className="flex flex-col gap-8pxr">
+            <div className="text-base font-extrabold leading-snug text-indigo-500">
               {group} 드볼{' '}
               {Math.round((phocaInfo.length / phocaData.length) * 100)}%
             </div>
+
+            <div className="text-sm font-bold leading-tight text-neutral-800">
+              {phocaInfo.length}/{phocaData.length} 개
+            </div>
           </div>
+
+          <button
+            ref={fakeRef}
+            onClick={handleSave}
+            className="'flex duration-200'; h-7 w-64pxr items-center justify-center rounded-md bg-zinc-400 text-sm font-semibold text-white hover:bg-primary hover:text-white"
+            // className="flex h-7 w-64pxr items-center justify-center rounded-md bg-zinc-400 text-sm font-semibold text-white"
+            // disabled
+          >
+            완료
+          </button>
         </div>
       </div>
     </>

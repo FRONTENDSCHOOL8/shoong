@@ -10,7 +10,7 @@ export default function NavBar() {
     { id: useId(), togo: '/profile', icon: GoPerson, label: '프로필' },
   ];
   return (
-    <div className="fixed bottom-0 z-30 w-full bg-white shadow-navShadow">
+    <div className="fixed bottom-0 z-10 w-full bg-white shadow-navShadow">
       <ul className="flex items-center justify-between px-5 py-1">
         {navItems.map((item) => (
           <NavBarItem
