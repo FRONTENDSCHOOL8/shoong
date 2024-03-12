@@ -67,7 +67,7 @@ export default function PhocaContainerEx({
     <>
       <SortingBar phoca={phoca} SetPhoca={SetPhoca} biasData={biasData} />
 
-      <div className="mb-7 mt-7 flex justify-center">
+      <div className="mb-7 ml-4 mt-7 flex justify-center">
         <ul className="col-gap-8 grid h-400pxr grid-cols-2 gap-4 overflow-y-scroll md:grid-cols-3 lg:grid-cols-6">
           {phoca.map((group, index) => {
             if (index < phocaNumber) {
