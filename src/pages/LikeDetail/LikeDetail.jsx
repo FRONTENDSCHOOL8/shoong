@@ -44,10 +44,10 @@ export default function LikeDetail() {
         <SearchBar
           name="search"
           placeholder="찜한 포카 찾기"
-          bgStyle="bg-gray-100"
+          bgStyle="bg-gray100"
         />
       </div>
-      <div className="pl-4">
+      <div className="">
         <PhocaContainerEx biasData={likedPhotoCards} />
       </div>
     </div>
