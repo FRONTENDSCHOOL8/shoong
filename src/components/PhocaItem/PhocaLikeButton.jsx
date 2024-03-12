@@ -1,5 +1,6 @@
 import { GoHeartFill } from 'react-icons/go';
 import { likeStore } from '@/store/store';
+import { userData } from '@/loader';
 
 export default function PhocaLikeButton({ phocaId }) {
   // Zustand 스토어에서 현재 카드의 '찜' 상태를 조회합니다.
