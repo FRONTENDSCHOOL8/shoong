@@ -6,51 +6,51 @@ import PocketBase from 'pocketbase';
 const pb = new PocketBase('https://shoong.pockethost.io');
 
 export default function PhocaLikeButton({ phocaId }) {
-  const [userId, setUserId] = useState(null); // 사용자 ID 상태를 관리하기 위한 useState 훅
+  const [userId, setUserId] = useState(null);
   const isLiked = likeStore((state) => !!state.likedCards[phocaId]);
   const toggleLike = likeStore((state) => state.toggleLike);
 
+  // 사용자 ID를 가져오기 위한 useEffect
   useEffect(() => {
-    // 로컬 스토리지에서 'pocketbase_auth' 키에 해당하는 값을 가져옵니다.
     const authDataString = localStorage.getItem('pocketbase_auth');
     if (authDataString) {
       try {
         const authData = JSON.parse(authDataString);
-        setUserId(authData.model.id); // 동적으로 가져온 사용자 ID를 상태로 설정
+        setUserId(authData.model.id);
       } catch (error) {
         console.error('Parsing authData error:', error);
       }
     }
   }, []);
 
-  async function updateLikeListInUserCollection(userId) {
-    if (!userId) return; // userId가 없는 경우 함수 실행을 중단
+  // 포토카드의 likeCount 업데이트
+  async function updateLikeCount(phocaId, shouldIncrease) {
+    const currentCard = await pb.collection('photoCards').getOne(phocaId);
+    const newLikeCount = currentCard.likeCount + (shouldIncrease ? 1 : -1);
+    await pb
+      .collection('photoCards')
+      .update(phocaId, { likeCount: newLikeCount });
+  }
 
-    const likeListString = localStorage.getItem('likeList');
-    let likedCards = {};
-    if (likeListString) {
-      likedCards = JSON.parse(likeListString).state.likedCards;
-    }
+  // 사용자의 likeList 업데이트
+  async function updateLikeListInUserCollection() {
+    if (!userId) return;
+    const likedCards = likeStore.getState().likedCards;
     const likedPhotoCardIds = Object.keys(likedCards).filter(
       (id) => likedCards[id]
     );
-
-    try {
-      const record = await pb.collection('users').update(userId, {
-        likeList: likedPhotoCardIds,
-      });
-      console.log('likeList update success:', record);
-    } catch (error) {
-      console.error('likeList update failed:', error);
-    }
+    await pb
+      .collection('users')
+      .update(userId, { likeList: likedPhotoCardIds });
   }
 
+  // 버튼 클릭 핸들러
   const handleClick = async (event) => {
     event.stopPropagation();
-    toggleLike(phocaId);
-    if (userId) {
-      await updateLikeListInUserCollection(userId);
-    }
+    const previouslyLiked = isLiked; // 클릭 전 상태
+    toggleLike(phocaId); // 상태 토글
+    await updateLikeCount(phocaId, !previouslyLiked); // likeCount 업데이트
+    await updateLikeListInUserCollection(); // 사용자의 likeList 업데이트
   };
 
   return (
