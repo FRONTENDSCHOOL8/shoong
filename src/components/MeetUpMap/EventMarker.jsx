@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { MapMarker, useMap } from 'react-kakao-maps-sdk';
 
-export default function EventMarker({ key, position, title }) {
+export default function EventMarker({ id, position, title }) {
   const [isOpen, setIsOpen] = useState(false);
   const map = useMap();
+
   return (
     <MapMarker
-      key={key}
+      key={id}
       position={position}
       title={title}
       image={{

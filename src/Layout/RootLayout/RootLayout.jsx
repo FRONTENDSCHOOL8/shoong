@@ -7,9 +7,7 @@ export default function RootLayout() {
   return (
     <>
       <Header />
-      <div className="py-68pxr">
-        <Outlet />
-      </div>
+      <Outlet />
       <Footer />
       <NavBar />
     </>
