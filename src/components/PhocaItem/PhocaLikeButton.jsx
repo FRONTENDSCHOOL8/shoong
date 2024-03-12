@@ -1,18 +1,56 @@
+import React, { useEffect, useState } from 'react';
 import { GoHeartFill } from 'react-icons/go';
 import { likeStore } from '@/store/store';
-import { userData } from '@/loader';
+import PocketBase from 'pocketbase';
+
+const pb = new PocketBase('https://shoong.pockethost.io');
 
 export default function PhocaLikeButton({ phocaId }) {
-  // Zustand 스토어에서 현재 카드의 '찜' 상태를 조회합니다.
+  const [userId, setUserId] = useState(null); // 사용자 ID 상태를 관리하기 위한 useState 훅
   const isLiked = likeStore((state) => !!state.likedCards[phocaId]);
-
-  // 스토어의 toggleLike 액션을 사용하여 현재 카드의 '찜' 상태를 토글합니다.
   const toggleLike = likeStore((state) => state.toggleLike);
 
-  const handleClick = (event) => {
+  useEffect(() => {
+    // 로컬 스토리지에서 'pocketbase_auth' 키에 해당하는 값을 가져옵니다.
+    const authDataString = localStorage.getItem('pocketbase_auth');
+    if (authDataString) {
+      try {
+        const authData = JSON.parse(authDataString);
+        setUserId(authData.model.id); // 동적으로 가져온 사용자 ID를 상태로 설정
+      } catch (error) {
+        console.error('Parsing authData error:', error);
+      }
+    }
+  }, []);
+
+  async function updateLikeListInUserCollection(userId) {
+    if (!userId) return; // userId가 없는 경우 함수 실행을 중단
+
+    const likeListString = localStorage.getItem('likeList');
+    let likedCards = {};
+    if (likeListString) {
+      likedCards = JSON.parse(likeListString).state.likedCards;
+    }
+    const likedPhotoCardIds = Object.keys(likedCards).filter(
+      (id) => likedCards[id]
+    );
+
+    try {
+      const record = await pb.collection('users').update(userId, {
+        likeList: likedPhotoCardIds,
+      });
+      console.log('likeList update success:', record);
+    } catch (error) {
+      console.error('likeList update failed:', error);
+    }
+  }
+
+  const handleClick = async (event) => {
     event.stopPropagation();
-    console.log(`Phoca ID: ${phocaId}`); // 클릭 시 콘솔에 Phoca ID 출력
-    toggleLike(phocaId); // 클릭 이벤트 핸들러에서 '찜' 상태를 토글합니다.
+    toggleLike(phocaId);
+    if (userId) {
+      await updateLikeListInUserCollection(userId);
+    }
   };
 
   return (
@@ -21,7 +59,7 @@ export default function PhocaLikeButton({ phocaId }) {
       onClick={handleClick}
     >
       <GoHeartFill
-        className={`h-6 w-6 hover:text-red-500 ${isLiked ? 'text-red-500' : 'text-white'}`}
+        className={`h-6 w-6 ${isLiked ? 'text-red-500' : 'text-white'}`}
       />
     </button>
   );
