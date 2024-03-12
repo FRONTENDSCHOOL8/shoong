@@ -1,82 +1,47 @@
 import { useRef } from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useId } from 'react';
-import { FaAngleDown, FaFilter, FaSort, FaCircleXmark } from 'react-icons/fa6';
+import { FaAngleDown, FaSort, FaCircleXmark } from 'react-icons/fa6';
+import useBottomSheet from '../BottomSheet/useBottomSheet';
+import BottomSheet from '../BottomSheet/BottomSheet';
+import { sorting } from '@/store/store';
 
-export default function SortingBar() {
+export default function SortingBar({ phoca, SetPhoca, biasData }) {
   const categoryRef = useRef(null);
-  const id = useId();
-  const [filter, setFilter] = useState('전체');
 
-  const handleFilter = () => {
-    categoryRef.current.style.display = 'block';
+  const handleLatest = () => SetPhoca(biasData);
+  const handleHigh = () => {
+    const high = [...phoca].sort((a, b) => b.likeCount - a.likeCount);
+    SetPhoca(high);
+  };
+  const handleLow = () => {
+    const low = [...phoca].sort((a, b) => a.likeCount - b.likeCount);
+    SetPhoca(low);
   };
 
-  const handleCategory = (e) => {
-    e.preventDefault();
-    categoryRef.current.style.display = 'none';
-    if (e.target.value) setFilter(e.target.value);
-  };
+  const { button, linkedBottomSheet, isOpen, setIsOpen } = useBottomSheet();
+  const { init } = sorting();
 
   return (
     <>
-      <div className="relative flex gap-9pxr justify-end pt-40pxr pb-24pxr pr-20pxr">
-        <div
-          ref={categoryRef}
-          className="hidden absolute bg-black bg-opacity-90 w-full h-full p-20pxr  left-1/2 -translate-x-1/2 rounded"
-        >
-          <form action="#">
-            <fieldset>
-              <legend className="text-white flex items-center gap-2">
-                카테고리
-                <span
-                  className="cursor-pointer text-red-600"
-                  onClick={handleCategory}
-                  value={filter}
-                  aria-label="취소"
-                >
-                  <FaCircleXmark />
-                </span>
-              </legend>
-              <div>
-                <label htmlFor={id}></label>
-                <select
-                  name="category"
-                  value={filter}
-                  id={id}
-                  onChange={handleCategory}
-                  className="cursor-pointer"
-                >
-                  <option value="전체">전체</option>
-                  <option value="찜한순">찜한순</option>
-                  <option value="최신순">최신순</option>
-                  <option value="오래된순">오래된순</option>
-                  {/* <option value="앨범">앨범</option>
-                  <option value="특전">특전</option>
-                  <option value="팬싸">팬싸</option>
-                  <option value="시즌그리팅">시즌그리팅</option>
-                  <option value="팬미팅">팬미팅</option> */}
-                </select>
-              </div>
-            </fieldset>
-          </form>
-        </div>
+      <BottomSheet
+        isRadio={true}
+        itemList={['최신순', '찜높은순', '찜낮은순']}
+        linkedBottomSheet={linkedBottomSheet}
+        setIsOpen={setIsOpen}
+        handleLatest={handleLatest}
+        handleHigh={handleHigh}
+        handleLow={handleLow}
+      />
+
+      <div className="relative flex justify-between gap-9pxr py-20pxr pl-24pxr pr-15pxr">
+        <span className="font-bold">총: {phoca.length}장</span>
+
         <button
-          onClick={handleFilter}
+          ref={button}
           type="button"
-          className="flex items-center justify-evenly w-100pxr h-30pxr bg-white bg-opacity-40 rounded border border-zinc-500 "
-        >
-          <FaFilter />
-          <span className="text-sm font-medium  leading-tight">{filter}</span>
-          <FaAngleDown />
-        </button>
-        <button
-          type="button"
-          className="flex items-center justify-evenly w-100pxr h-30pxr bg-white bg-opacity-40 rounded border border-zinc-500 "
+          className="flex h-30pxr w-100pxr items-center justify-evenly rounded border border-zinc-500 bg-white bg-opacity-40 "
         >
           <FaSort />
-          <span className="text-sm font-medium  leading-tight">최신순</span>
+          <span className="text-sm font-medium  leading-tight">{init}</span>
           <FaAngleDown />
         </button>
       </div>
