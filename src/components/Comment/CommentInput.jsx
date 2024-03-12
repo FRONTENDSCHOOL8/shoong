@@ -1,13 +1,24 @@
 import pb from '@/api/pocketbase';
 import useProfileImage from '../FloatingButton/useProfileImage';
 import { useCommentStore } from '@/store/store';
-
-useProfileImage;
+import { useEffect } from 'react';
+import { useCallback } from 'react';
 
 export default function CommentInput({ id }) {
   const profileImage = useProfileImage();
   const userData = JSON.parse(localStorage.getItem('auth')).user;
-  const { comments } = useCommentStore();
+  const { comments, setComments } = useCommentStore();
+
+  const updateComments = useCallback(
+    async (comment) => {
+      const createdComment = await pb.collection('comments').create(comment);
+      await pb.collection('meetUps').update(id, {
+        'comments+': [...comments, createdComment.id],
+      });
+      setComments([...comments, createdComment]); // Update local state
+    },
+    [comments, id]
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,16 +27,22 @@ export default function CommentInput({ id }) {
       name: userData.id,
       ment: formData.get('comment'),
     };
-    // 작성 및 업데이트
-    pb.collection('comments')
-      .create(data)
-      .then((c) =>
-        pb.collection('meetUps').update(id, {
-          'comments+': [...comments, c.id],
-        })
-      );
+    updateComments(data);
     e.target.reset();
   };
+
+  useEffect(() => {
+    pb.collection('comments').subscribe('*', (e) => {
+      console.log(e.action);
+      console.log(e.record);
+      console.log(comments);
+      if (e.action === 'update') {
+        setComments([...comments, e.record]);
+      }
+    });
+
+    return () => pb.collection('comments').unsubscribe('*');
+  }, [comments]);
 
   return (
     <form

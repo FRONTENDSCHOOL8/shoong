@@ -11,7 +11,7 @@ export default function CommentItem({ id, ment, date }) {
     };
     getuserInfo();
     setNewDate(date.slice(0, 10));
-  }, [id]);
+  }, []);
   const src = `https://shoong.pockethost.io/api/files/users/${writer.id}/${writer.avatar}`;
   return (
     <article
