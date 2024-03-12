@@ -1,29 +1,56 @@
+// LoginInfo.js
+
 import DetailHeader from '@/components/DetailHeader/DetailHeader';
 import { useEffect, useState } from 'react';
 import PocketBase from 'pocketbase';
+import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationModal'; // 모달 컴포넌트 경로에 맞게 조정하세요.
 
 const pb = new PocketBase('https://shoong.pockethost.io');
 
 export default function LoginInfo() {
-  const [user, setUser] = useState({ email: '', username: '' });
+  const [user, setUser] = useState({ email: '', username: '', id: '' });
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); // 로그아웃 확인 모달 상태
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // 계정 삭제 확인 모달 상태
 
   useEffect(() => {
     const authDataString = localStorage.getItem('auth');
-    if (authDataString) {
-      try {
-        const auth = JSON.parse(authDataString);
-        // 조건문을 단순화하여 중첩 깊이를 줄임
-        if (auth?.user) {
-          setUser({
-            email: auth.user.email,
-            username: auth.user.username,
-          });
-        }
-      } catch (error) {
-        console.error('Parsing authData error:', error);
-      }
+    if (!authDataString) return;
+
+    try {
+      const auth = JSON.parse(authDataString);
+      if (!auth?.user) return;
+
+      setUser({
+        email: auth.user.email,
+        username: auth.user.username,
+        id: auth.user.id,
+      });
+    } catch (error) {
+      console.error('Parsing authData error:', error);
     }
   }, []);
+
+  const handleLogout = () => {
+    setIsLogoutModalOpen(false); // 모달 닫기
+    localStorage.removeItem('auth');
+    pb.authStore.clear();
+    window.location.href = '/login';
+  };
+
+  const handleDeleteAccount = async () => {
+    setIsDeleteModalOpen(false); // 모달 닫기
+    if (!user.id) {
+      alert('유저 ID를 찾을 수 없습니다.');
+      return;
+    }
+
+    try {
+      await pb.collection('users').delete(user.id);
+      handleLogout(); // 로그아웃 처리
+    } catch (error) {
+      console.error('Error deleting user account:', error);
+    }
+  };
 
   return (
     <div className="pt-12">
@@ -47,15 +74,32 @@ export default function LoginInfo() {
           <div className="my-4 w-full border-t border-gray500"></div>
           <p className="pt-2 text-m04 font-m04 text-gray500">소셜 로그인</p>
         </div>
-        <div className="mt-32 flex flex-col items-center justify-center gap-5 p-6">
-          <button className="rounded-lg border border-red-500 bg-white px-20 py-2 text-red-500 transition-all duration-300 hover:font-bold">
+        <div className="flex flex-col items-center justify-center gap-5 p-6">
+          <button
+            className="mt-32 rounded-lg border border-red-500 bg-white px-20 py-2 text-red-500 transition-all duration-300 hover:font-bold"
+            onClick={() => setIsLogoutModalOpen(true)}
+          >
             로그아웃
           </button>
-
-          <a href="#" className="text-m04 font-m04 text-gray300 underline">
+          <button
+            className="text-m04 font-m04 text-gray300 underline"
+            onClick={() => setIsDeleteModalOpen(true)}
+          >
             서비스 탈퇴하기
-          </a>
+          </button>
         </div>
+        <ConfirmationModal
+          isOpen={isLogoutModalOpen}
+          onClose={() => setIsLogoutModalOpen(false)}
+          onConfirm={handleLogout}
+          message="정말로 로그아웃하시겠습니까?"
+        />
+        <ConfirmationModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={handleDeleteAccount}
+          message="정말로 계정을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
+        />
       </div>
     </div>
   );
