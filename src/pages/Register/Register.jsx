@@ -1,13 +1,36 @@
+import { useState } from 'react';
 import Input from '@/components/Input/Input';
 import Button from '@/components/Button/Button';
+import { useLoaderData } from 'react-router';
+import pb from '@/api/pocketbase';
 
 export default function Register() {
+  const users = useLoaderData();
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    pwd: '',
+    pwdAgain: '',
+    phone: '',
+    birth: '',
+  });
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((formData) => ({ ...formData, [name]: value }));
+  };
+
   return (
     <div className="flex flex-col items-center justify-center bg-white py-85pxr">
-      <div className="flex flex-col items-center justify-center gap-6">
+      <form className="flex flex-col items-center justify-center gap-6">
         <Input
-          customClassNames="h-9 mt-1"
+          name="name"
+          value={formData.name}
+          onChange={onChange}
+          type="text"
           placeholder="이름"
+          customClassNames="h-9 mt-1"
           bgClassName="bg-gray-100"
           isLabeled
           label="이름"
@@ -16,8 +39,12 @@ export default function Register() {
 
         <div className="flex flex-col gap-2">
           <Input
-            customClassNames="h-9 mt-1"
+            name="email"
+            value={formData.email}
+            onChange={onChange}
+            type="text"
             placeholder="이메일"
+            customClassNames="h-9 mt-1"
             bgClassName="bg-gray-100"
             isLabeled
             label="이메일"
@@ -29,6 +56,10 @@ export default function Register() {
 
         <div className="flex flex-col">
           <Input
+            name="pwd"
+            value={formData.pwd}
+            onChange={onChange}
+            type="password"
             customClassNames="h-9 mt-1"
             placeholder="비밀번호 입력 (영어+숫자 8자 이상)"
             bgClassName="bg-gray-100"
@@ -36,23 +67,35 @@ export default function Register() {
             label="비밀번호"
           />
           <Input
-            customClassNames="h-9 mt-2"
+            name="pwdAgain"
+            value={formData.pwdAgain}
+            onChange={onChange}
+            type="password"
             placeholder="비밀번호 재확인"
+            customClassNames="h-9 mt-2"
             bgClassName="bg-gray-100"
           />
         </div>
 
         <Input
-          customClassNames="h-9 mt-1"
+          name="phone"
+          value={formData.phone}
+          onChange={onChange}
+          type="text"
           placeholder="휴대폰 번호"
+          customClassNames="h-9 mt-1"
           bgClassName="bg-gray-100"
           isLabeled
           label="휴대폰 번호"
         />
 
         <Input
-          customClassNames="h-9 mt-1"
+          name="birth"
+          value={formData.birth}
+          onChange={onChange}
+          type="text"
           placeholder="생년월일"
+          customClassNames="h-9 mt-1"
           bgClassName="bg-gray-100"
           isLabeled
           label="생년월일"
@@ -80,7 +123,7 @@ export default function Register() {
         <Button isDisabled customClassNames="mt-4">
           가입하기
         </Button>
-      </div>
+      </form>
     </div>
   );
 }
