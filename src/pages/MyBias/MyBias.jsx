@@ -17,7 +17,7 @@ export default function MyBias({ items }) {
         bgStyle="bg-white mt-16 mb-10"
       />
       <div className="mx-auto max-w-6xl">
-        <ul className="grid grid-cols-3 gap-1">
+        <ul className="mb-16 grid grid-cols-3 gap-1">
           {phoca.map((item, index) => (
             <li
               key={index}
@@ -27,9 +27,9 @@ export default function MyBias({ items }) {
                 <img
                   src={`https://shoong.pockethost.io/api/files/groups/${item.id}/${item.logoImage}`}
                   alt={item.groupName}
-                  className="h-16 w-16 rounded-full object-cover"
+                  className="h-68pxr rounded-full border-4 object-cover"
                 />
-                <span className="text-sb01 font-sb02 text-contentSecondary sm:text-sb02">
+                <span className="whitespace-nowrap text-sb02 font-sb02 text-contentSecondary ">
                   {item.groupName}
                 </span>
               </button>
