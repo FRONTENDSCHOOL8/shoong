@@ -47,16 +47,16 @@ export default function MeetUpMap({ meetUpData }) {
 
   return (
     <Map
-      center={{ lat: 37.545485594292, lng: 126.92849100211 }}
+      center={{ lat: 37.556944, lng: 126.923917 }}
       className="relative h-full w-full"
-      level={7}
+      level={5}
     >
       {newMeetUpData.map((data) => {
         return (
           data.coords && (
             <div key={data.id} onClick={() => handleClickMarker(data.cafeName)}>
               <EventMarker position={data.coords} title={data.cafeName} />
-              <CustomOverlayMap position={data.coords} yAnchor={2.8}>
+              <CustomOverlayMap position={data.coords} yAnchor={1.5}>
                 <div className="customoverlay">
                   <span className="title rounded border border-primary bg-white px-1 py-1 text-sm font-bold text-primary">
                     {data.cafeName}

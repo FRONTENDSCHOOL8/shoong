@@ -9,8 +9,15 @@ import { useEffect } from 'react';
 
 export default function MeetUpDetail() {
   // @ts-ignore
-  const { eventTitle, cafeName, address, date, basicGift, event } =
-    useLoaderData();
+  const {
+    eventTitle,
+    cafeName,
+    address,
+    date,
+    basicGift,
+    event,
+    priorityGift,
+  } = useLoaderData();
   const { pathname } = useLocation();
 
   const meetUpData = meetUpDataStore((state) => state.meetUpData);
@@ -52,7 +59,7 @@ export default function MeetUpDetail() {
           title="EVENT"
           content={
             <>
-              <MeetUpDetailItem title="포토부스" content="추후 공지" />
+              <MeetUpDetailItem title="선착특전" content={priorityGift} />
               <MeetUpDetailItem
                 title="해쉬태그"
                 content={

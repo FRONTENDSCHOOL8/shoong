@@ -3,9 +3,10 @@ import { CustomOverlayMap, Map, MapMarker } from 'react-kakao-maps-sdk';
 export default function MeetUpDetailMap({ meetUpData }) {
   return (
     <Map
-      className="mx-auto h-full min-h-120pxr w-full rounded-xl px-20pxr py-15pxr shadow-meetUp"
+      className="mx-auto h-full min-h-120pxr w-full rounded-xl object-cover px-20pxr py-15pxr shadow-meetUp"
       center={meetUpData.coords}
       level={3}
+      zoomable={false}
     >
       <MapMarker
         position={meetUpData.coords}
