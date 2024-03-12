@@ -1,3 +1,4 @@
+// @ts-ignore
 import { useLoaderData } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import { meetUpDataStore } from '@/store/store';
@@ -8,7 +9,6 @@ import MeetUpDetailMap from '../MeetUpDetailMap/MeetUpDetailMap';
 import { useEffect } from 'react';
 
 export default function MeetUpDetail() {
-  // @ts-ignore
   const {
     eventTitle,
     cafeName,
@@ -23,10 +23,9 @@ export default function MeetUpDetail() {
   const meetUpData = meetUpDataStore((state) => state.meetUpData);
   const cafeId = pathname.split('/meetup/')[1];
   const getMeetUpData = meetUpData.find((data) => data.id === cafeId);
-  console.log(getMeetUpData);
 
   return (
-    <>
+    <div className="py-10">
       {/* 태그를 proprs로 전달하는 법은?? */}
       {/* <MeetUpItem info={data} /> */}
       <div className="mx-20pxr mb-20pxr mt-35pxr min-h-120pxr min-w-320pxr rounded-xl bg-white px-20pxr py-15pxr shadow">
@@ -77,6 +76,6 @@ export default function MeetUpDetail() {
       <div className="mx-20pxr mt-6 flex h-300pxr flex-col rounded-xl shadow">
         <MeetUpDetailMap meetUpData={getMeetUpData} />
       </div>
-    </>
+    </div>
   );
 }

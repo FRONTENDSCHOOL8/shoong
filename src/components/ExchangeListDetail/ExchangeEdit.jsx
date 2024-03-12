@@ -21,10 +21,12 @@ export default function ExchangeEdit({
   exchangeListData,
   setExchangeListData,
   loginUser,
+  loginStatus,
 }) {
   const [comment, setComment] = useState('');
   const navigate = useNavigate();
-  const user = loginUser.user.id;
+
+  const userId = loginStatus ? loginUser.user.id : null;
 
   const handleCommentChange = (event) => {
     setComment(event.target.value);
@@ -49,7 +51,7 @@ export default function ExchangeEdit({
     }
 
     const newExchangeData = {
-      writer: user,
+      writer: userId,
       description: comment,
       status: '교환대기중',
       chatContent: null,
