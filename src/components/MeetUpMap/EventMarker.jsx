@@ -1,7 +1,14 @@
+import { useMeetUpStore } from '@/store/store';
 import { MapMarker, useMap } from 'react-kakao-maps-sdk';
 
 export default function EventMarker({ position, title }) {
   const map = useMap();
+
+  const handleClickMarker = (title, marker) => {
+    localStorage.setItem('selectedCafe', title);
+    useMeetUpStore.setState({ selectedCafe: title });
+    map.panTo(marker.getPosition());
+  };
 
   return (
     <MapMarker
@@ -14,7 +21,7 @@ export default function EventMarker({ position, title }) {
           height: 40,
         },
       }}
-      onClick={(marker) => map.panTo(marker.getPosition())}
+      onClick={(marker) => handleClickMarker(title, marker)}
     ></MapMarker>
   );
 }

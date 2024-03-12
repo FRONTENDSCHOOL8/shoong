@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { CustomOverlayMap, Map } from 'react-kakao-maps-sdk';
 import EventMarker from './EventMarker';
+import { useMeetUpStore } from '@/store/store';
 
 export default function MeetUpMap({ meetUpData }) {
   const [newMeetUpData, setNewMeetUpData] = useState(meetUpData);
@@ -37,15 +38,21 @@ export default function MeetUpMap({ meetUpData }) {
       .catch((error) => console.error(error));
   }, [meetUpData]);
 
+  const handleClickMarker = (title) => {
+    localStorage.setItem('selectedCafe', title);
+    useMeetUpStore.setState({ selectedCafe: title });
+  };
+
   return (
     <Map
-      center={{ lat: 37.566535, lng: 126.9779692 }}
+      center={{ lat: 37.545485594292, lng: 126.92849100211 }}
       className="relative h-full w-full"
+      level={7}
     >
       {newMeetUpData.map((data) => {
         return (
           data.coords && (
-            <div key={data.id}>
+            <div key={data.id} onClick={() => handleClickMarker(data.cafeName)}>
               <EventMarker position={data.coords} title={data.cafeName} />
               <CustomOverlayMap position={data.coords} yAnchor={2.8}>
                 <div className="customoverlay">
