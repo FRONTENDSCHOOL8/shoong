@@ -19,6 +19,7 @@ export default function ColloectBookDetail() {
   const [phocaInfo, setPhocaInfo] = useState([]);
   const [phocaId, setPhocaId] = useState([]);
   const [editId, setEditId] = useState([]);
+  const userName = JSON.parse(localStorage.getItem('auth')).user.name;
 
   const logoImage = data.filter((item) => {
     if (item.groupName === group) return true;
@@ -121,8 +122,7 @@ export default function ColloectBookDetail() {
         />
 
         <CollectBookItemContainer
-          // title={`${JSON.parse(localStorage.getItem('userInfo')).state.name}님이 보유 중인 포카️❣️`}
-          title={`님이 보유 중인 포카️❣️`}
+          title={`${userName}님이 보유 중인 포카️❣️`}
           state={true}
           phocaData={phocaData}
           phocaId={phocaId}
