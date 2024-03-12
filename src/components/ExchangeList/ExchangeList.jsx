@@ -3,6 +3,7 @@ import pb from '@/api/pocketbase';
 import PhotoCardInfo from '../ExchangeListDetail/PhotoCardInfo';
 import ExchangeEdit from '../ExchangeListDetail/ExchangeEdit';
 import ExchangeArticle from '../ExchangeListDetail/ExchangeArticle';
+import { stringify } from 'postcss';
 
 /**
  * ExchangeList 컴포넌트는 포토카드와 관련된 교환 글 목록을 표시하며, 각 교환 글의 작성자 정보를 함께 표시합니다.
@@ -23,6 +24,9 @@ export default function ExchangeList({ photoCardData }) {
   const [exchangeListData, setExchangeListData] = useState(
     photoCardData?.expand?.exchangeList || []
   );
+
+  const userInfo = localStorage.getItem('auth');
+  const loggedInUser = userInfo ? JSON.parse(userInfo) : null;
 
   useEffect(() => {
     // 교환글에서 작성자들의 id들을 추출
@@ -69,6 +73,7 @@ export default function ExchangeList({ photoCardData }) {
           photoCardData={photoCardData}
           exchangeListData={exchangeListData}
           setExchangeListData={setExchangeListData}
+          loginUser={loggedInUser}
         />
         <ExchangeArticle
           exchangeListData={exchangeListData}
