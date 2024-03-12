@@ -59,3 +59,8 @@ export const useMeetUpStore = create((set) => ({
   selectedCafe: '',
   setSelectedCafe: (cafeName) => set({ selectedCafe: cafeName }),
 }));
+
+export const meetUpDataStore = create((set) => ({
+  meetUpData: [],
+  setMeetUpData: (newData) => set({ meetUpData: newData }),
+}));
