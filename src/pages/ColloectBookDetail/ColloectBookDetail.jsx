@@ -121,7 +121,8 @@ export default function ColloectBookDetail() {
         />
 
         <CollectBookItemContainer
-          title={`${JSON.parse(localStorage.getItem('userInfo')).state.name}님이 보유 중인 포카️❣️`}
+          // title={`${JSON.parse(localStorage.getItem('userInfo')).state.name}님이 보유 중인 포카️❣️`}
+          title={`님이 보유 중인 포카️❣️`}
           state={true}
           phocaData={phocaData}
           phocaId={phocaId}
