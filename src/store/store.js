@@ -54,3 +54,8 @@ export const likeStore = create(
     }
   )
 );
+
+export const useMeetUpStore = create((set) => ({
+  selectedCafe: '',
+  setSelectedCafe: (cafeName) => set({ selectedCafe: cafeName }),
+}));
