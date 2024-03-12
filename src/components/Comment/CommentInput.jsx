@@ -1,11 +1,13 @@
 import pb from '@/api/pocketbase';
 import useProfileImage from '../FloatingButton/useProfileImage';
+import { useCommentStore } from '@/store/store';
 
 useProfileImage;
 
 export default function CommentInput({ id }) {
   const profileImage = useProfileImage();
   const userData = JSON.parse(localStorage.getItem('auth')).user;
+  const { comments } = useCommentStore();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,9 +15,15 @@ export default function CommentInput({ id }) {
     const data = {
       name: userData.id,
       ment: formData.get('comment'),
-      meetUpId: id,
     };
-    pb.collection('comments').create(data);
+    // 작성 및 업데이트
+    pb.collection('comments')
+      .create(data)
+      .then((c) =>
+        pb.collection('meetUps').update(id, {
+          'comments+': [...comments, c.id],
+        })
+      );
     e.target.reset();
   };
 
