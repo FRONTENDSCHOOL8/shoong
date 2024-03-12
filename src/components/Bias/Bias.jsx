@@ -35,7 +35,7 @@ export default function Bias({
             title={groupName}
           />
         </button>
-        <figcaption className="w-100pxr text-center text-sb02 font-sb02">
+        <figcaption className="w-100pxr text-center text-sb02 font-sb02 text-gray600">
           {children}
         </figcaption>
       </figure>
