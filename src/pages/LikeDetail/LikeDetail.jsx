@@ -1,22 +1,54 @@
+import React, { useEffect, useState } from 'react';
 import DetailHeader from '@/components/DetailHeader/DetailHeader';
+import PhocaContainerEx from '@/components/PhocaContainer/PhocaContainerEx';
 import SearchBar from '@/components/SearchBar/SearchBar';
-// import SortingBar from '@/components/SortingBar/SortingBar';
-// import PhocaContainerBias from '@/components/PhocaContainer/PhocaContainerBias';
+import PocketBase from 'pocketbase';
+// import { useLoaderData } from 'react-router';
+
+const pb = new PocketBase('https://shoong.pockethost.io');
 
 export default function LikeDetail() {
+  const [likedPhotoCards, setLikedPhotoCards] = useState([]);
+
+  useEffect(() => {
+    async function fetchLikedPhotoCards() {
+      const authDataString = localStorage.getItem('pocketbase_auth');
+      if (!authDataString) return;
+
+      try {
+        const authData = JSON.parse(authDataString);
+        const likeList = authData.model.likeList;
+        if (!likeList || likeList.length === 0) return;
+
+        // likeList 내의 각 ID를 OR 조건으로 연결하여 필터 쿼리 문자열 생성
+        const filterQuery = likeList.map((id) => `id="${id}"`).join(' || ');
+
+        // PocketBase에서 필터링된 포토카드 리스트 조회
+        const matchedCards = await pb
+          .collection('photoCards')
+          .getFullList({ filter: filterQuery });
+
+        // 상태 업데이트
+        setLikedPhotoCards(matchedCards);
+      } catch (error) {
+        console.error('Error fetching liked photo cards:', error);
+      }
+    }
+
+    fetchLikedPhotoCards();
+  }, []);
+
   return (
-    <div>
+    <div className="pt-55pxr">
       <DetailHeader title="찜 목록" />
-      <div className="flex h-200pxr items-center justify-center ">
+      <div className="flex items-center justify-center pt-60pxr">
         <SearchBar
           name="search"
           placeholder="찜한 포카 찾기"
           bgStyle="bg-gray-100"
         />
       </div>
-      {/* <SortingBar /> */}
-      {/* <PhocaContainerBias /> */}
-      <div className="h-200pxr">포카</div>
+      <PhocaContainerEx biasData={likedPhotoCards} />
     </div>
   );
 }
