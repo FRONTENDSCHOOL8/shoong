@@ -3,7 +3,6 @@ import DetailHeader from '@/components/DetailHeader/DetailHeader';
 import PhocaContainerEx from '@/components/PhocaContainer/PhocaContainerEx';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import PocketBase from 'pocketbase';
-// import { useLoaderData } from 'react-router';
 
 const pb = new PocketBase('https://shoong.pockethost.io');
 
@@ -41,14 +40,16 @@ export default function LikeDetail() {
   return (
     <div className="pt-55pxr">
       <DetailHeader title="찜 목록" />
-      <div className="flex items-center justify-center pt-60pxr">
+      <div className="flex items-center justify-center pt-60pxr ">
         <SearchBar
           name="search"
           placeholder="찜한 포카 찾기"
           bgStyle="bg-gray-100"
         />
       </div>
-      <PhocaContainerEx biasData={likedPhotoCards} />
+      <div className="pl-4">
+        <PhocaContainerEx biasData={likedPhotoCards} />
+      </div>
     </div>
   );
 }

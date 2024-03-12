@@ -23,7 +23,6 @@ import { meetUpDetail } from './loader/meetUpDeatailData';
 import ProfileSetting from './pages/ProfileSetting/ProfileSetting';
 import LoginInfo from './pages/ProfileSetting/LoginInfo';
 import MyBias from './pages/MyBias/MyBias';
-import likeData from './loader/likeData';
 
 const router = createBrowserRouter([
   {
@@ -82,7 +81,6 @@ const router = createBrowserRouter([
       {
         path: '/likeDetail',
         element: <LikeDetail />,
-        loader: likeData,
       },
       {
         path: '/Login',
