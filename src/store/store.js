@@ -54,3 +54,9 @@ export const likeStore = create(
     }
   )
 );
+
+// 정렬 기능
+export const sorting = create((set) => ({
+  init: '최신순',
+  change: (data) => set(() => ({ init: data })),
+}));
