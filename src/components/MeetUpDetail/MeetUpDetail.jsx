@@ -2,6 +2,7 @@ import { useLoaderData } from 'react-router';
 import MeetUpDetailItem from '../MeetUpDetailItem/MeetUpDetailItem';
 import MeetUpDetailItemContainer from '../MeetUpDetailItemContainer/MeetUpDetailItemContainer';
 import HashTagItem from '../HashTagItem/HashTagItem';
+import CommentContainer from '../Comment/CommentContainer';
 
 export default function MeetUpDetail() {
   // @ts-ignore
@@ -57,6 +58,7 @@ export default function MeetUpDetail() {
           }
         />
       </div>
+      <CommentContainer />
     </>
   );
 }

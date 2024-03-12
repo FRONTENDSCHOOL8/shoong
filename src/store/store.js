@@ -17,3 +17,11 @@ export const searchStore = create((set) => ({
   search: '',
   setSearch: (text) => set({ search: text }),
 }));
+
+// 댓글 상태 관리
+export const useCommentStore = create((set) => ({
+  comments: [],
+  setComments: (comments) => set({ comments }),
+  addComment: (comment) =>
+    set((state) => ({ comments: [...state.comments, comment] })),
+}));
