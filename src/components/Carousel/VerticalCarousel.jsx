@@ -31,20 +31,17 @@ export default function VerticalCarousel() {
     getMeetupData();
   }, []);
   return (
-    <div className="mx-auto my-2.5 flex w-3/4 flex-col rounded-xl border-[1px]  border-contentPrimary bg-white py-1 text-center text-contentPrimary shadow-md">
-      <Slider
-        {...settings}
-        className="cursor-pointer justify-center text-primary"
-      >
+    <div className=" mx-auto my-2.5 flex w-5/6 flex-col rounded-xl border-[1px]  border-gray-300 bg-white py-1 text-center text-contentPrimary shadow-md">
+      <Slider {...settings} className="justify-center text-primary">
         {meetUps.map((meetUp) => (
-          <Link key={meetUp.id} to={`/meetUp/${meetUp.id}`}>
-            <p>
+          <div key={meetUp.id}>
+            <p className="text-r01">
               {meetUp.eventTitle}
-              <span className="px-2 text-10pxr text-contentSecondary">
+              <span className="text-ellipsis px-2 text-10pxr text-contentSecondary">
                 {meetUp.date}
               </span>
             </p>
-          </Link>
+          </div>
         ))}
       </Slider>
     </div>
