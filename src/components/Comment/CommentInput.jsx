@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useCallback } from 'react';
 
 export default function CommentInput({ id }) {
-  const profileImage = useProfileImage();
+  const profileImage = useProfileImage(true);
   const userData = JSON.parse(localStorage.getItem('auth')).user;
   const { comments, setComments } = useCommentStore();
 
@@ -47,17 +47,22 @@ export default function CommentInput({ id }) {
   return (
     <form
       method="post"
-      className="flex h-16 flex-row items-center gap-x-2 px-2 py-2.5 shadow-meetUp"
+      className="flex h-14 flex-row items-center gap-x-2 rounded-lg bg-white px-2 py-2.5 shadow-meetUp"
       onSubmit={handleSubmit}
     >
-      <img src={profileImage} alt="" className="h-12 rounded-full" />
+      <img src={profileImage} alt="" className="h-10 rounded-full" />
       <input
         type="text"
         name="comment"
         placeholder="댓글달기"
-        className="h-10 flex-grow rounded-lg border border-contentTertiary px-2"
+        className="h-10 flex-grow rounded-lg  border border-gray-200 px-2 placeholder:text-r01"
       />
-      <button type="submit">등록</button>
+      <button
+        type="submit"
+        className="size-10 rounded-lg bg-secondary text-r01 text-white"
+      >
+        등록
+      </button>
     </form>
   );
 }
