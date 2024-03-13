@@ -1,57 +1,99 @@
-import { useEffect, useRef, useState } from 'react';
-import Slides from './Slides';
+import Slider from 'react-slick';
+import './slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import { GrPrevious, GrNext } from 'react-icons/gr';
 
-export default function Carousel() {
-  const [index, setIndex] = useState(0);
-  const [containerWidth, setContainerWidth] = useState(0);
-  const container = useRef(null);
-  useEffect(() => {
-    const { current } = container;
-    setContainerWidth(current.offsetWidth);
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % 4);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-  const handleClick = (direction) => {
-    if (direction === 'next') {
-      return setIndex((x) => (x < 3 ? x + 1 : 0));
-    }
-    return setIndex((x) => (x > 0 ? x - 1 : 3));
-  };
+const Prev = (props) => {
+  const { className, style, onClick } = props;
   return (
-    <section
-      className="relative mb-4 w-full overflow-hidden text-white"
-      ref={container}
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: 'block',
+        position: 'absolute',
+        left: '2px',
+        zIndex: 10,
+        fontSize: '40px',
+        color: 'white',
+      }}
+      onClick={onClick}
     >
-      <div
-        className="dr flex h-360pxr w-full flex-row"
-        style={{
-          width: `400%`,
-          transform: `translate3d(-${index * containerWidth}px, 0, 0)`,
-          transition: `transform 0.5s`,
-        }}
-      >
-        <Slides order="1" alt="뉴진스 파워퍼프걸 콜라보" />
-        <Slides order="2" alt="최애 포카 부적" />
-        <Slides order="3" alt="투어스 단체" />
-        <Slides order="4" alt="민지 바자 커버" />
-      </div>
-      <button
-        type="button"
-        onClick={() => handleClick('prev')}
-        className="absolute left-2 top-1/2"
-      >
-        <GrPrevious className="text-2xl" />
-      </button>
-      <button
-        type="button"
-        onClick={() => handleClick('next')}
-        className="absolute right-2 top-1/2"
-      >
-        <GrNext className="text-2xl" />
-      </button>
-    </section>
+      <GrPrevious />
+    </div>
+  );
+};
+
+const Next = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: 'block',
+        position: 'absolute',
+        right: '20px',
+        zIndex: 10,
+        fontSize: '40px',
+        color: 'white',
+      }}
+      onClick={onClick}
+    >
+      <GrNext />
+    </div>
+  );
+};
+
+export default function Carousel() {
+  const settings = {
+    arrows: true,
+    nextArrow: <Next />,
+    prevArrow: <Prev />,
+    dots: true,
+    // dotsClass: `slick-dots`,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    cssEase: 'linear',
+    pauseOnHover: true,
+  };
+
+  return (
+    <div className="mx-auto h-360pxr w-full">
+      <Slider {...settings}>
+        {slides.map(({ order, alt }) => (
+          <div key={order}>
+            <img
+              src={`/carousel/carousel_${order}.jpeg`}
+              alt={alt}
+              className="mx-auto size-full max-h-360pxr object-cover"
+            />
+          </div>
+        ))}
+      </Slider>
+    </div>
   );
 }
+
+const slides = [
+  {
+    order: '1',
+    alt: '뉴진스 파워퍼프걸',
+  },
+  {
+    order: '2',
+    alt: '뉴진스',
+  },
+  {
+    order: '3',
+    alt: '투어스',
+  },
+  {
+    order: '4',
+    alt: '민지 바자 커버',
+  },
+];
