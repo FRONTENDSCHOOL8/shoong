@@ -33,10 +33,10 @@ export default function Carousel() {
           transition: `transform 0.5s`,
         }}
       >
-        <Slides order="1" alt="뉴진스 파워퍼프걸 콜라보" />
-        <Slides order="2" alt="최애 포카 부적" />
-        <Slides order="3" alt="투어스 단체" />
-        <Slides order="4" alt="민지 바자 커버" />
+        <Slides order="1" alt="뉴진스 신상 카드" />
+        <Slides order="2" alt="아이유 시즌그리팅" />
+        <Slides order="3" alt="블랙핑크 럭키드로우" />
+        <Slides order="4" alt="BTS 썸머 포토카드" />
       </div>
       <button
         type="button"
