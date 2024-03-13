@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { data } from 'autoprefixer';
 import MeetUpItem from '../MeetUpItem/MeetUpItem';
 import DetailHeader from '../DetailHeader/DetailHeader';
+import MeetupCarousel from '../Carousel/ MeetupCarousel';
 
 export default function MeetUpDetail() {
   const {
@@ -33,6 +34,7 @@ export default function MeetUpDetail() {
       {/* 태그를 proprs로 전달하는 법은?? */}
       {/* <MeetUpItem info={data} /> */}
       <DetailHeader title="자세히" isBottomSheet={undefined} />
+      <MeetupCarousel />
       <div className="mx-20pxr mb-20pxr mt-35pxr min-h-120pxr min-w-320pxr rounded-xl bg-white px-20pxr py-15pxr shadow">
         <h3 className="mb-4pxr text-base font-extrabold leading-snug text-primary">
           {eventTitle}
