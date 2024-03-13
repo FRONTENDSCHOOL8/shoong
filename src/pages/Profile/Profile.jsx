@@ -3,6 +3,7 @@ import ProfileItemContainer from '@/components/ProfileItemContainer/ProfileItemC
 import NavigationTile from '@/components/NavigationTile/NavigationTile';
 import ProfileFooter from '@/components/ProfileFooter/ProfileFooter';
 import ProfileHeader from '@/components/ProfileTitle/ProfileHeader';
+import ExchangeStatus from '@/components/ExchangeStatus/ExchangeStatus';
 
 export default function Profile() {
   return (
@@ -12,7 +13,9 @@ export default function Profile() {
         <ProfileItemContainer title="콜렉트북">
           <CollectBook />
         </ProfileItemContainer>
-        <ProfileItemContainer title="교환현황" />
+        <ProfileItemContainer title="교환현황">
+          <ExchangeStatus />
+        </ProfileItemContainer>
         <div>
           <NavigationTile
             to="/"
