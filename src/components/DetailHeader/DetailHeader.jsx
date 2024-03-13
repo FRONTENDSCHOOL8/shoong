@@ -23,7 +23,7 @@ export default function DetailHeader({
   return (
     <>
       <div
-        className={`fixed flex h-12 w-full items-center ${flexLayout} bg-white px-5`}
+        className={`fixed top-0 flex h-12 w-full items-center ${flexLayout} bg-white px-5`}
       >
         <div className={`w-30pxr ${absolute}`}>
           <LeftArrow onClick={() => navigate(-1)} />
