@@ -18,9 +18,9 @@ export default function BiasContainer({ photoCardsData }) {
   return (
     <>
       <div className="draggable flex items-center text-center">
-        <Bias fakeRef={biasGroup}>내 최애</Bias>
+        <Bias fakeRef={biasGroup}>그룹</Bias>
 
-        <ul className="biasContainer flex h-100pxr items-center overflow-x-scroll ">
+        <ul className="biasContainer flex h-100pxr items-center overflow-x-scroll px-4">
           {photoCardsData.map((item) => {
             return (
               <li key={item.id}>

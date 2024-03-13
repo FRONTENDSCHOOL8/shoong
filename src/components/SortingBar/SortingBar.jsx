@@ -32,9 +32,7 @@ export default function SortingBar({ phoca, SetPhoca, biasData }) {
         handleLow={handleLow}
       />
 
-      <div className="relative flex justify-between gap-9pxr py-20pxr pl-24pxr pr-15pxr">
-        <span className="font-bold">총: {phoca.length}장</span>
-
+      <div className="flex justify-end py-20pxr pr-15pxr">
         <button
           ref={button}
           type="button"
