@@ -19,7 +19,7 @@ export default function Home() {
   const phocaDataByLikeCount = usePhocaDataByLikeCount();
 
   return (
-    <div className="flex flex-col">
+    <div className="mt-55pxr flex flex-col">
       <FloatingButton />
       <Carousel />
       <VerticalCarousel />
