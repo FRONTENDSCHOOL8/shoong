@@ -1,7 +1,7 @@
 export default function ToggleButton() {
   return (
     // <div className="m-auto mt-100pxr h-28pxr w-144pxr  pb-50pxr pt-30pxr">
-    <div className="m-auto mt-55pxr h-28pxr w-144pxr  pb-50pxr pt-30pxr">
+    <div className="m-auto mt-48pxr h-28pxr w-144pxr  pb-50pxr pt-30pxr">
       <div className="h-7 w-36 rounded-full bg-primary">
         <button
           type="button"
