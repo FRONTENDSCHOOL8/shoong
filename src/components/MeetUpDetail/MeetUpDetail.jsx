@@ -1,15 +1,31 @@
+// @ts-ignore
 import { useLoaderData } from 'react-router';
+import { useLocation } from 'react-router-dom';
+import { meetUpDataStore } from '@/store/store';
 import MeetUpDetailItem from '../MeetUpDetailItem/MeetUpDetailItem';
 import MeetUpDetailItemContainer from '../MeetUpDetailItemContainer/MeetUpDetailItemContainer';
 import HashTagItem from '../HashTagItem/HashTagItem';
+import MeetUpDetailMap from '../MeetUpDetailMap/MeetUpDetailMap';
+import { useEffect } from 'react';
 
 export default function MeetUpDetail() {
-  // @ts-ignore
-  const { eventTitle, cafeName, address, date, basicGift, event } =
-    useLoaderData();
+  const {
+    eventTitle,
+    cafeName,
+    address,
+    date,
+    basicGift,
+    event,
+    priorityGift,
+  } = useLoaderData();
+  const { pathname } = useLocation();
+
+  const meetUpData = meetUpDataStore((state) => state.meetUpData);
+  const cafeId = pathname.split('/meetup/')[1];
+  const getMeetUpData = meetUpData.find((data) => data.id === cafeId);
 
   return (
-    <>
+    <div className="py-10">
       {/* 태그를 proprs로 전달하는 법은?? */}
       {/* <MeetUpItem info={data} /> */}
       <div className="mx-20pxr mb-20pxr mt-35pxr min-h-120pxr min-w-320pxr rounded-xl bg-white px-20pxr py-15pxr shadow">
@@ -42,7 +58,7 @@ export default function MeetUpDetail() {
           title="EVENT"
           content={
             <>
-              <MeetUpDetailItem title="포토부스" content="추후 공지" />
+              <MeetUpDetailItem title="선착특전" content={priorityGift} />
               <MeetUpDetailItem
                 title="해쉬태그"
                 content={
@@ -57,6 +73,9 @@ export default function MeetUpDetail() {
           }
         />
       </div>
-    </>
+      <div className="mx-20pxr mt-6 flex h-300pxr flex-col rounded-xl shadow">
+        <MeetUpDetailMap meetUpData={getMeetUpData} />
+      </div>
+    </div>
   );
 }

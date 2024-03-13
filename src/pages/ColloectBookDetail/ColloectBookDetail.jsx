@@ -4,6 +4,7 @@ import pb from '@/api/pocketbase';
 import CollectBookItemContainer from '@/components/CollectBookItemContainer/CollectBookItemContainer';
 import DragonSphere from '@/components/DragonSphere/DragonSphere';
 import ToastAlert from '@/components/ToastAlert/ToastAlert';
+import ToggleButton from '@/components/ToggleButton/ToggleButton';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
@@ -18,6 +19,11 @@ export default function ColloectBookDetail() {
   const [phocaInfo, setPhocaInfo] = useState([]);
   const [phocaId, setPhocaId] = useState([]);
   const [editId, setEditId] = useState([]);
+  const userName = JSON.parse(localStorage.getItem('auth')).user.name;
+
+  const logoImage = data.filter((item) => {
+    if (item.groupName === group) return true;
+  });
 
   // 선택한 카드 저장
   const handleSave = () => {
@@ -46,6 +52,10 @@ export default function ColloectBookDetail() {
       if (index !== -1) copy.splice(index, 1);
       setEditId(copy);
     }
+
+    editButton.current.disabled = false;
+    editButton.current.className =
+      'flex h-7 w-64pxr items-center justify-center rounded-md bg-zinc-400 text-sm font-semibold text-white hover:bg-primary hover:text-white duration-200';
   };
 
   const collectBook = data.filter((item) => {
@@ -96,45 +106,38 @@ export default function ColloectBookDetail() {
 
   return (
     <>
-      <div className="relative h-[100%] bg-[#D8D6FF]">
+      <div className="draggable relative h-[100%]">
         <Toaster />
+
+        <ToggleButton />
 
         <DragonSphere
           group={group}
           phocaData={phocaData}
           phocaInfo={phocaInfo}
+          handleSave={handleSave}
+          fakeRef={editButton}
+          logoImage={logoImage[0].logoImage}
+          groupId={logoImage[0].id}
         />
 
-        <div className="mb-5 flex items-center justify-center gap-3 pt-12pxr text-xl font-bold text-zinc-800">
-          갖고 있는 포카를 선택하세요!
-          <button
-            ref={editButton}
-            type="button"
-            className="font-200 my-4 cursor-pointer rounded-full bg-white px-4  text-14pxr duration-200 hover:bg-primary hover:text-white"
-            onClick={handleSave}
-          >
-            저장
-          </button>
-        </div>
-
         <CollectBookItemContainer
-          title="보유중"
+          title={`${userName}님이 보유 중인 포카️❣️`}
           state={true}
           phocaData={phocaData}
           phocaId={phocaId}
           handleCard={handleCard}
           imgFilter="h-full w-full object-cover rounded-xl"
-          pb="pb-5"
+          pb="pb-50pxr"
         />
-        <hr className="mb-5" />
         <CollectBookItemContainer
-          title="미보유"
+          title="갖고 있는 포카를 선택하세요!"
           state={false}
           phocaData={phocaData}
           phocaId={phocaId}
           handleCard={handleCard}
           imgFilter="h-full w-full object-cover rounded-xl grayscale"
-          pb="pb-110pxr"
+          pb="pb-10pxr"
         />
       </div>
     </>

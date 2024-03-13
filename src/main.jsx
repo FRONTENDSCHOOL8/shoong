@@ -20,11 +20,16 @@ import ExchangeDetail from './pages/ExchangeDetail/ExchangeDetail';
 import MeetUpDetail from './components/MeetUpDetail/MeetUpDetail';
 import meetUpData from './loader/meetUpData';
 import { meetUpDetail } from './loader/meetUpDeatailData';
+import ProfileSetting from './pages/ProfileSetting/ProfileSetting';
+import LoginInfo from './pages/ProfileSetting/LoginInfo';
+import MyBias from './pages/MyBias/MyBias';
+import NotFound from './pages/NotFound/NotFound';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/',
@@ -34,7 +39,7 @@ const router = createBrowserRouter([
       {
         path: '/exchange',
         element: <Exchange />,
-        // loader: exchangeDetailData,
+        loader: phocaData,
       },
       {
         path: '/exchangeDetail/:id',
@@ -57,8 +62,22 @@ const router = createBrowserRouter([
         loader: phocaData,
       },
       {
+        path: '/profileSetting',
+        element: <ProfileSetting />,
+      },
+      {
+        path: '/loginInfo',
+        element: <LoginInfo />,
+        loader: userData,
+      },
+      {
         path: '/collectBook/:group/:id',
         element: <ColloectBookDetail />,
+        loader: phocaData,
+      },
+      {
+        path: '/myBias',
+        element: <MyBias />,
         loader: phocaData,
       },
       {

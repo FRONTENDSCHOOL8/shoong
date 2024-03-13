@@ -2,15 +2,17 @@ import { Outlet } from 'react-router';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import NavBar from '../NavBar/NavBar';
+import { useLocation } from 'react-router-dom';
 
 export default function RootLayout() {
+  const { pathname } = useLocation();
+
+  const isHiddenFooter = pathname === '/meetup';
   return (
     <>
       <Header />
-      <div className="pb-14">
-        <Outlet />
-      </div>
-      <Footer />
+      <Outlet />
+      {isHiddenFooter ? null : <Footer />}
       <NavBar />
     </>
   );
