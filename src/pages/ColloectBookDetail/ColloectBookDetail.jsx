@@ -107,10 +107,10 @@ export default function ColloectBookDetail() {
 
   return (
     <>
-      <DetailHeader title="자세히" />
       <div className="draggable relative h-[100%]">
         <Toaster />
 
+        <DetailHeader title="자세히" />
         <ToggleButton />
 
         <DragonSphere

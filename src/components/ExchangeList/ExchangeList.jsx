@@ -28,7 +28,6 @@ export default function ExchangeList({ photoCardData }) {
   const { init } = isLogin();
   const userInfo = localStorage.getItem('auth');
   const loggedInUser = userInfo ? JSON.parse(userInfo) : null;
-  console.log(init);
 
   useEffect(() => {
     // 교환글에서 작성자들의 id들을 추출
@@ -55,39 +54,44 @@ export default function ExchangeList({ photoCardData }) {
     }
   }, [exchangeListData]);
 
-  const text = `** 포토카드 이미지는 거래의 이해를 돕는 식별 목적으로 사용하고 있어요** ** 실제 포토카드와 이미지의 사이즈가 상이할 수 있으니 주의해주세요! **`;
+  const text = `** 포토카드 이미지는 거래의 이해를 돕는 식별 목적으로 사용하고 있어요**
+  
+   ** 실제 포토카드와 이미지의 사이즈가 상이할 수 있으니 주의해주세요! **`;
 
   return (
     <>
-      <DetailHeader title="교환 디테일" isBottomSheet text={text} />
+      <DetailHeader title="자세히" isBottomSheet text={text} />
       <div className="flexCenter mx-auto mb-3 mt-10 w-11/12 flex-col pt-10">
         <PhotoCardInfo
           // @ts-ignore
           photoCardData={photoCardData}
         />
-        <div className="mx-auto my-4 h-1 w-10/12 border-t border-primary"></div>
-        <div className="mx-auto mt-8 w-10/12 self-start">
-          <span className="text-xl font-extrabold leading-7 text-neutral-600">
-            {exchangeListData ? exchangeListData.length : 0}
-          </span>
-          <span className="text-xl font-bold leading-7 text-neutral-500">
-            개의 교환글
-          </span>
-        </div>
-        <div className="mx-auto mt-4 w-10/12">
-          <ExchangeEdit
-            photoCardData={photoCardData}
-            exchangeListData={exchangeListData}
-            setExchangeListData={setExchangeListData}
-            loginUser={loggedInUser}
-            loginStatus={init}
-          />
-          <ExchangeArticle
-            exchangeListData={exchangeListData}
-            users={users}
-            setExchangeListData={setExchangeListData}
-          />
-        </div>
+      </div>
+
+      <div className="mx-auto mt-2 w-10/12 self-start border-t border-primary pt-5">
+        <span className="text-b04 font-b04 leading-7 text-gray500">
+          {exchangeListData ? exchangeListData.length : 0}
+        </span>
+        <span className=" pl-1 text-b04 font-b04 leading-7 text-gray400">
+          개의 교환 글
+        </span>
+      </div>
+      <div className="mx-auto mt-4 w-10/12">
+        <ExchangeEdit
+          photoCardData={photoCardData}
+          exchangeListData={exchangeListData}
+          setExchangeListData={setExchangeListData}
+          loginUser={loggedInUser}
+          loginStatus={init}
+        />
+        <ExchangeArticle
+          exchangeListData={exchangeListData}
+          users={users}
+          setExchangeListData={setExchangeListData}
+          // @ts-ignore
+          loginUser={loggedInUser}
+          loginStatus={init}
+        />
       </div>
     </>
   );

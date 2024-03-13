@@ -16,7 +16,7 @@ export default function MyBias({ items }) {
   };
 
   return (
-    <div className="flex flex-col items-center px-6 pt-12">
+    <div className="flex flex-col items-center px-6 pt-8">
       <DetailHeader title="내 최애" />
       <SearchBar
         name="search"

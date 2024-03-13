@@ -27,11 +27,11 @@ export default function ProfileInfo() {
     <div className="flex w-full items-center justify-between">
       <div className="flex items-center gap-x-2">
         <img
-          className="h-42pxr w-42pxr rounded-full"
+          className="h-54pxr w-54pxr rounded-full border-2"
           src={profileImage}
           alt="Profile"
         />
-        <p className="text-xl text-contentPrimary">{userName}</p>
+        <p className="text-b04 font-sb01 text-contentPrimary">{userName}</p>
       </div>
       <MyBias />
     </div>
