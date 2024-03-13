@@ -2,12 +2,16 @@ import DetailHeader from '@/components/DetailHeader/DetailHeader';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import { useLoaderData } from 'react-router';
 
+/**
+ *
+ * @param {{items:string}} props
+ * @returns
+ */
+
 export default function MyBias({ items }) {
   const group = useLoaderData();
 
-  // 버튼 클릭 이벤트 핸들러
   const handleClick = (groupName) => {
-    // 로컬 스토리지에 bias 키로 그룹 이름 저장
     localStorage.setItem('bias', JSON.stringify({ init: groupName }));
   };
 

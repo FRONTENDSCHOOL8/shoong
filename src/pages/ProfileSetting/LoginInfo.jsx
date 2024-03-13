@@ -1,16 +1,14 @@
-// LoginInfo.js
-
 import DetailHeader from '@/components/DetailHeader/DetailHeader';
 import { useEffect, useState } from 'react';
 import PocketBase from 'pocketbase';
-import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationModal'; // 모달 컴포넌트 경로에 맞게 조정하세요.
+import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationModal';
 
 const pb = new PocketBase('https://shoong.pockethost.io');
 
 export default function LoginInfo() {
   const [user, setUser] = useState({ email: '', username: '', id: '' });
-  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); // 로그아웃 확인 모달 상태
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // 계정 삭제 확인 모달 상태
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     const authDataString = localStorage.getItem('auth');
@@ -31,14 +29,18 @@ export default function LoginInfo() {
   }, []);
 
   const handleLogout = () => {
-    setIsLogoutModalOpen(false); // 모달 닫기
+    setIsLogoutModalOpen(false);
+    localStorage.setItem(
+      '로그인',
+      JSON.stringify({ init: false, collectBook: [] })
+    );
     localStorage.removeItem('auth');
     pb.authStore.clear();
     window.location.href = '/login';
   };
 
   const handleDeleteAccount = async () => {
-    setIsDeleteModalOpen(false); // 모달 닫기
+    setIsDeleteModalOpen(false);
     if (!user.id) {
       alert('유저 ID를 찾을 수 없습니다.');
       return;

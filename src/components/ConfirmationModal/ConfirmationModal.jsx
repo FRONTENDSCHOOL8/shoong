@@ -1,4 +1,20 @@
-function ConfirmationModal({ isOpen, onClose, onConfirm, message }) {
+/**
+ *
+ * @param {{
+ * isOpen?:boolean,
+ * onClose?:() => void,
+ * onConfirm?:() => void,
+ * message?:string,
+ * }} props
+ * @returns
+ */
+
+export default function ConfirmationModal({
+  isOpen,
+  onClose,
+  onConfirm,
+  message,
+}) {
   if (!isOpen) return null;
 
   return (
@@ -24,5 +40,3 @@ function ConfirmationModal({ isOpen, onClose, onConfirm, message }) {
     </div>
   );
 }
-
-export default ConfirmationModal;
