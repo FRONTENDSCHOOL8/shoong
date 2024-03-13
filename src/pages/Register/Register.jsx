@@ -6,7 +6,7 @@ import { useLoaderData } from 'react-router-dom';
 import debounce from '@/utils/debounce';
 
 export default function Register() {
-  const users = useLoaderData();
+  /* --------------------------------- 인풋 컨트롤 --------------------------------- */
 
   const [formData, setFormData] = useState({
     name: '',
@@ -21,6 +21,15 @@ export default function Register() {
     const { name, value } = e.target;
     setFormData((formData) => ({ ...formData, [name]: value }));
   };
+
+  //email 인풋은 중복확인 때문에 따로 처리해줘야 함 : 사용자가 중복확인 통과 후(즉 중복확인 버튼 비활성화 후) 다시 이메일 인풋박스에 입력하면 중복확인 버튼 활성화되게.
+  const handleEmailInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((formData) => ({ ...formData, [name]: value }));
+    setIsEmailCheckButtonDisabled(false);
+  };
+
+  /* ----------------------------------- 제출 ----------------------------------- */
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +51,7 @@ export default function Register() {
     }
   };
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /* ---------------------------------- 체크리스트 --------------------------------- */
 
   const checkList = [
     'agreeOverFourteen',
@@ -63,7 +72,12 @@ export default function Register() {
     setCheckedList((checkedList) => newCheckedList);
   };
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /* --------------------------------- 모두동의 버튼 -------------------------------- */
+
+  const [agreeAllButtonStyle, setAgreeAllButtonStyle] = useState({
+    bg: 'bg-gray-100',
+    text: 'text-contentTertiary',
+  });
 
   const handleAgreeAll = (e) => {
     checkedList.length === checkList.length
@@ -81,23 +95,33 @@ export default function Register() {
         });
 
     setIsRegisterButtonDisabled(!isRegisterButtonDisabled);
-    setIsEmailCheckButtonDisabled(!isEmailCheckButtonDisabled);
   };
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /* --------------------------------- 중복확인 버튼 -------------------------------- */
 
-  const [agreeAllButtonStyle, setAgreeAllButtonStyle] = useState({
-    bg: 'bg-gray-100',
-    text: 'text-contentTertiary',
-  });
+  const users = useLoaderData();
+
+  const [isEmailCheckButtonDisabled, setIsEmailCheckButtonDisabled] =
+    useState(false);
+
+  const handleEmailCheck = (e) => {
+    const userEmails = users.map((user) => user.email); //왜 email 입력돼있는데도 users 데이터 열어보면 각 user에 email 안 들어가있지?
+
+    if (userEmails.includes(formData.email)) {
+      alert('입력하신 이메일이 이미 존재합니다');
+      setIsEmailCheckButtonDisabled(false);
+    } else {
+      alert('사용 가능한 이메일입니다');
+      setIsEmailCheckButtonDisabled(true);
+    }
+  };
+
+  /* ------------------------------------ . ----------------------------------- */
 
   const [isRegisterButtonDisabled, setIsRegisterButtonDisabled] =
     useState(true);
 
-  const [isEmailCheckButtonDisabled, setIsEmailCheckButtonDisabled] =
-    useState(true);
-
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /* ----------------------------------- 마크업 ---------------------------------- */
 
   return (
     <div className="flex flex-col items-center justify-center bg-white py-85pxr">
@@ -122,7 +146,7 @@ export default function Register() {
           <Input
             name="email"
             defaultValue={formData.email}
-            onChange={debounce(handleInputChange)}
+            onChange={handleEmailInputChange}
             type="text"
             placeholder="이메일"
             customClassNames="h-9 mt-1"
@@ -136,6 +160,7 @@ export default function Register() {
             isSmall
             isDisabled={isEmailCheckButtonDisabled}
             customClassNames="self-end"
+            onClick={handleEmailCheck}
           >
             중복확인
           </Button>
