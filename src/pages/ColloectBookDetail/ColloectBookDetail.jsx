@@ -2,6 +2,7 @@
 
 import pb from '@/api/pocketbase';
 import CollectBookItemContainer from '@/components/CollectBookItemContainer/CollectBookItemContainer';
+import DetailHeader from '@/components/DetailHeader/DetailHeader';
 import DragonSphere from '@/components/DragonSphere/DragonSphere';
 import ToastAlert from '@/components/ToastAlert/ToastAlert';
 import ToggleButton from '@/components/ToggleButton/ToggleButton';
@@ -19,6 +20,7 @@ export default function ColloectBookDetail() {
   const [phocaInfo, setPhocaInfo] = useState([]);
   const [phocaId, setPhocaId] = useState([]);
   const [editId, setEditId] = useState([]);
+  const userName = JSON.parse(localStorage.getItem('auth')).user.name;
 
   const logoImage = data.filter((item) => {
     if (item.groupName === group) return true;
@@ -105,6 +107,7 @@ export default function ColloectBookDetail() {
 
   return (
     <>
+      <DetailHeader title="자세히" />
       <div className="draggable relative h-[100%]">
         <Toaster />
 
@@ -121,7 +124,7 @@ export default function ColloectBookDetail() {
         />
 
         <CollectBookItemContainer
-          title={`${JSON.parse(localStorage.getItem('userInfo')).state.name}님이 보유 중인 포카️❣️`}
+          title={`${userName}님이 보유 중인 포카️❣️`}
           state={true}
           phocaData={phocaData}
           phocaId={phocaId}

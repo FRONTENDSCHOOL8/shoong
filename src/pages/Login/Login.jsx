@@ -3,8 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import Input from '@/components/Input/Input';
 import Button from '@/components/Button/Button';
 import pb from '../../api/pocketbase';
+import { isLogin } from '@/store/store';
 
 export default function Login() {
+  const { login, collectBookInfo } = isLogin();
   const [formData, setFormData] = useState({ email: '', pwd: '' });
 
   const handleChange = (e) => {
@@ -18,9 +20,17 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      await pb
+      const data = await pb
         .collection('users')
-        .authWithPassword(formData.email, formData.pwd);
+        .authWithPassword(formData.email, formData.pwd, {
+          expand: 'collectBook',
+        });
+
+      // 콜렉트북 정보
+      collectBookInfo(data.record.expand.collectBook);
+
+      // 로그인 유무 전역으로 관리
+      login(true);
 
       const { model, token } = await JSON.parse(
         localStorage.getItem('pocketbase_auth')

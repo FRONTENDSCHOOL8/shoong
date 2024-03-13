@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Map } from 'react-kakao-maps-sdk';
+import { CustomOverlayMap, Map } from 'react-kakao-maps-sdk';
 import EventMarker from './EventMarker';
+import { useMeetUpStore, meetUpDataStore } from '@/store/store';
 
 export default function MeetUpMap({ meetUpData }) {
   const [newMeetUpData, setNewMeetUpData] = useState(meetUpData);
+  const { setMeetUpData } = meetUpDataStore();
 
   useEffect(() => {
     const geocoder = new window.kakao.maps.services.Geocoder();
@@ -33,31 +35,38 @@ export default function MeetUpMap({ meetUpData }) {
           return { ...data, coords: positions[index] };
         });
         setNewMeetUpData(updatedMeetUpData);
+        setMeetUpData(updatedMeetUpData);
       })
       .catch((error) => console.error(error));
-  }, [meetUpData]);
+  }, [meetUpData, setMeetUpData]);
+
+  const handleClickMarker = (title) => {
+    localStorage.setItem('selectedCafe', title);
+    useMeetUpStore.setState({ selectedCafe: title });
+  };
 
   return (
     <Map
-      center={{ lat: 37.566535, lng: 126.9779692 }}
+      center={{ lat: 37.556944, lng: 126.923917 }}
       className="relative h-full w-full"
+      level={5}
     >
       {newMeetUpData.map((data) => {
         return (
           data.coords && (
-            <EventMarker
-              id={data.id}
-              position={data.coords}
-              title={data.cafeName}
-            />
+            <div key={data.id} onClick={() => handleClickMarker(data.cafeName)}>
+              <EventMarker position={data.coords} title={data.cafeName} />
+              <CustomOverlayMap position={data.coords} yAnchor={1.5}>
+                <div className="customoverlay">
+                  <span className="title rounded border border-primary bg-white px-1 py-1 text-sm font-bold text-primary">
+                    {data.cafeName}
+                  </span>
+                </div>
+              </CustomOverlayMap>
+            </div>
           )
         );
       })}
     </Map>
   );
 }
-
-// 1. 지도 레이아웃 잡기
-// 2. 데이터 받아오기
-// 3. 주소 핀으로 표시
-// 4. 핀 클릭 시 해당 카드로 focus

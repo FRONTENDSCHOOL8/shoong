@@ -9,18 +9,16 @@ import {
   usePhocaDataByCreated,
   usePhocaDataByLikeCount,
 } from '../../loader/usePhocaData';
+import { isLogin } from '@/store/store';
 
 export default function Home() {
-  const group = useLoaderData();
-  const phoca = group.map((item) => {
-    return item.expand.photoCards;
-  });
+  const { init } = isLogin();
   const phocaDataByCreated = usePhocaDataByCreated();
   const phocaDataByLikeCount = usePhocaDataByLikeCount();
 
   return (
-    <div className="flex flex-col">
-      <FloatingButton />
+    <div className="mt-55pxr flex flex-col">
+      <FloatingButton isAuth={init} />
       <Carousel />
       <VerticalCarousel />
       <MainCardContainer

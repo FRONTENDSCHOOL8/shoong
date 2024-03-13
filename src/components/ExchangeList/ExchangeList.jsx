@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
 import pb from '@/api/pocketbase';
-import PhotoCardInfo from '../ExchangeListDetail/PhotoCardInfo';
+import { isLogin } from '@/store/store';
+import { useState, useEffect } from 'react';
 import ExchangeEdit from '../ExchangeListDetail/ExchangeEdit';
+import PhotoCardInfo from '../ExchangeListDetail/PhotoCardInfo';
 import ExchangeArticle from '../ExchangeListDetail/ExchangeArticle';
+import DetailHeader from '../DetailHeader/DetailHeader';
 
 /**
  * ExchangeList 컴포넌트는 포토카드와 관련된 교환 글 목록을 표시하며, 각 교환 글의 작성자 정보를 함께 표시합니다.
@@ -23,6 +25,10 @@ export default function ExchangeList({ photoCardData }) {
   const [exchangeListData, setExchangeListData] = useState(
     photoCardData?.expand?.exchangeList || []
   );
+  const { init } = isLogin();
+  const userInfo = localStorage.getItem('auth');
+  const loggedInUser = userInfo ? JSON.parse(userInfo) : null;
+  console.log(init);
 
   useEffect(() => {
     // 교환글에서 작성자들의 id들을 추출
@@ -49,33 +55,40 @@ export default function ExchangeList({ photoCardData }) {
     }
   }, [exchangeListData]);
 
+  const text = `** 포토카드 이미지는 거래의 이해를 돕는 식별 목적으로 사용하고 있어요** ** 실제 포토카드와 이미지의 사이즈가 상이할 수 있으니 주의해주세요! **`;
+
   return (
-    <div className="flexCenter mx-auto my-5 w-11/12 flex-col">
-      <PhotoCardInfo
-        // @ts-ignore
-        photoCardData={photoCardData}
-      />
-      <div className="mx-auto my-4 w-10/12 border-t border-gray-200"></div>
-      <div className="mx-auto mt-8 w-10/12 self-start">
-        <span className="text-xl font-extrabold leading-7 text-neutral-600">
-          {exchangeListData ? exchangeListData.length : 0}
-        </span>
-        <span className="text-xl font-bold leading-7 text-neutral-500">
-          개의 교환글
-        </span>
-      </div>
-      <div className="mx-auto mt-4 w-10/12">
-        <ExchangeEdit
+    <>
+      <DetailHeader title="교환 디테일" isBottomSheet text={text} />
+      <div className="flexCenter mx-auto mb-3 mt-10 w-11/12 flex-col pt-10">
+        <PhotoCardInfo
+          // @ts-ignore
           photoCardData={photoCardData}
-          exchangeListData={exchangeListData}
-          setExchangeListData={setExchangeListData}
         />
-        <ExchangeArticle
-          exchangeListData={exchangeListData}
-          users={users}
-          setExchangeListData={setExchangeListData}
-        />
+        <div className="mx-auto my-4 h-1 w-10/12 border-t border-primary"></div>
+        <div className="mx-auto mt-8 w-10/12 self-start">
+          <span className="text-xl font-extrabold leading-7 text-neutral-600">
+            {exchangeListData ? exchangeListData.length : 0}
+          </span>
+          <span className="text-xl font-bold leading-7 text-neutral-500">
+            개의 교환글
+          </span>
+        </div>
+        <div className="mx-auto mt-4 w-10/12">
+          <ExchangeEdit
+            photoCardData={photoCardData}
+            exchangeListData={exchangeListData}
+            setExchangeListData={setExchangeListData}
+            loginUser={loggedInUser}
+            loginStatus={init}
+          />
+          <ExchangeArticle
+            exchangeListData={exchangeListData}
+            users={users}
+            setExchangeListData={setExchangeListData}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
