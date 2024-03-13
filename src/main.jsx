@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         loader: meetUpData,
       },
       {
-        path: '/meetup/:id',
+        path: '/meetupDetail/:id',
         element: <MeetUpDetail />,
         loader: meetUpDetail,
       },
