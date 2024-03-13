@@ -28,7 +28,7 @@ export default function FloatingButton({ isAuth }) {
       <button
         type="button"
         aria-label="찜목록으로 가기"
-        className="fixed bottom-20 right-5 z-10 h-59pxr w-59pxr cursor-pointer rounded-full bg-gradient-to-b from-red-400 to-indigo-500 shadow-lg"
+        className="fixed bottom-28 right-5 z-10 h-59pxr w-59pxr cursor-pointer rounded-full bg-gradient-to-b from-red-400 to-indigo-500 shadow-xl"
       >
         <img
           className="absolute left-2pxr top-2pxr h-55pxr w-55pxr rounded-full"
