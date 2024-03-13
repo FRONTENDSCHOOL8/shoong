@@ -8,6 +8,9 @@ import HashTagItem from '../HashTagItem/HashTagItem';
 import CommentContainer from '../Comment/CommentContainer';
 import MeetUpDetailMap from '../MeetUpDetailMap/MeetUpDetailMap';
 import { useEffect } from 'react';
+import { data } from 'autoprefixer';
+import MeetUpItem from '../MeetUpItem/MeetUpItem';
+import DetailHeader from '../DetailHeader/DetailHeader';
 
 export default function MeetUpDetail() {
   const {
@@ -21,14 +24,18 @@ export default function MeetUpDetail() {
   } = useLoaderData();
   const { pathname } = useLocation();
 
-  const meetUpData = meetUpDataStore((state) => state.meetUpData);
-  const cafeId = pathname.split('/meetup/')[1];
-  const getMeetUpData = meetUpData.find((data) => data.id === cafeId);
-
+  // const meetUpData = meetUpDataStore((state) => state.meetUpData);
+  // const getMeetUpData = meetUpData.find((data) => data.id === cafeId);
+  const cafeId = pathname.split('/meetupDetail/')[1];
+  const getMeetUpData = JSON.parse(localStorage.getItem('meetupData'));
+  const MeetUpData = getMeetUpData.find((data) => data.id === cafeId);
+  console.log('cafeId: ', cafeId);
+  console.log('MeetUpData: ', MeetUpData);
   return (
-    <div className="pb-10 pt-60pxr">
+    <div className="pb-10 pt-40pxr">
       {/* 태그를 proprs로 전달하는 법은?? */}
       {/* <MeetUpItem info={data} /> */}
+      <DetailHeader title="자세히" />
       <div className="mx-20pxr mb-20pxr mt-35pxr min-h-120pxr min-w-320pxr rounded-xl bg-white px-20pxr py-15pxr shadow">
         <h3 className="mb-4pxr text-base font-extrabold leading-snug text-primary">
           {eventTitle}
@@ -75,7 +82,7 @@ export default function MeetUpDetail() {
         />
       </div>
       <div className="mx-20pxr mt-6 flex h-300pxr flex-col rounded-xl shadow">
-        <MeetUpDetailMap meetUpData={getMeetUpData} />
+        <MeetUpDetailMap meetUpData={MeetUpData} />
       </div>
       <CommentContainer />
     </div>

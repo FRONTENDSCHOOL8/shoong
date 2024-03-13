@@ -37,7 +37,7 @@ export default function VerticalCarousel() {
         className="cursor-pointer justify-center text-primary"
       >
         {meetUps.map((meetUp) => (
-          <Link key={meetUp.id} to={`/meetUp/${meetUp.id}`}>
+          <Link key={meetUp.id} to={`/meetupDetail/${meetUp.id}`}>
             <p>
               {meetUp.eventTitle}
               <span className="px-2 text-10pxr text-contentSecondary">

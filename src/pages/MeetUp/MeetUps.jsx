@@ -6,7 +6,6 @@ import { useLoaderData } from 'react-router';
 
 export default function MeetUp() {
   const meetUpData = useLoaderData();
-  useLayoutEffect;
 
   return (
     <div className="relative top-55pxr h-screen-nav">

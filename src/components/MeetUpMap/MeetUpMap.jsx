@@ -36,6 +36,7 @@ export default function MeetUpMap({ meetUpData }) {
         });
         setNewMeetUpData(updatedMeetUpData);
         setMeetUpData(updatedMeetUpData);
+        localStorage.setItem('meetupData', JSON.stringify(updatedMeetUpData));
       })
       .catch((error) => console.error(error));
   }, [meetUpData, setMeetUpData]);
