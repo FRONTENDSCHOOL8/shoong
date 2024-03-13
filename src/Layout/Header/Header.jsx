@@ -15,8 +15,9 @@ export default function Header() {
     '/meetupDetail/:id',
   ];
   const isDetailHeaderPage = pathnames.includes(pathname);
+  console.log('isDetailHeaderPage: ', isDetailHeaderPage);
   return (
-    isDetailHeaderPage && (
+    !isDetailHeaderPage && (
       <div className="fixed top-0 z-20 flex h-55pxr w-full items-center justify-between bg-white ">
         <Link to="./" className="px-10pxr">
           <img className="flex h-36pxr w-100pxr" src="/icons/shoongLogo.svg" />
