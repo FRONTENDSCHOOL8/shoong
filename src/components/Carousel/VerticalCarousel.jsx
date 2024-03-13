@@ -31,11 +31,11 @@ export default function VerticalCarousel() {
     getMeetupData();
   }, []);
   return (
-    <div className=" mx-auto my-2.5 w-5/6 rounded-xl border  border-gray-300 bg-white pt-1 text-center text-contentPrimary shadow-md">
+    <div className=" mx-auto my-2.5 w-5/6 rounded-3xl border  border-primary bg-white pt-1 text-center text-contentPrimary shadow-md">
       <Slider {...settings}>
         {meetUps.map((meetUp) => (
           <Link key={meetUp.id} to={`/meetupDetail/${meetUp.id}`}>
-            <p className="truncate text-r02 text-primary">
+            <p className="truncate px-3 text-r02 text-primary">
               {meetUp.eventTitle}
               <span className=" px-2 text-10pxr text-contentSecondary">
                 {meetUp.date}
