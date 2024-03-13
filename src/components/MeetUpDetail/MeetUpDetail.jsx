@@ -5,6 +5,7 @@ import { meetUpDataStore } from '@/store/store';
 import MeetUpDetailItem from '../MeetUpDetailItem/MeetUpDetailItem';
 import MeetUpDetailItemContainer from '../MeetUpDetailItemContainer/MeetUpDetailItemContainer';
 import HashTagItem from '../HashTagItem/HashTagItem';
+import CommentContainer from '../Comment/CommentContainer';
 import MeetUpDetailMap from '../MeetUpDetailMap/MeetUpDetailMap';
 import { useEffect } from 'react';
 
@@ -76,6 +77,7 @@ export default function MeetUpDetail() {
       <div className="mx-20pxr mt-6 flex h-300pxr flex-col rounded-xl shadow">
         <MeetUpDetailMap meetUpData={getMeetUpData} />
       </div>
+      <CommentContainer />
     </div>
   );
 }

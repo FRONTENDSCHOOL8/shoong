@@ -55,6 +55,14 @@ export const likeStore = create(
   )
 );
 
+// 댓글 상태 관리
+export const useCommentStore = create((set) => ({
+  comments: [],
+  setComments: (comments) => set({ comments }),
+  addComment: (comment) =>
+    set((state) => ({ comments: [...state.comments, comment] })),
+}));
+
 // 정렬 기능
 export const sorting = create((set) => ({
   init: '최신순',
