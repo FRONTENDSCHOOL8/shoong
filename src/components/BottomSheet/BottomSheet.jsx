@@ -46,14 +46,14 @@ export default function BottomSheet({
   );
   const textLayout = <TextLayout text={text} />;
 
-  const layout = isRadio ? 'radio' : 'text';
+  const layout = isRadio ? 'radio -bottom-100pxr' : 'text bottom-0';
 
   return (
     // 왜 rounded에는 pxr 적용이 안 되지?
     <div className="upSensor bg-transparent">
       <div
         id={'bottomSheet'}
-        className={`${layout} fixed -bottom-100pxr z-40 flex w-full flex-col items-center rounded-tl-[30px] rounded-tr-[30px] bg-indigo-200 duration-1000`}
+        className={`${layout} fixed z-40 flex w-full flex-col items-center rounded-tl-[30px] rounded-tr-[30px] bg-indigo-200 duration-1000`}
         ref={linkedBottomSheet}
         onMouseDown={handleStart}
         onMouseMove={handleMove}

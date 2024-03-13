@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/',
   plugins: [react()],
   server: {
     port: 3000, // default: 5173
@@ -11,6 +12,12 @@ export default defineConfig({
   },
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') },
+  },
+  css: {
+    devSourcemap: true,
+    modules: {
+      // generateScopedName: '[name]__[local]--[hash:base64:12]',
+    },
   },
   build: {
     cssCodeSplit: true,
