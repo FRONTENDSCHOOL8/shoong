@@ -42,7 +42,7 @@ export default function Register() {
     }
   };
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const checkList = [
     'agreeOverFourteen',
@@ -63,13 +63,41 @@ export default function Register() {
     setCheckedList((checkedList) => newCheckedList);
   };
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const handleAgreeAll = (e) => {
     checkedList.length === checkList.length
       ? setCheckedList((checkedList) => [])
       : setCheckedList((checkedList) => checkList);
+
+    checkedList.length === checkList.length
+      ? setAgreeAllButtonStyle({
+          bg: 'bg-gray-100',
+          text: 'text-contentTertiary',
+        })
+      : setAgreeAllButtonStyle({
+          bg: 'bg-primary',
+          text: 'text-white',
+        });
+
+    setIsRegisterButtonDisabled(!isRegisterButtonDisabled);
+    setIsEmailCheckButtonDisabled(!isEmailCheckButtonDisabled);
   };
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  const [agreeAllButtonStyle, setAgreeAllButtonStyle] = useState({
+    bg: 'bg-gray-100',
+    text: 'text-contentTertiary',
+  });
+
+  const [isRegisterButtonDisabled, setIsRegisterButtonDisabled] =
+    useState(true);
+
+  const [isEmailCheckButtonDisabled, setIsEmailCheckButtonDisabled] =
+    useState(true);
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div className="flex flex-col items-center justify-center bg-white py-85pxr">
@@ -103,7 +131,12 @@ export default function Register() {
             label="이메일"
           />
 
-          <Button type="button" isSmall isDisabled customClassNames="self-end">
+          <Button
+            type="button"
+            isSmall
+            isDisabled={isEmailCheckButtonDisabled}
+            customClassNames="self-end"
+          >
             중복확인
           </Button>
         </div>
@@ -163,8 +196,8 @@ export default function Register() {
           <Button
             type="button"
             onClick={handleAgreeAll}
-            bgClassName="bg-gray-100"
-            textColorClassName="text-contentTertiary"
+            bgClassName={agreeAllButtonStyle.bg}
+            textColorClassName={agreeAllButtonStyle.text}
             customClassNames="h-9 mt-1"
           >
             네, 모두 동의합니다.
@@ -205,7 +238,11 @@ export default function Register() {
           </div>
         </div>
 
-        <Button type="submit" isDisabled customClassNames="mt-4">
+        <Button
+          type="submit"
+          isDisabled={isRegisterButtonDisabled}
+          customClassNames="mt-4"
+        >
           가입하기
         </Button>
       </form>
