@@ -82,18 +82,18 @@ export default function Carousel() {
 const slides = [
   {
     order: '1',
-    alt: '뉴진스 파워퍼프걸',
+    alt: '뉴진스 신상 카드',
   },
   {
     order: '2',
-    alt: '뉴진스',
+    alt: '아이유 시즌그리팅',
   },
   {
     order: '3',
-    alt: '투어스',
+    alt: '블랙핑크 럭키드로우',
   },
   {
     order: '4',
-    alt: '민지 바자 커버',
+    alt: 'BTS 썸머 포토카드',
   },
 ];
