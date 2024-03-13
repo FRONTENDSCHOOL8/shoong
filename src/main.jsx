@@ -12,7 +12,7 @@ import Profile from './pages/Profile/Profile';
 import Home from './pages/Home/Home';
 import Chatting from './pages/Chatting/Chatting';
 import Alerts from './pages/Alerts/Alerts';
-import Like from './pages/Like/Like';
+import LikeDetail from './pages/LikeDetail/LikeDetail';
 import Login from './pages/Login/Login';
 import ColloectBookDetail from './pages/ColloectBookDetail/ColloectBookDetail';
 import userData from './loader/userData';
@@ -81,8 +81,8 @@ const router = createBrowserRouter([
         loader: phocaData,
       },
       {
-        path: '/Like',
-        element: <Like />,
+        path: '/likeDetail',
+        element: <LikeDetail />,
       },
       {
         path: '/Login',
