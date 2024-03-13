@@ -1,8 +1,14 @@
 import pb from '@/api/pocketbase';
-import { useCommentStore } from '@/store/store';
+import { isLogin, useCommentStore } from '@/store/store';
 import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 export default function CommentInput({ id }) {
+  const { init } = isLogin();
+  if (!init) {
+    const navigate = useNavigate();
+    return navigate('/Login');
+  }
   const [profileImage, setProfileImage] = useState(
     '/icons/floatingDefault.jpg'
   );
