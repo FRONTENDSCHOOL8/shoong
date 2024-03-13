@@ -55,15 +55,17 @@ export default function ExchangeList({ photoCardData }) {
     }
   }, [exchangeListData]);
 
+  const text = `** 포토카드 이미지는 거래의 이해를 돕는 식별 목적으로 사용하고 있어요** ** 실제 포토카드와 이미지의 사이즈가 상이할 수 있으니 주의해주세요! **`;
+
   return (
     <>
-      <DetailHeader title="교환 디테일" isBottomSheet={} text={text} />
+      <DetailHeader title="교환 디테일" isBottomSheet text={text} />
       <div className="flexCenter mx-auto mb-3 mt-10 w-11/12 flex-col pt-10">
         <PhotoCardInfo
           // @ts-ignore
           photoCardData={photoCardData}
         />
-        <div className="mx-auto my-4 h-1 w-8/12 border-t border-gray-300"></div>
+        <div className="mx-auto my-4 h-1 w-10/12 border-t border-primary"></div>
         <div className="mx-auto mt-8 w-10/12 self-start">
           <span className="text-xl font-extrabold leading-7 text-neutral-600">
             {exchangeListData ? exchangeListData.length : 0}
