@@ -13,10 +13,7 @@ export default function useBottomSheet() {
   useEffect(() => {
     button.current.addEventListener('click', handleBottomSheet);
 
-    console.log(linkedBottomSheet);
-
     if (isOpen) {
-      console.log(isOpen);
       //296px=18.5rem
       //167px~10.4rem
       if (linkedBottomSheet.current.className.includes('radio')) {
@@ -25,7 +22,6 @@ export default function useBottomSheet() {
         linkedBottomSheet.current.style.height = '10.4rem';
       }
     } else {
-      console.log(isOpen);
       linkedBottomSheet.current.style.height = '0';
     }
 
