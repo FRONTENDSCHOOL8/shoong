@@ -1,6 +1,6 @@
 import pb from '@/api/pocketbase';
 import { useCommentStore } from '@/store/store';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import CommentInput from './CommentInput';
 import CommentItem from './CommentItem';
@@ -16,7 +16,6 @@ export default function CommentContainer() {
       setComments(meetUp.expand.comments);
     };
     getComments();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setComments]);
 
   return (
@@ -35,7 +34,6 @@ text-lg font-bold text-contentSecondary"
           ment={comment.ment}
           id={comment.name}
           date={comment.created}
-          // updateComments={updateComments}
         />
       ))}
       <CommentInput id={id} />

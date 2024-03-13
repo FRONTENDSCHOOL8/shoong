@@ -1,8 +1,7 @@
 import pb from '@/api/pocketbase';
-import useProfileImage from '../FloatingButton/useProfileImage';
 import { useCommentStore } from '@/store/store';
-import { useEffect } from 'react';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
+import useProfileImage from '../FloatingButton/useProfileImage';
 
 export default function CommentInput({ id }) {
   const profileImage = useProfileImage(true);
