@@ -1,12 +1,27 @@
 import pb from '@/api/pocketbase';
 import { useCommentStore } from '@/store/store';
-import { useCallback, useEffect } from 'react';
-import useProfileImage from '../FloatingButton/useProfileImage';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function CommentInput({ id }) {
-  const profileImage = useProfileImage(true);
+  const [profileImage, setProfileImage] = useState(
+    '/icons/floatingDefault.jpg'
+  );
   const userData = JSON.parse(localStorage.getItem('auth')).user;
   const { comments, setComments } = useCommentStore();
+
+  useEffect(() => {
+    const fetchProfileImage = async () => {
+      try {
+        const userId = JSON.parse(localStorage.getItem('auth')).user.id;
+        const record = await pb.collection('users').getOne(userId);
+        const url = `https://shoong.pockethost.io/api/files/users/${userId}/${record.avatar}`;
+        setProfileImage(url);
+      } catch (error) {
+        console.error('Error fetching profile image:', error);
+      }
+    };
+    fetchProfileImage();
+  }, []);
 
   const updateComments = useCallback(
     async (comment) => {
