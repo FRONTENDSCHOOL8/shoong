@@ -3,6 +3,7 @@ import Input from '@/components/Input/Input';
 import Button from '@/components/Button/Button';
 import pb from '../../api/pocketbase';
 import { useLoaderData } from 'react-router-dom';
+import debounce from '@/utils/debounce';
 
 export default function Register() {
   const users = useLoaderData();
@@ -16,7 +17,7 @@ export default function Register() {
     birth: '',
   });
 
-  const onChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((formData) => ({ ...formData, [name]: value }));
   };
@@ -31,6 +32,7 @@ export default function Register() {
       birth: formData.birth,
       phoneNumber: formData.phone,
       name: formData.name,
+      collectBook: ['9mbahw8twzvbrwr'],
     };
 
     try {
@@ -38,6 +40,35 @@ export default function Register() {
     } catch (error) {
       alert('입력사항을 다시 확인해주세요.');
     }
+  };
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+
+  const checkList = [
+    'agreeOverFourteen',
+    'agreeService',
+    'agreePersonalInfo',
+    'agreeMarketing',
+  ];
+  const [checkedList, setCheckedList] = useState([]);
+
+  const handleCheckboxChange = (e) => {
+    // checkedList.includes(e.target.name)와 console.log(e.target.checked)는 반대되는 값임에 주의
+    // 가령 맨 처음 상태에서 아무것도 체크 안했을 때 체크박스 하나를 체크해서 이 handleCheckboxChange 발동하는 순간, 전자는 false인 반면 후자는 true임.
+
+    const newCheckedList = checkedList.includes(e.target.name)
+      ? checkedList.filter((name) => name !== e.target.name)
+      : [...checkedList, e.target.name];
+
+    setCheckedList((checkedList) => newCheckedList);
+  };
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+
+  const handleAgreeAll = (e) => {
+    checkedList.length === checkList.length
+      ? setCheckedList((checkedList) => [])
+      : setCheckedList((checkedList) => checkList);
   };
 
   return (
@@ -48,8 +79,8 @@ export default function Register() {
       >
         <Input
           name="name"
-          value={formData.name}
-          onChange={onChange}
+          defaultValue={formData.name}
+          onChange={debounce(handleInputChange)}
           type="text"
           placeholder="이름"
           customClassNames="h-9 mt-1"
@@ -62,8 +93,8 @@ export default function Register() {
         <div className="flex flex-col gap-2">
           <Input
             name="email"
-            value={formData.email}
-            onChange={onChange}
+            defaultValue={formData.email}
+            onChange={debounce(handleInputChange)}
             type="text"
             placeholder="이메일"
             customClassNames="h-9 mt-1"
@@ -71,6 +102,7 @@ export default function Register() {
             isLabeled
             label="이메일"
           />
+
           <Button type="button" isSmall isDisabled customClassNames="self-end">
             중복확인
           </Button>
@@ -79,8 +111,8 @@ export default function Register() {
         <div className="flex flex-col">
           <Input
             name="pwd"
-            value={formData.pwd}
-            onChange={onChange}
+            defaultValue={formData.pwd}
+            onChange={debounce(handleInputChange)}
             type="password"
             customClassNames="h-9 mt-1"
             placeholder="비밀번호 입력 (영어+숫자 8자 이상)"
@@ -90,8 +122,8 @@ export default function Register() {
           />
           <Input
             name="pwdConfirm"
-            value={formData.pwdConfirm}
-            onChange={onChange}
+            defaultValue={formData.pwdConfirm}
+            onChange={debounce(handleInputChange)}
             type="password"
             placeholder="비밀번호 재확인"
             customClassNames="h-9 mt-2"
@@ -101,8 +133,8 @@ export default function Register() {
 
         <Input
           name="phone"
-          value={formData.phone}
-          onChange={onChange}
+          defaultValue={formData.phone}
+          onChange={debounce(handleInputChange)}
           type="text"
           placeholder="휴대폰 번호"
           customClassNames="h-9 mt-1"
@@ -113,8 +145,8 @@ export default function Register() {
 
         <Input
           name="birth"
-          value={formData.birth}
-          onChange={onChange}
+          defaultValue={formData.birth}
+          onChange={debounce(handleInputChange)}
           type="text"
           placeholder="생년월일"
           customClassNames="h-9 mt-1"
@@ -127,19 +159,49 @@ export default function Register() {
           <div className="self-start text-xs font-extrabold text-neutral-700">
             이용 약관 동의
           </div>
+
           <Button
             type="button"
+            onClick={handleAgreeAll}
             bgClassName="bg-gray-100"
             textColorClassName="text-contentTertiary"
             customClassNames="h-9 mt-1"
           >
             네, 모두 동의합니다.
           </Button>
+
           <div className="mt-3 flex flex-col gap-3 px-2">
-            <TermsCheckbox>[필수] 만 14세 이상입니다.</TermsCheckbox>
-            <TermsCheckbox>[필수] 서비스 이용약관 동의 {'>'}</TermsCheckbox>
-            <TermsCheckbox>[필수] 개인정보 처리방침 동의 {'>'}</TermsCheckbox>
-            <TermsCheckbox>[선택] 마케팅 수신 동의</TermsCheckbox>
+            <TermsCheckbox
+              name={checkList[0]}
+              checkedList={checkedList}
+              onChange={handleCheckboxChange}
+            >
+              [필수] 만 14세 이상입니다.
+            </TermsCheckbox>
+
+            <TermsCheckbox
+              name={checkList[1]}
+              checkedList={checkedList}
+              onChange={handleCheckboxChange}
+            >
+              [필수] 서비스 이용약관 동의 {'>'}
+            </TermsCheckbox>
+
+            <TermsCheckbox
+              name={checkList[2]}
+              checkedList={checkedList}
+              onChange={handleCheckboxChange}
+            >
+              [필수] 개인정보 처리방침 동의 {'>'}
+            </TermsCheckbox>
+
+            <TermsCheckbox
+              name={checkList[3]}
+              checkedList={checkedList}
+              onChange={handleCheckboxChange}
+            >
+              [선택] 마케팅 수신 동의
+            </TermsCheckbox>
           </div>
         </div>
 
@@ -151,22 +213,26 @@ export default function Register() {
   );
 }
 
-function TermsCheckbox({ children }) {
+function TermsCheckbox({ name, checkedList, onChange, children }) {
+  const checked = checkedList.includes(name);
+
+  const checkboxStyle = checked
+    ? { background: "url('/checkboxChecked.svg') no-repeat" }
+    : { background: "url('/checkboxUnchecked.svg') no-repeat" };
+
   return (
     <label className="relative flex justify-between">
       <span className="text-xs font-medium leading-none text-zinc-800">
         {children}
       </span>
       <input
+        name={name}
+        checked={checked}
+        onChange={onChange}
         type="checkbox"
         className="absolute right-0 h-3 w-3 appearance-none"
       />
-      <span
-        className="h-3 w-3"
-        style={{
-          background: "url('/checkboxUnchecked.svg') no-repeat",
-        }}
-      ></span>
+      <span className="h-3 w-3" style={checkboxStyle}></span>
     </label>
   );
 }
