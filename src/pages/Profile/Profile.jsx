@@ -20,7 +20,7 @@ export default function Profile() {
           <NavigationTile
             to="/"
             text="가이드"
-            className=" border-b-2 border-t-4 border-gray-200"
+            className=" mt-10 border-b-2 border-t-4 border-gray-200"
           />
           <NavigationTile
             to="/"
