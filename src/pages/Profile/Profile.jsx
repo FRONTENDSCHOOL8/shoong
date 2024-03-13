@@ -8,7 +8,7 @@ import ExchangeStatus from '@/components/ExchangeStatus/ExchangeStatus';
 export default function Profile() {
   return (
     <>
-      <div className="flex h-dvh flex-col gap-5 py-5">
+      <div className="flex flex-col gap-5 pb-5 pt-60pxr">
         <ProfileHeader />
         <ProfileItemContainer title="콜렉트북">
           <CollectBook />

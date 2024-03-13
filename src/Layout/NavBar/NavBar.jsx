@@ -19,7 +19,7 @@ export default function NavBar() {
   ];
   return (
     <div className="fixed bottom-0 z-10 w-full bg-white shadow-navShadow">
-      <ul className="flex items-center justify-between px-5 py-1">
+      <ul className="flex items-center justify-between px-5 pb-3 pt-1">
         {navItems.map((item) => (
           <NavBarItem
             key={item.id}
