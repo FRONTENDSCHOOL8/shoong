@@ -104,7 +104,7 @@ export default function ExchangeEdit({
             <textarea
               id="exchangeArticle"
               name="exchangeArticle"
-              className="relative w-full rounded border border-gray-300 p-2 text-sm"
+              className="relative h-60pxr w-full rounded border border-gray-300 p-2 text-sm"
               placeholder="코멘트를 입력하세요"
               rows={3}
               maxLength={150}
@@ -120,14 +120,14 @@ export default function ExchangeEdit({
               <div className="flex space-x-2">
                 <button
                   type="submit"
-                  className="rounded bg-primary px-4 py-2 text-white transition duration-300 hover:bg-violet-700"
+                  className="rounded bg-primary px-4 py-1 text-white transition duration-300  hover:bg-indigo-700 focus:bg-indigo-700 focus:outline-none"
                 >
                   저장
                 </button>
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="rounded bg-primary px-4 py-2 text-white transition duration-300 hover:bg-violet-700"
+                  className="rounded bg-gray400 px-4 py-1 text-white transition duration-300 hover:bg-gray-500"
                 >
                   취소
                 </button>
