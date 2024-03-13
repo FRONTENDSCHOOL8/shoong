@@ -129,9 +129,9 @@ export default function ExchangeArticle({
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <div className="h-11 w-10 ">
+                <div className="h-11 w-10  ">
                   <img
-                    className="h-full w-full rounded-full object-cover"
+                    className="h-full w-full rounded-full border-2 object-cover"
                     src={`https://shoong.pockethost.io/api/files/users/${user.id}/${user.avatar}`}
                     alt={`${user.username} 프로필 사진`}
                     aria-hidden="true"
@@ -195,7 +195,7 @@ export default function ExchangeArticle({
             <div className="mt-4 flex justify-end">
               <button
                 type="button"
-                className="rounded bg-primary px-4 py-2 text-white hover:bg-indigo-700 focus:bg-indigo-700 focus:outline-none"
+                className="rounded bg-primary px-4 py-1 text-white hover:bg-indigo-700 focus:bg-indigo-700 focus:outline-none"
               >
                 대화하기
               </button>
