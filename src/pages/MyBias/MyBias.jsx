@@ -4,9 +4,12 @@ import { useLoaderData } from 'react-router';
 
 export default function MyBias({ items }) {
   const group = useLoaderData();
-  const phoca = group.map((item) => {
-    return item;
-  });
+
+  // 버튼 클릭 이벤트 핸들러
+  const handleClick = (groupName) => {
+    // 로컬 스토리지에 bias 키로 그룹 이름 저장
+    localStorage.setItem('bias', JSON.stringify({ init: groupName }));
+  };
 
   return (
     <div className="flex flex-col items-center px-6 pt-12">
@@ -18,18 +21,21 @@ export default function MyBias({ items }) {
       />
       <div className="mx-auto max-w-6xl">
         <ul className="mb-16 grid grid-cols-3 gap-1">
-          {phoca.map((item, index) => (
+          {group.map((item, index) => (
             <li
               key={index}
               className="flex flex-col items-center justify-center p-4"
             >
-              <button className="flex flex-col items-center justify-center gap-2 text-center transition-transform duration-150 hover:scale-95">
+              <button
+                onClick={() => handleClick(item.groupName)}
+                className="flex flex-col items-center justify-center gap-2 text-center transition-transform duration-150 hover:scale-95"
+              >
                 <img
                   src={`https://shoong.pockethost.io/api/files/groups/${item.id}/${item.logoImage}`}
                   alt={item.groupName}
                   className="h-68pxr rounded-full border-4 object-cover"
                 />
-                <span className="whitespace-nowrap text-sb02 font-sb02 text-contentSecondary ">
+                <span className="whitespace-nowrap text-sb02 font-sb02 text-contentSecondary">
                   {item.groupName}
                 </span>
               </button>
