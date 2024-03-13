@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
  * @param {Object} props.photoCardData 현재 선택된 포토카드의 데이터 객체입니다. 포토카드의 id를 포함합니다.
  * @param {Object[]} props.exchangeListData 현재 포토카드에 연관된 교환 글 목록의 데이터 배열입니다.
  * @param {object} props.loginUser
+ * @param {object} props.loginStatus
  * @param {Function} props.setExchangeListData 교환 글 목록 데이터를 업데이트하는 함수입니다. 새로운 교환 글이 추가될 때 사용됩니다.
  *
  * @returns {React.ReactNode} 교환 글 작성 폼을 렌더링하는 React 컴포넌트입니다.
@@ -56,7 +57,7 @@ export default function ExchangeEdit({
       status: '교환대기중',
       chatContent: null,
     };
-    console.log(newExchangeData);
+
     try {
       // exchangeList에 새로운 교환 글을 추가
       const newRecord = await pb

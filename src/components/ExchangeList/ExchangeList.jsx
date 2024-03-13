@@ -28,7 +28,6 @@ export default function ExchangeList({ photoCardData }) {
   const { init } = isLogin();
   const userInfo = localStorage.getItem('auth');
   const loggedInUser = userInfo ? JSON.parse(userInfo) : null;
-  console.log(init);
 
   useEffect(() => {
     // 교환글에서 작성자들의 id들을 추출
@@ -55,7 +54,9 @@ export default function ExchangeList({ photoCardData }) {
     }
   }, [exchangeListData]);
 
-  const text = `** 포토카드 이미지는 거래의 이해를 돕는 식별 목적으로 사용하고 있어요** ** 실제 포토카드와 이미지의 사이즈가 상이할 수 있으니 주의해주세요! **`;
+  const text = `** 포토카드 이미지는 거래의 이해를 돕는 식별 목적으로 사용하고 있어요**
+  
+   ** 실제 포토카드와 이미지의 사이즈가 상이할 수 있으니 주의해주세요! **`;
 
   return (
     <>
@@ -87,6 +88,9 @@ export default function ExchangeList({ photoCardData }) {
           exchangeListData={exchangeListData}
           users={users}
           setExchangeListData={setExchangeListData}
+          // @ts-ignore
+          loginUser={loggedInUser}
+          loginStatus={init}
         />
       </div>
     </>

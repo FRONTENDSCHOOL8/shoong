@@ -88,13 +88,6 @@ export default {
         navShadow: '0px -2px 4px 0px rgba(0,0,0,0.1)',
         meetUp: '0px 2px 20px 0px rgba(0,0,0,0.15)',
       },
-      // screens: {
-      //   mobile: '360px',
-      //   desktop: '1080px',
-      // },
-      fontFamily: {
-        suit: ['SUIT Variable', 'noto-sans-kr', 'sans-serif'],
-      },
       backgroundImage: {
         customBg: 'linear-gradient(180deg, #D0CEFF 0%, #FDFDFF 50%, #FFF 100%)',
       },
