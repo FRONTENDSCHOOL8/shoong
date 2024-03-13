@@ -33,7 +33,7 @@ export default function CollectBook() {
               );
             })
           : null}
-        <li className="flex h-135pxr w-100pxr cursor-pointer items-center justify-center rounded-[5px] bg-gray100">
+        <li className="flex h-135pxr w-100pxr cursor-pointer items-center justify-center rounded-[5px] bg-gray-200">
           <Link to="/profile">
             <FaPlus className="text-zinc-500" />
           </Link>
