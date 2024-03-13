@@ -13,6 +13,7 @@ export default function CommentInput({ id }) {
     const fetchProfileImage = async () => {
       try {
         const userId = JSON.parse(localStorage.getItem('auth')).user.id;
+        pb.autoCancellation(false);
         const record = await pb.collection('users').getOne(userId);
         const url = `https://shoong.pockethost.io/api/files/users/${userId}/${record.avatar}`;
         setProfileImage(url);

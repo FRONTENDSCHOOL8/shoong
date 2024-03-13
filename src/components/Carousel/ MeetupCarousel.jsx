@@ -1,7 +1,9 @@
+import { useId } from 'react';
+import { GrNext, GrPrevious } from 'react-icons/gr';
+import { useLoaderData } from 'react-router';
 import Slider from 'react-slick';
-import './slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import { GrPrevious, GrNext } from 'react-icons/gr';
+import './slick-theme.css';
 
 const Prev = (props) => {
   const { className, style, onClick } = props;
@@ -45,32 +47,35 @@ const Next = (props) => {
   );
 };
 
-export default function Carousel() {
+export default function MeetupCarousel() {
+  const imgkey = useId();
+  const { cafeImg, eventTitle, collectionId, id } = useLoaderData();
+  const record = useLoaderData();
+  console.log(record);
   const settings = {
     arrows: true,
     nextArrow: <Next />,
     prevArrow: <Prev />,
     dots: true,
-    // dotsClass: `slick-dots`,
     infinite: true,
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     cssEase: 'linear',
     pauseOnHover: true,
   };
 
   return (
-    <div className="mx-auto h-360pxr w-full">
+    <div className="mx-auto -mb-4 h-400pxr w-full">
       <Slider {...settings}>
-        {slides.map(({ order, alt }) => (
-          <div key={order}>
+        {cafeImg.map((fileName) => (
+          <div key={imgkey}>
             <img
-              src={`/carousel/carousel_${order}.jpeg`}
-              alt={alt}
-              className="mx-auto size-full max-h-360pxr object-cover"
+              src={`https://shoong.pockethost.io/api/files/${collectionId}/${id}/${fileName}`}
+              alt={eventTitle}
+              className="mx-auto size-full max-h-360pxr object-contain"
             />
           </div>
         ))}
@@ -78,22 +83,3 @@ export default function Carousel() {
     </div>
   );
 }
-
-const slides = [
-  {
-    order: '1',
-    alt: '뉴진스 파워퍼프걸',
-  },
-  {
-    order: '2',
-    alt: '뉴진스',
-  },
-  {
-    order: '3',
-    alt: '투어스',
-  },
-  {
-    order: '4',
-    alt: '민지 바자 커버',
-  },
-];
