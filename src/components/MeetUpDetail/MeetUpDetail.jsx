@@ -26,7 +26,7 @@ export default function MeetUpDetail() {
   const getMeetUpData = meetUpData.find((data) => data.id === cafeId);
 
   return (
-    <div className="py-10">
+    <div className="pb-10 pt-60pxr">
       {/* 태그를 proprs로 전달하는 법은?? */}
       {/* <MeetUpItem info={data} /> */}
       <div className="mx-20pxr mb-20pxr mt-35pxr min-h-120pxr min-w-320pxr rounded-xl bg-white px-20pxr py-15pxr shadow">
