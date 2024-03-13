@@ -73,3 +73,13 @@ export const isLogin = create(
     { name: '로그인' }
   )
 );
+
+export const useMeetUpStore = create((set) => ({
+  selectedCafe: '',
+  setSelectedCafe: (cafeName) => set({ selectedCafe: cafeName }),
+}));
+
+export const meetUpDataStore = create((set) => ({
+  meetUpData: [],
+  setMeetUpData: (newData) => set({ meetUpData: newData }),
+}));

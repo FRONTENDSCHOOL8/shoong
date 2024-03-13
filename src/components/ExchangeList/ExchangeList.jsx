@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
 import pb from '@/api/pocketbase';
-import PhotoCardInfo from '../ExchangeListDetail/PhotoCardInfo';
+import { isLogin } from '@/store/store';
+import { useState, useEffect } from 'react';
 import ExchangeEdit from '../ExchangeListDetail/ExchangeEdit';
+import PhotoCardInfo from '../ExchangeListDetail/PhotoCardInfo';
 import ExchangeArticle from '../ExchangeListDetail/ExchangeArticle';
 
 /**
@@ -23,6 +24,10 @@ export default function ExchangeList({ photoCardData }) {
   const [exchangeListData, setExchangeListData] = useState(
     photoCardData?.expand?.exchangeList || []
   );
+  const { init } = isLogin();
+  const userInfo = localStorage.getItem('auth');
+  const loggedInUser = userInfo ? JSON.parse(userInfo) : null;
+  console.log(init);
 
   useEffect(() => {
     // 교환글에서 작성자들의 id들을 추출
@@ -50,12 +55,12 @@ export default function ExchangeList({ photoCardData }) {
   }, [exchangeListData]);
 
   return (
-    <div className="flexCenter mx-auto my-5 w-11/12 flex-col">
+    <div className="flexCenter mx-auto mb-3 mt-10 w-11/12 flex-col pt-10">
       <PhotoCardInfo
         // @ts-ignore
         photoCardData={photoCardData}
       />
-      <div className="mx-auto my-4 w-10/12 border-t border-gray-200"></div>
+      <div className="mx-auto my-4 h-1 w-8/12 border-t border-gray-300"></div>
       <div className="mx-auto mt-8 w-10/12 self-start">
         <span className="text-xl font-extrabold leading-7 text-neutral-600">
           {exchangeListData ? exchangeListData.length : 0}
@@ -69,6 +74,8 @@ export default function ExchangeList({ photoCardData }) {
           photoCardData={photoCardData}
           exchangeListData={exchangeListData}
           setExchangeListData={setExchangeListData}
+          loginUser={loggedInUser}
+          loginStatus={init}
         />
         <ExchangeArticle
           exchangeListData={exchangeListData}
