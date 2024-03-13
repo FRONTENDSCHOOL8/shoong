@@ -57,7 +57,7 @@ export default function ExchangeEdit({
       status: '교환대기중',
       chatContent: null,
     };
-    console.log(newExchangeData);
+
     try {
       // exchangeList에 새로운 교환 글을 추가
       const newRecord = await pb

@@ -24,18 +24,15 @@ export default function MeetUpDetail() {
   } = useLoaderData();
   const { pathname } = useLocation();
 
-  // const meetUpData = meetUpDataStore((state) => state.meetUpData);
-  // const getMeetUpData = meetUpData.find((data) => data.id === cafeId);
   const cafeId = pathname.split('/meetupDetail/')[1];
   const getMeetUpData = JSON.parse(localStorage.getItem('meetupData'));
   const MeetUpData = getMeetUpData.find((data) => data.id === cafeId);
-  console.log('cafeId: ', cafeId);
-  console.log('MeetUpData: ', MeetUpData);
+
   return (
     <div className="pb-10 pt-40pxr">
       {/* 태그를 proprs로 전달하는 법은?? */}
       {/* <MeetUpItem info={data} /> */}
-      <DetailHeader title="자세히" />
+      <DetailHeader title="자세히" isBottomSheet={undefined} />
       <div className="mx-20pxr mb-20pxr mt-35pxr min-h-120pxr min-w-320pxr rounded-xl bg-white px-20pxr py-15pxr shadow">
         <h3 className="mb-4pxr text-base font-extrabold leading-snug text-primary">
           {eventTitle}

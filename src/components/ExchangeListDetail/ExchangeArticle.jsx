@@ -28,9 +28,6 @@ export default function ExchangeArticle({
   let loggedInUserId = '';
   if (loginStatus === true) loggedInUserId = loginUser.user.id || null;
 
-  //임시 유저 ID
-
-  console.log('로그인 상태', loginStatus);
   // 수정
   const handleEdit = (exchangeData) => {
     setIsEditing(exchangeData.id);

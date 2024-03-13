@@ -28,7 +28,6 @@ export default function ExchangeList({ photoCardData }) {
   const { init } = isLogin();
   const userInfo = localStorage.getItem('auth');
   const loggedInUser = userInfo ? JSON.parse(userInfo) : null;
-  console.log('로그인한 유저: ', loggedInUser);
 
   useEffect(() => {
     // 교환글에서 작성자들의 id들을 추출
