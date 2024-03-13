@@ -47,7 +47,7 @@ export default function LikeDetail() {
           bgStyle="bg-white"
         />
       </div>
-      <div className="ml-4">
+      <div>
         <PhocaContainerEx biasData={likedPhotoCards} />
       </div>
     </div>
