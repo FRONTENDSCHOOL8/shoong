@@ -12,7 +12,7 @@ import Profile from './pages/Profile/Profile';
 import Home from './pages/Home/Home';
 import Chatting from './pages/Chatting/Chatting';
 import Alerts from './pages/Alerts/Alerts';
-import Like from './pages/Like/Like';
+import LikeDetail from './pages/LikeDetail/LikeDetail';
 import Login from './pages/Login/Login';
 import ColloectBookDetail from './pages/ColloectBookDetail/ColloectBookDetail';
 import userData from './loader/userData';
@@ -23,11 +23,13 @@ import { meetUpDetail } from './loader/meetUpDeatailData';
 import ProfileSetting from './pages/ProfileSetting/ProfileSetting';
 import LoginInfo from './pages/ProfileSetting/LoginInfo';
 import MyBias from './pages/MyBias/MyBias';
+import NotFound from './pages/NotFound/NotFound';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/',
@@ -50,7 +52,7 @@ const router = createBrowserRouter([
         loader: meetUpData,
       },
       {
-        path: '/meetup/:id',
+        path: '/meetupDetail/:id',
         element: <MeetUpDetail />,
         loader: meetUpDetail,
       },
@@ -79,8 +81,8 @@ const router = createBrowserRouter([
         loader: phocaData,
       },
       {
-        path: '/Like',
-        element: <Like />,
+        path: '/likeDetail',
+        element: <LikeDetail />,
       },
       {
         path: '/Login',

@@ -40,7 +40,7 @@ export const usePhotoCardStore = create((set) => ({
 export const likeStore = create(
   persist(
     (set) => ({
-      likedCards: {}, // 카드 ID를 키로 하고, 찜된 상태(boolean)를 값으로 하는 객체
+      likedCards: {},
       toggleLike: (id) =>
         set((state) => ({
           likedCards: {
@@ -54,3 +54,40 @@ export const likeStore = create(
     }
   )
 );
+
+// 댓글 상태 관리
+export const useCommentStore = create((set) => ({
+  comments: [],
+  setComments: (comments) => set({ comments }),
+  addComment: (comment) =>
+    set((state) => ({ comments: [...state.comments, comment] })),
+}));
+
+// 정렬 기능
+export const sorting = create((set) => ({
+  init: '최신순',
+  change: (data) => set(() => ({ init: data })),
+}));
+
+//  로그인 유무
+export const isLogin = create(
+  persist(
+    (set) => ({
+      init: false,
+      collectBook: [],
+      login: (data) => set(() => ({ init: data })),
+      collectBookInfo: (data) => set(() => ({ collectBook: data })),
+    }),
+    { name: '로그인' }
+  )
+);
+
+export const useMeetUpStore = create((set) => ({
+  selectedCafe: '',
+  setSelectedCafe: (cafeName) => set({ selectedCafe: cafeName }),
+}));
+
+export const meetUpDataStore = create((set) => ({
+  meetUpData: [],
+  setMeetUpData: (newData) => set({ meetUpData: newData }),
+}));

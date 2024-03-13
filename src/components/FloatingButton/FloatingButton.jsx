@@ -6,7 +6,7 @@ export default function FloatingButton() {
   const [isLogIn] = useState(false);
   const profileImage = useProfileImage(isLogIn);
   return (
-    <Link to={isLogIn ? '/Like' : '/Login'}>
+    <Link to={isLogIn ? '/LikeDetail' : '/Login'}>
       <button
         type="button"
         aria-label="찜목록으로 가기"

@@ -28,7 +28,7 @@ export function RadioLayout({ itemList, onChange, checkedName }) {
           </div>
         ))}
       </div>
-      <Button style="mt-8pxr">확인</Button>
+      {/* <Button style="mt-8pxr">확인</Button> */}
     </div>
   );
 }
@@ -39,7 +39,7 @@ function RadioItem({ children, name, onChange, checkedName }) {
     radioStyle.background = "url('/radioChecked.svg') no-repeat";
   }
   return (
-    <label className="my-14pxr flex flex-row gap-16pxr  pl-16pxr">
+    <label className="my-14pxr flex cursor-pointer flex-row gap-16pxr pl-16pxr">
       <input
         type="radio"
         name={name}

@@ -2,8 +2,6 @@ import { searchStore } from '@/store/store';
 import { debounce } from 'lodash';
 import { BsSearch } from 'react-icons/bs';
 
-// import { useNavigate } from 'react-router';
-
 /**
  * @param {{
  * name:string,

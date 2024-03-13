@@ -1,11 +1,13 @@
 import pb from '@/api/pocketbase';
 import { useState, useEffect } from 'react';
 
-export default function useProfileImage(isLogIn) {
+export default function useProfileImage(isAuth) {
   const defaultImage = '/icons/floatingDefault.jpg';
   const [profileImage, setProfileImage] = useState(defaultImage);
+  // const userData = JSON.parse(localStorage.getItem('auth')).user;
+
   useEffect(() => {
-    const userId = 'dmpvqojkuclfp3q';
+    const userId = '173z2c41bbw6fp4';
     const record = pb.collection('users').getOne(userId);
     pb.autoCancellation(false);
     record
@@ -15,7 +17,7 @@ export default function useProfileImage(isLogIn) {
         setProfileImage(imageUrl);
       })
       .catch((error) => console.log('에러: ', error));
-  }, [isLogIn]);
+  }, [isAuth]);
 
-  return isLogIn ? profileImage : defaultImage;
+  return isAuth ? profileImage : defaultImage;
 }

@@ -15,8 +15,8 @@
 
 export default function Bias({
   alt = '내 최애 로고',
-  src = '/src/assets/icons/bias.svg',
-  style = 'w-100pxr h-50pxr m-auto',
+  src = '/myBias.jpg',
+  style = 'h-60pxr m-auto rounded-full shadow-lg border',
   value,
   groupName,
   handle,
@@ -35,7 +35,7 @@ export default function Bias({
             title={groupName}
           />
         </button>
-        <figcaption className="w-100pxr text-center text-sb02 font-sb02">
+        <figcaption className="w-100pxr text-center text-sb02 font-sb02 text-gray600">
           {children}
         </figcaption>
       </figure>
