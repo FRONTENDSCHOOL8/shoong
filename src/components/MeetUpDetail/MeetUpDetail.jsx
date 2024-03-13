@@ -30,12 +30,12 @@ export default function MeetUpDetail() {
   const MeetUpData = getMeetUpData.find((data) => data.id === cafeId);
 
   return (
-    <div className="pb-10 pt-40pxr">
+    <div className="pb-10 pt-50pxr">
       {/* 태그를 proprs로 전달하는 법은?? */}
       {/* <MeetUpItem info={data} /> */}
       <DetailHeader title="자세히" isBottomSheet={undefined} />
       <MeetupCarousel />
-      <div className="mx-20pxr mb-20pxr mt-35pxr min-h-120pxr min-w-320pxr rounded-xl bg-white px-20pxr py-15pxr shadow">
+      <div className="mx-20pxr mb-20pxr min-h-120pxr min-w-320pxr rounded-xl bg-white px-20pxr py-15pxr shadow">
         <h3 className="mb-4pxr text-base font-extrabold leading-snug text-primary">
           {eventTitle}
         </h3>

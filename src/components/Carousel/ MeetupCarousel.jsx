@@ -62,13 +62,13 @@ export default function MeetupCarousel() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     cssEase: 'linear',
     pauseOnHover: true,
   };
 
   return (
-    <div className="mx-auto h-360pxr w-full">
+    <div className="mx-auto -mb-4 h-400pxr w-full">
       <Slider {...settings}>
         {cafeImg.map((fileName) => (
           <div key={imgkey}>
