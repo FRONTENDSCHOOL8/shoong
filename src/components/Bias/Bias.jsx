@@ -15,7 +15,7 @@
 
 export default function Bias({
   alt = '내 최애 로고',
-  src = '/src/assets/myBias.jpg',
+  src = '/myBias.jpg',
   style = 'h-60pxr m-auto rounded-full shadow-lg border',
   value,
   groupName,
