@@ -1,7 +1,6 @@
 import MeetUpItemContainer from '@/components/MeetUpItemContainer/MeetUpItemContainer';
 import MeetUpMap from '@/components/MeetUpMap/MeetUpMap';
 import SearchBar from '@/components/SearchBar/SearchBar';
-import { useLayoutEffect } from 'react';
 import { useLoaderData } from 'react-router';
 
 export default function MeetUp() {
