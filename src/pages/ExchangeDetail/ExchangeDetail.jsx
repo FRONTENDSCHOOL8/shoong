@@ -6,12 +6,7 @@ export default function ExchangeDetail() {
   const { photoCardData } = useLoaderData();
   return (
     <div>
-      <ExchangeList
-        // @ts-ignore
-        photoCardData={photoCardData}
-        // @ts-ignore
-        // exchangeListAndWriter={exchangeListAndWriter}
-      />
+      <ExchangeList photoCardData={photoCardData} />
     </div>
   );
 }

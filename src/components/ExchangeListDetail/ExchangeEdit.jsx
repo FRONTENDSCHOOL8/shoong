@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
  * @param {Object} props.photoCardData 현재 선택된 포토카드의 데이터 객체입니다. 포토카드의 id를 포함합니다.
  * @param {Object[]} props.exchangeListData 현재 포토카드에 연관된 교환 글 목록의 데이터 배열입니다.
  * @param {object} props.loginUser
+ * @param {object} props.loginStatus
  * @param {Function} props.setExchangeListData 교환 글 목록 데이터를 업데이트하는 함수입니다. 새로운 교환 글이 추가될 때 사용됩니다.
  *
  * @returns {React.ReactNode} 교환 글 작성 폼을 렌더링하는 React 컴포넌트입니다.
@@ -56,7 +57,7 @@ export default function ExchangeEdit({
       status: '교환대기중',
       chatContent: null,
     };
-    console.log(newExchangeData);
+
     try {
       // exchangeList에 새로운 교환 글을 추가
       const newRecord = await pb
@@ -103,7 +104,7 @@ export default function ExchangeEdit({
             <textarea
               id="exchangeArticle"
               name="exchangeArticle"
-              className="relative w-full rounded border border-gray-300 p-2 text-sm"
+              className="relative h-60pxr w-full rounded border border-gray-300 p-2 text-sm"
               placeholder="코멘트를 입력하세요"
               rows={3}
               maxLength={150}
@@ -119,14 +120,14 @@ export default function ExchangeEdit({
               <div className="flex space-x-2">
                 <button
                   type="submit"
-                  className="rounded bg-primary px-4 py-2 text-white transition duration-300 hover:bg-violet-700"
+                  className="rounded bg-primary px-4 py-1 text-white transition duration-300  hover:bg-indigo-700 focus:bg-indigo-700 focus:outline-none"
                 >
                   저장
                 </button>
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="rounded bg-primary px-4 py-2 text-white transition duration-300 hover:bg-violet-700"
+                  className="rounded bg-gray400 px-4 py-1 text-white transition duration-300 hover:bg-gray-500"
                 >
                   취소
                 </button>

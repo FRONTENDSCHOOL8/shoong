@@ -38,16 +38,16 @@ export default function LikeDetail() {
   }, []);
 
   return (
-    <div className="pt-55pxr">
+    <div className="pt-35pxr">
       <DetailHeader title="찜 목록" />
       <div className="flex items-center justify-center pt-60pxr ">
         <SearchBar
           name="search"
           placeholder="찜한 포카 찾기"
-          bgStyle="bg-gray100"
+          bgStyle="bg-white"
         />
       </div>
-      <div className="">
+      <div>
         <PhocaContainerEx biasData={likedPhotoCards} />
       </div>
     </div>

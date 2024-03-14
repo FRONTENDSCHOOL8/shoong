@@ -1,12 +1,34 @@
 import pb from '@/api/pocketbase';
-import { useCommentStore } from '@/store/store';
-import { useCallback, useEffect } from 'react';
-import useProfileImage from '../FloatingButton/useProfileImage';
+import { isLogin, useCommentStore } from '@/store/store';
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 export default function CommentInput({ id }) {
-  const profileImage = useProfileImage(true);
+  const { init } = isLogin();
+  if (!init) {
+    const navigate = useNavigate();
+    return navigate('/Login');
+  }
+  const [profileImage, setProfileImage] = useState(
+    '/icons/floatingDefault.jpg'
+  );
   const userData = JSON.parse(localStorage.getItem('auth')).user;
   const { comments, setComments } = useCommentStore();
+
+  useEffect(() => {
+    const fetchProfileImage = async () => {
+      try {
+        const userId = JSON.parse(localStorage.getItem('auth')).user.id;
+        pb.autoCancellation(false);
+        const record = await pb.collection('users').getOne(userId);
+        const url = `https://shoong.pockethost.io/api/files/users/${userId}/${record.avatar}`;
+        setProfileImage(url);
+      } catch (error) {
+        console.error('Error fetching profile image:', error);
+      }
+    };
+    fetchProfileImage();
+  }, []);
 
   const updateComments = useCallback(
     async (comment) => {

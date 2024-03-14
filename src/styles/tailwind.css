@@ -7,12 +7,6 @@
 
 @import './App.css';
 
-@font-face {
-  font-family: 'SUIT Variable';
-  src: url('@/font/SUIT-Variable.woff2') format('woff2-variations');
-  font-display: swap;
-}
-
 .flexCenter {
   @apply flex items-center justify-center;
 }

@@ -2,6 +2,7 @@
 
 import pb from '@/api/pocketbase';
 import CollectBookItemContainer from '@/components/CollectBookItemContainer/CollectBookItemContainer';
+import DetailHeader from '@/components/DetailHeader/DetailHeader';
 import DragonSphere from '@/components/DragonSphere/DragonSphere';
 import ToastAlert from '@/components/ToastAlert/ToastAlert';
 import ToggleButton from '@/components/ToggleButton/ToggleButton';
@@ -109,6 +110,7 @@ export default function ColloectBookDetail() {
       <div className="draggable relative h-[100%]">
         <Toaster />
 
+        <DetailHeader title="자세히" />
         <ToggleButton />
 
         <DragonSphere

@@ -67,7 +67,7 @@ export default function PhocaContainerEx({
     <>
       <SortingBar phoca={phoca} SetPhoca={SetPhoca} biasData={biasData} />
 
-      <div className="mb-7 ml-4 mt-7 flex justify-center">
+      <div className="mb-7 mt-1 flex justify-center">
         <ul className="col-gap-8 grid h-400pxr grid-cols-2 gap-4 overflow-y-scroll md:grid-cols-3 lg:grid-cols-6">
           {phoca.map((group, index) => {
             if (index < phocaNumber) {
@@ -98,13 +98,19 @@ export default function PhocaContainerEx({
 
       <Toaster />
 
-      <button
-        ref={moreRef}
-        onClick={handleMore}
-        className=" m-auto mb-5 rounded-full bg-primary px-4 py-1 duration-200 hover:scale-105 hover:bg-purple-400"
-      >
-        더 보기
-      </button>
+      <div className="relative flex justify-end px-20pxr pb-25pxr">
+        <button
+          ref={moreRef}
+          onClick={handleMore}
+          className="absolute left-[50%] mb-5 -translate-x-[50%] rounded-full border-2 border-primary bg-white px-4  py-1 text-primary duration-200 hover:bg-primary hover:text-white"
+        >
+          더 보기
+        </button>
+
+        <span className="inline-block py-1 font-bold  text-gray-500">
+          전체 {phoca.length}장
+        </span>
+      </div>
     </>
   );
 }
