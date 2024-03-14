@@ -2,8 +2,9 @@ import { useState } from 'react';
 import Input from '@/components/Input/Input';
 import Button from '@/components/Button/Button';
 import pb from '../../api/pocketbase';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import debounce from '@/utils/debounce';
+import { Link } from 'react-router-dom';
 
 export default function Register() {
   /* --------------------------------- 인풋 컨트롤 --------------------------------- */
@@ -302,13 +303,15 @@ export default function Register() {
           </div>
         </div>
 
-        <Button
-          type="submit"
-          isDisabled={isRegisterButtonDisabled}
-          customClassNames="mt-4"
-        >
-          가입하기
-        </Button>
+        <Link to="/">
+          <Button
+            type="submit"
+            isDisabled={isRegisterButtonDisabled}
+            customClassNames="mt-4"
+          >
+            가입하기
+          </Button>
+        </Link>
       </form>
     </div>
   );
