@@ -15,7 +15,7 @@ export default function Header() {
     '/meetupDetail',
   ];
   const isDetailHeaderPage = pathnames.includes('/' + pathname.split('/')[1]);
-  console.log('isDetailHeaderPage: ', isDetailHeaderPage);
+  // console.log('isDetailHeaderPage: ', isDetailHeaderPage);
   return (
     !isDetailHeaderPage && (
       <div className="fixed top-0 z-20 flex h-55pxr w-full items-center justify-between bg-white px-3 shadow">

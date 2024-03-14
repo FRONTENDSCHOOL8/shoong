@@ -50,7 +50,7 @@ export default function ExchangeArticle({
         prevExchangeList.filter((exchange) => exchange.id !== exchangeId)
       );
     } catch (error) {
-      console.error('교환 글을 삭제하는 중 에러가 발생했습니다:', error);
+      // console.error('교환 글을 삭제하는 중 에러가 발생했습니다:', error);
       alert('교환 글을 삭제하는 데 실패했습니다.');
     }
   };
@@ -77,7 +77,7 @@ export default function ExchangeArticle({
       setEditingContent('');
       alert('교환 글이 수정되었습니다.');
     } catch (error) {
-      console.error('교환 글 수정 중 에러가 발생했습니다:', error);
+      // console.error('교환 글 수정 중 에러가 발생했습니다:', error);
       alert('교환 글 수정에 실패했습니다.');
     }
   };
