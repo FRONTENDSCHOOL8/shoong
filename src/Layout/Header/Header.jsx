@@ -13,6 +13,8 @@ export default function Header() {
     '/myBias',
     '/loginInfo',
     '/meetupDetail',
+    '/LikeDetail',
+    '/login',
   ];
   const isDetailHeaderPage = pathnames.includes('/' + pathname.split('/')[1]);
   // console.log('isDetailHeaderPage: ', isDetailHeaderPage);
