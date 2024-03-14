@@ -19,14 +19,26 @@ export default function Register() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((formData) => ({ ...formData, [name]: value }));
   };
 
   //email 인풋은 중복확인 때문에 따로 처리해줘야 함 : 사용자가 중복확인 통과 후(즉 중복확인 버튼 비활성화 후) 다시 이메일 인풋박스에 입력하면 중복확인 버튼 활성화되게.
   const handleEmailInputChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((formData) => ({ ...formData, [name]: value }));
+
     setIsEmailCheckButtonDisabled(false);
+  };
+
+  const handlePhoneInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((formData) => ({
+      ...formData,
+      [name]: value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1'),
+    }));
   };
 
   /* ----------------------------------- 제출 ----------------------------------- */
@@ -116,7 +128,7 @@ export default function Register() {
     }
   };
 
-  /* ------------------------------------ . ----------------------------------- */
+  /* --------------------------------- 회원가입 버튼 -------------------------------- */
 
   const [isRegisterButtonDisabled, setIsRegisterButtonDisabled] =
     useState(true);
@@ -192,13 +204,14 @@ export default function Register() {
         <Input
           name="phone"
           defaultValue={formData.phone}
-          onChange={debounce(handleInputChange)}
+          onChange={handlePhoneInputChange}
           type="text"
           placeholder="휴대폰 번호"
           customClassNames="h-9 mt-1"
           bgClassName="bg-gray-100"
           isLabeled
           label="휴대폰 번호"
+          maxLength="11"
         />
 
         <Input
