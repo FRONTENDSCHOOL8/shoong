@@ -21,6 +21,8 @@ export default function Register() {
     const { name, value } = e.target;
 
     setFormData((formData) => ({ ...formData, [name]: value }));
+
+    activateRegisterButton();
   };
 
   //email 인풋은 중복확인 때문에 따로 처리해줘야 함 : 사용자가 중복확인 통과 후(즉 중복확인 버튼 비활성화 후) 다시 이메일 인풋박스에 입력하면 중복확인 버튼 활성화되게.
@@ -30,15 +32,21 @@ export default function Register() {
     setFormData((formData) => ({ ...formData, [name]: value }));
 
     setIsEmailCheckButtonDisabled(false);
+
+    activateRegisterButton();
   };
 
+  //phone 인풋은 번호만 입력되게 따로 처리해줘야 함.
   const handlePhoneInputChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData((formData) => ({
-      ...formData,
-      [name]: value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1'),
-    }));
+    setFormData((formData) => ({ ...formData, [name]: value }));
+    // setFormData((formData) => ({
+    //   ...formData,
+    //   [name]: value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1'),
+    // }));
+
+    activateRegisterButton();
   };
 
   /* ----------------------------------- 제출 ----------------------------------- */
@@ -82,6 +90,29 @@ export default function Register() {
       : [...checkedList, e.target.name];
 
     setCheckedList((checkedList) => newCheckedList);
+
+    activateRegisterButton();
+  };
+
+  /* --------------------------------- 중복확인 버튼 -------------------------------- */
+
+  const [isEmailCheckButtonDisabled, setIsEmailCheckButtonDisabled] =
+    useState(false);
+
+  const users = useLoaderData();
+
+  const handleEmailCheck = (e) => {
+    const userEmails = users.map((user) => user.email); //왜 email 입력돼있는데도 users 데이터 열어보면 각 user에 email 안 들어가있지?
+
+    if (userEmails.includes(formData.email)) {
+      alert('입력하신 이메일이 이미 존재합니다');
+      setIsEmailCheckButtonDisabled(false);
+    } else {
+      alert('사용 가능한 이메일입니다');
+      setIsEmailCheckButtonDisabled(true);
+    }
+
+    activateRegisterButton();
   };
 
   /* --------------------------------- 모두동의 버튼 -------------------------------- */
@@ -107,25 +138,8 @@ export default function Register() {
         });
 
     setIsRegisterButtonDisabled(!isRegisterButtonDisabled);
-  };
 
-  /* --------------------------------- 중복확인 버튼 -------------------------------- */
-
-  const users = useLoaderData();
-
-  const [isEmailCheckButtonDisabled, setIsEmailCheckButtonDisabled] =
-    useState(false);
-
-  const handleEmailCheck = (e) => {
-    const userEmails = users.map((user) => user.email); //왜 email 입력돼있는데도 users 데이터 열어보면 각 user에 email 안 들어가있지?
-
-    if (userEmails.includes(formData.email)) {
-      alert('입력하신 이메일이 이미 존재합니다');
-      setIsEmailCheckButtonDisabled(false);
-    } else {
-      alert('사용 가능한 이메일입니다');
-      setIsEmailCheckButtonDisabled(true);
-    }
+    activateRegisterButton();
   };
 
   /* --------------------------------- 회원가입 버튼 -------------------------------- */
@@ -133,10 +147,22 @@ export default function Register() {
   const [isRegisterButtonDisabled, setIsRegisterButtonDisabled] =
     useState(true);
 
+  //회원가입 버튼 활성화
+  function activateRegisterButton() {
+    let filled = false;
+    filled = Object.values(formData).reduce((prev, cur) => !!prev && !!cur);
+
+    filled &&
+    isEmailCheckButtonDisabled &&
+    agreeAllButtonStyle.bg === 'bg-primary'
+      ? setIsRegisterButtonDisabled(false)
+      : setIsRegisterButtonDisabled(true);
+  }
+
   /* ----------------------------------- 마크업 ---------------------------------- */
 
   return (
-    <div className="flex flex-col items-center justify-center bg-white py-85pxr">
+    <div className="flex flex-col items-center justify-center bg-white py-35pxr">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center justify-center gap-6"
@@ -206,7 +232,7 @@ export default function Register() {
           defaultValue={formData.phone}
           onChange={handlePhoneInputChange}
           type="text"
-          placeholder="휴대폰 번호"
+          placeholder="숫자만 입력해주세요"
           customClassNames="h-9 mt-1"
           bgClassName="bg-gray-100"
           isLabeled
