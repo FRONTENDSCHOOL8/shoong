@@ -18,7 +18,7 @@ export default function PhocaLikeButton({ phocaId }) {
         const authData = JSON.parse(authDataString);
         setUserId(authData.model.id);
       } catch (error) {
-        console.error('Parsing authData error:', error);
+        // console.error('Parsing authData error:', error);
       }
     }
   }, []);
