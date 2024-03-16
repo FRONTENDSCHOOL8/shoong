@@ -78,7 +78,7 @@ export default function ExchangeEdit({
       setComment(''); // 코멘트 초기화
       alert('교환 글이 성공적으로 저장되었습니다.');
     } catch (error) {
-      console.error('데이터를 저장하는 중 에러가 발생했습니다:', error);
+      // console.error('데이터를 저장하는 중 에러가 발생했습니다:', error);
       alert('데이터를 저장하는 데 실패했습니다.');
     }
   };

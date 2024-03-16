@@ -14,7 +14,7 @@ export default function ProfileInfo() {
         const userId = JSON.parse(localStorage.getItem('auth')).user.id;
         const record = await pb.collection('users').getOne(userId);
         const url = `https://shoong.pockethost.io/api/files/users/${userId}/${record.avatar}`;
-        const userName = record.name;
+        const userName = record.username;
         setProfileImage(url);
         setUserName(userName);
       } catch (error) {

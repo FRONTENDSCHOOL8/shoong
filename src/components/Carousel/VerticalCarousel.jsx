@@ -25,13 +25,13 @@ export default function VerticalCarousel() {
         const records = await pb.collection('MeetUps').getFullList();
         setMeetups(records);
       } catch (error) {
-        console.log('Error getting meetup data:', error);
+        // console.log('Error getting meetup data:', error);
       }
     };
     getMeetupData();
   }, []);
   return (
-    <div className=" mx-auto my-2.5 w-5/6 rounded-3xl border  border-primary bg-white pt-1 text-center text-contentPrimary shadow-md">
+    <div className=" mx-auto mt-10 w-5/6 rounded-3xl border  border-primary bg-white pt-1 text-center text-contentPrimary shadow-md">
       <Slider {...settings}>
         {meetUps.map((meetUp) => (
           <Link key={meetUp.id} to={`/meetupDetail/${meetUp.id}`}>
