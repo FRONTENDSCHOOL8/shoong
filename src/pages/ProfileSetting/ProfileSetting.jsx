@@ -3,7 +3,7 @@ import DetailHeader from '@/components/DetailHeader/DetailHeader';
 
 export default function ProfileSetting() {
   return (
-    <div className="pt-12">
+    <div className="pt-6">
       <DetailHeader title="설정" />
       <div>
         <span className="mb-4 mt-14 block px-6 pt-4 text-lg font-bold">
