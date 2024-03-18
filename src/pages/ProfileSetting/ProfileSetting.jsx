@@ -11,7 +11,7 @@ export default function ProfileSetting() {
         </span>
         <NavigationTile to="/loginInfo" text="로그인 정보" className="" />
         <NavigationTile to="/" text="회원 정보 수정" className=" " />
-        <NavigationTile to="/" text="찜 목록" className=" " />
+        <NavigationTile to="/LikeDetail" text="찜 목록" className=" " />
         <NavigationTile to="/" text="내 작성 글" className=" " />
         <NavigationTile to="/" text="알림 설정" className=" " />
       </div>
