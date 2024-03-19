@@ -30,7 +30,7 @@ export default function LikeDetail() {
         // 상태 업데이트
         setLikedPhotoCards(matchedCards);
       } catch (error) {
-        console.error('Error fetching liked photo cards:', error);
+        // console.error('Error fetching liked photo cards:', error);
       }
     }
 

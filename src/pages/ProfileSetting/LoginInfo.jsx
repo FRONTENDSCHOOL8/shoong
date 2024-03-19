@@ -24,7 +24,7 @@ export default function LoginInfo() {
         id: auth.user.id,
       });
     } catch (error) {
-      console.error('Parsing authData error:', error);
+      // console.error('Parsing authData error:', error);
     }
   }, []);
 
@@ -50,7 +50,7 @@ export default function LoginInfo() {
       await pb.collection('users').delete(user.id);
       handleLogout(); // 로그아웃 처리
     } catch (error) {
-      console.error('Error deleting user account:', error);
+      // console.error('Error deleting user account:', error);
     }
   };
 
