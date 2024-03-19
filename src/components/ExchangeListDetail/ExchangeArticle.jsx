@@ -143,13 +143,10 @@ export default function ExchangeArticle({
                   />
                 </div>
                 <div className="ml-3">
-                  <p className="font-semibold" aria-label="작성자 이름">
-                    {user.username}
-                  </p>
+                  <p className="font-semibold">{user.username}</p>
                   <time
                     dateTime={exchangeData.updated}
                     className="text-sm text-gray-500"
-                    aria-label="게시된 시간"
                   >
                     {timeSinceUpdated}
                   </time>
@@ -192,9 +189,7 @@ export default function ExchangeArticle({
               </div>
             ) : (
               <div className="mt-3">
-                <p className="text-gray-700" aria-label="메시지 내용">
-                  {exchangeData.description}
-                </p>
+                <p className="text-gray-700">{exchangeData.description}</p>
               </div>
             )}
             <div className="mt-4 flex justify-end">
