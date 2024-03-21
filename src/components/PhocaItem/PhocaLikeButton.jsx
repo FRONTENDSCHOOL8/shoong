@@ -53,10 +53,18 @@ export default function PhocaLikeButton({ phocaId }) {
     await updateLikeListInUserCollection(); // 사용자의 likeList 업데이트
   };
 
+  // const handleKeyDown = async (event) => {
+  //   if (event.key === 'Enter') {
+  //     event.stopPropagation(); // 엔터키를 눌렀을 때도 이벤트 버블링 멈춤
+  //     handleClick(event);
+  //   }
+  // };
+
   return (
     <button
       className={`hover:text-red-500 focus:outline-none ${isLiked ? 'text-red-500' : 'text-white'}`}
       onClick={handleClick}
+      // onKeyDown={handleKeyDown}
     >
       <GoHeartFill
         className={`h-6 w-6 ${isLiked ? 'text-red-500' : 'text-white'}`}

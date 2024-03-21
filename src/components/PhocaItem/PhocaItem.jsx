@@ -4,30 +4,7 @@ import ArtistInfo from './ArtistInfo';
 import PhocaTitle from './PhocaTitle';
 import PhocaLikeButton from './PhocaLikeButton';
 import PhocaLikeCount from './PhocaLikeCount';
-// import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-// import { Link, redirect, useOutletContext } from 'react-router-dom';
-
-/**
- *
- * @param {{
- *   title: string,
- *   titleClass: string,
- *   phocaImgSrc: string,
- *   logoImgSrc: string,
- *   imgClass: string,
- *   groupName: string,
- *   memberName: string,
- *   likeCount: number,
- *   infoClass: string,
- *   groupClass: string,
- *   memberClass: string,
- *   linkClass: string,
- *  logoImgClass: string,
- *  phocaId: string,
- * }} props
- * @returns
- */
 
 export default function PhocaItem({
   title,
@@ -46,15 +23,17 @@ export default function PhocaItem({
   phocaId,
 }) {
   let navigate = useNavigate();
-  const handleNavigate = (event) => {
+
+  const handleNavigate = () => {
     navigate(`/exchangeDetail/${phocaId}`);
   };
+
   return (
     <>
-      <div
+      <button
         onClick={handleNavigate}
         aria-label={`${title} 카드 디테일 페이지로 이동`}
-        className={linkClass}
+        className={`${linkClass} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
       >
         <div>
           <PhocaImg
@@ -64,7 +43,7 @@ export default function PhocaItem({
           >
             <PhocaLikeButton phocaId={phocaId} />
           </PhocaImg>
-          <div className="flex items-start gap-2 ">
+          <div className="flex items-start gap-2">
             <ArtistLogo
               logoImgSrc={logoImgSrc}
               groupName={groupName}
@@ -78,12 +57,12 @@ export default function PhocaItem({
               memberClass={memberClass}
             />
           </div>
-          <div className="flex flex-col items-start ">
+          <div className="flex flex-col items-start">
             <PhocaTitle title={title} titleClass={titleClass} />
             <PhocaLikeCount likeCount={likeCount} />
           </div>
         </div>
-      </div>
+      </button>
     </>
   );
 }
