@@ -25,22 +25,19 @@ export default function VerticalCarousel() {
         const records = await pb.collection('MeetUps').getFullList();
         setMeetups(records);
       } catch (error) {
-        console.log('Error getting meetup data:', error);
+        // console.log('Error getting meetup data:', error);
       }
     };
     getMeetupData();
   }, []);
   return (
-    <div className="mx-auto my-2.5 flex w-3/4 flex-col rounded-xl border-[1px]  border-contentPrimary bg-white py-1 text-center text-contentPrimary shadow-md">
-      <Slider
-        {...settings}
-        className="cursor-pointer justify-center text-primary"
-      >
+    <div className=" mx-auto mt-10 w-5/6 rounded-3xl border  border-primary bg-white pt-1 text-center text-contentPrimary shadow-md">
+      <Slider {...settings}>
         {meetUps.map((meetUp) => (
-          <Link key={meetUp.id} to={`/meetUp/${meetUp.id}`}>
-            <p>
+          <Link key={meetUp.id} to={`/meetupDetail/${meetUp.id}`}>
+            <p className="truncate px-3 text-r02 text-primary">
               {meetUp.eventTitle}
-              <span className="px-2 text-10pxr text-contentSecondary">
+              <span className=" px-2 text-10pxr text-contentSecondary">
                 {meetUp.date}
               </span>
             </p>

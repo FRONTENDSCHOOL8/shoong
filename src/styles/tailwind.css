@@ -7,12 +7,10 @@
 
 @import './App.css';
 
-@font-face {
-  font-family: 'SUIT Variable';
-  src: url('@/font/SUIT-Variable.woff2') format('woff2-variations');
-  font-display: swap;
-}
-
 .flexCenter {
   @apply flex items-center justify-center;
+}
+
+.buttonStyle {
+  @apply rounded bg-primary px-4 py-1 text-white transition duration-300;
 }

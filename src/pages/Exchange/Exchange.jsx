@@ -13,9 +13,11 @@ export default function Exchange() {
   const biasData = filterData[0].expand.photoCards;
 
   return (
-    <div className="pt-75pxr">
-      <SearchBar name="Exchange" placeholder="포카찾기" bgStyle="bg-zinc-100" />
-      <BiasContainer photoCardsData={photoCardsData} />
+    <div className="pt-75pxr text-center">
+      <SearchBar name="Exchange" placeholder="포카찾기" bgStyle="bg-white" />
+      <div className="mt-20pxr">
+        <BiasContainer photoCardsData={photoCardsData} />
+      </div>
       <PhocaContainerEx biasData={biasData} />
     </div>
   );
