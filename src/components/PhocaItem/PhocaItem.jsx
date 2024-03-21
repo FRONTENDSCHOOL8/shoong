@@ -33,7 +33,7 @@ export default function PhocaItem({
       <button
         onClick={handleNavigate}
         aria-label={`${title} 카드 디테일 페이지로 이동`}
-        className={`${linkClass} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
+        className={`${linkClass} mx-1 my-1 py-1 focus:outline-none focus:ring-2 focus:ring-primary`}
       >
         <div>
           <PhocaImg
