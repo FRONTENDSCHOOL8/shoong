@@ -17,8 +17,8 @@ export default function NavBarItem({ togo, label, icon: Icon }) {
         to={togo}
         className={({ isActive }) =>
           isActive
-            ? 'flex flex-col items-center text-primary'
-            : 'flex flex-col items-center'
+            ? 'flex flex-col items-center px-10 text-primary'
+            : 'flex flex-col items-center px-10'
         }
       >
         <Icon className="h-8 w-22pxr" />

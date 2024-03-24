@@ -120,14 +120,14 @@ export default function ExchangeEdit({
               <div className="flex space-x-2">
                 <button
                   type="submit"
-                  className="rounded bg-primary px-4 py-1 text-white transition duration-300  hover:bg-indigo-700 focus:bg-indigo-700 focus:outline-none"
+                  className="buttonStyle hover:bg-indigo-700 focus:bg-indigo-700 focus:outline-none"
                 >
                   저장
                 </button>
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="rounded bg-gray400 px-4 py-1 text-white transition duration-300 hover:bg-gray-500"
+                  className="buttonStyle hover:bg-gray-500"
                 >
                   취소
                 </button>
