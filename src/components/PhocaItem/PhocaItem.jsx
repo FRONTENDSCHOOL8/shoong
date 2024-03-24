@@ -36,18 +36,20 @@ export default function PhocaItem({
 
   return (
     <div
-      className={`${linkClass} relative mx-1 my-1 py-1 focus:outline-none focus:ring-2 focus:ring-primary`}
+      className={`${linkClass} relative mx-1 my-1  py-1  focus:ring-2  `}
       onClick={handleNavigate}
       onKeyDown={handleNavigate}
       aria-label={`${title} 카드 디테일 페이지로 이동`}
       tabIndex={0}
+      role="button"
     >
       <PhocaImg
         phocaImgSrc={phocaImgSrc}
         phocaImgAlt={title}
         imgClass={imgClass}
       />
-      <div className="flex items-start gap-2">
+
+      <div className="flex flex-row items-start justify-start gap-2 bg-blue-200  ">
         <ArtistLogo
           logoImgSrc={logoImgSrc}
           groupName={groupName}
@@ -65,7 +67,7 @@ export default function PhocaItem({
         <PhocaTitle title={title} titleClass={titleClass} />
         <PhocaLikeCount likeCount={likeCount} />
       </div>
-      <div className="like-button absolute bottom-28 right-2 p-2">
+      <div className="like-button absolute right-2 top-2 p-2">
         <PhocaLikeButton phocaId={phocaId} />
       </div>
     </div>
