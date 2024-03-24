@@ -13,7 +13,9 @@ export default function Footer() {
     <footer>
       <div className="flex h-11 w-full items-center justify-between bg-gray100 px-6 text-b01 font-m02 text-gray500 lg:px-10">
         <div className="flex flex-grow items-center justify-center">
-          <Link to="/">프로젝트 소개</Link>
+          <Link to="https://github.com/FRONTENDSCHOOL8/shoong?tab=readme-ov-file#readme">
+            프로젝트 소개
+          </Link>
         </div>
         <span className="mx-2">|</span>
         <div className="flex flex-grow items-center justify-center">
@@ -37,14 +39,14 @@ export default function Footer() {
           </p>
         </div>
         <div className="w-full border-t border-white border-opacity-50"></div>
-        <div className="grid grid-cols-1 gap-4 pt-5 md:grid-cols-2 lg:grid-cols-3">
-          <h3 className="col-span-full text-sb03 font-semibold">팀원 소개</h3>
+        <div className="grid grid-cols-1 gap-4 pb-5 pt-5 md:grid-cols-2 lg:grid-cols-3">
+          <h3 className="col-span-full text-sb02 font-sb02">팀원 소개</h3>
           {teamMembers.map((member) => (
             <div key={member.name} className="mt-2 text-b02">
               <p>{member.name}</p>
               <a
                 href={`mailto:${member.email}`}
-                className="text-gray-200 hover:underline"
+                className="text-gray200 hover:underline"
               >
                 {member.email}
               </a>
@@ -52,7 +54,7 @@ export default function Footer() {
                 href={`https://github.com/${member.github}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-gray-200 hover:underline"
+                className="block text-gray200 hover:underline"
               >
                 GitHub
               </a>
