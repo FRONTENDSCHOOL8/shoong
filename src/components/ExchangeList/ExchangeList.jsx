@@ -7,20 +7,6 @@ import ExchangeArticle from '../ExchangeListDetail/ExchangeArticle';
 import DetailHeader from '../DetailHeader/DetailHeader';
 import NumberOfExchangeList from '../ExchangeListDetail/NumberOfExchangeList';
 
-/**
- * ExchangeList 컴포넌트는 포토카드와 관련된 교환 글 목록을 표시하며, 각 교환 글의 작성자 정보를 함께 표시합니다.
- * 이 컴포넌트는 포토카드 데이터를 로드하고, 해당 데이터의 확장된 exchangeList 배열을 사용하여 교환 글을 렌더링합니다.
- *
- * @param {Object} props - 컴포넌트의 props 객체입니다.
- * @param {Object} props.photoCardData - 포토카드 데이터 객체입니다. 다음과 같은 필드를 포함해야 합니다:
- * @param {string} props.photoCardData.id - 포토카드의 고유 식별자입니다.
- * @param {object} props.photoCardData.expand
- * @param {Object[]} [props.photoCardData.expand.exchangeList] - 포토카드에 연관된 교환 글 객체의 배열입니다.
- * @param {React.ReactNode} [props.children] - 컴포넌트의 자식 요소들입니다.
- *
- * @returns {React.ReactNode} - ExchangeList 컴포넌트를 렌더링합니다.
- */
-
 export default function ExchangeList({ photoCardData }) {
   const [users, setUsers] = useState([]);
   const [exchangeListData, setExchangeListData] = useState(
@@ -48,7 +34,7 @@ export default function ExchangeList({ photoCardData }) {
 
           setUsers(usersData);
         } catch (error) {
-          // console.error('Error fetching users data:', error);
+          console.error('Error fetching users data:', error);
         }
       };
       fetchUsersData();
