@@ -3,14 +3,13 @@ export default function ConfirmationModal({
   onClose,
   onConfirm,
   message,
-  cancelButtonText = '취소', // 취소 버튼의 텍스트를 위한 새 prop
-  confirmButtonText = '확인', // 확인 버튼의 텍스트를 위한 새 prop
+  cancelButtonText = '취소',
+  confirmButtonText = '확인',
   buttonStyles = {
-    // 버튼 스타일을 위한 새 prop, 기본 스타일을 제공
     cancel: 'rounded bg-gray200 px-4 py-2 hover:bg-gray300',
     confirm: 'rounded bg-primary px-4 py-2 text-white hover:bg-indigo-700',
   },
-  modalStyles = 'rounded-lg bg-white p-6 shadow-lg', // 모달 스타일을 위한 새 prop, 기본 스타일을 제공
+  modalStyles = 'rounded-lg bg-white p-6 shadow-lg',
 }) {
   if (!isOpen) return null;
 

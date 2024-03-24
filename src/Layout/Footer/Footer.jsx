@@ -33,8 +33,8 @@ export default function Footer() {
 
       <div className="mb-2 flex flex-col items-start bg-gray500 px-6 pb-20 text-white lg:px-10">
         <div className="flex flex-col items-start justify-center pb-4 pt-5 ">
-          <p className=" text-b03 font-b03">SHOONG</p>
-          <p className="mt-1 text-b01 ">
+          <p className=" pt-4 text-b04 font-b03">SHOONG</p>
+          <p className="mt-1 text-b01 font-b02">
             (주)멋쟁이사자처럼 프론트엔드스쿨 8기
           </p>
         </div>
@@ -42,8 +42,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-4 pb-5 pt-5 md:grid-cols-2 lg:grid-cols-3">
           <h3 className="col-span-full text-sb02 font-sb02">팀원 소개</h3>
           {teamMembers.map((member) => (
-            <div key={member.name} className="mt-2 text-b02">
+            <div key={member.name} className="mt-2 text-b02 font-b02">
               <p>{member.name}</p>
+
               <a
                 href={`mailto:${member.email}`}
                 className="text-gray200 hover:underline"
