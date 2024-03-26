@@ -36,7 +36,7 @@ export default function PhocaItem({
 
   return (
     <div
-      className={`${linkClass} relative mx-1 my-1  py-1  focus:ring-2  `}
+      className={`${linkClass} relative mx-1 my-1 py-1`}
       onClick={handleNavigate}
       onKeyDown={handleNavigate}
       aria-label={`${title} 카드 디테일 페이지로 이동`}

@@ -6,6 +6,7 @@ export default function MyBias() {
       <Link
         to="/myBias"
         className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-b from-red-400 to-indigo-500"
+        title="최애 그룹 선택하기"
       >
         <img
           src="/myBias.jpg"
