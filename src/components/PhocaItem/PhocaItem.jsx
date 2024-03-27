@@ -49,7 +49,7 @@ export default function PhocaItem({
         imgClass={imgClass}
       />
 
-      <div className="flex flex-row items-start justify-start gap-2 bg-blue-200  ">
+      <div className="flex w-full flex-row items-start justify-start gap-2 ">
         <ArtistLogo
           logoImgSrc={logoImgSrc}
           groupName={groupName}
