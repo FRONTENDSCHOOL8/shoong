@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 export default function ConfirmationModal({
   isOpen,
   onClose,
@@ -11,6 +13,36 @@ export default function ConfirmationModal({
   },
   modalStyles = 'rounded-lg bg-white p-6 shadow-lg',
 }) {
+  const cancelButtonRef = useRef(null);
+  const confirmButtonRef = useRef(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!isOpen || e.key !== 'Tab') return;
+
+      // Shift + Tab을 눌렀을 때 이전 요소로 포커스 이동
+      const isShiftPressed = e.shiftKey;
+      const currentFocusIsCancelBtn =
+        document.activeElement === cancelButtonRef.current;
+      const currentFocusIsConfirmBtn =
+        document.activeElement === confirmButtonRef.current;
+
+      if (isShiftPressed && currentFocusIsCancelBtn) {
+        e.preventDefault();
+        confirmButtonRef.current.focus();
+      } else if (!isShiftPressed && currentFocusIsConfirmBtn) {
+        e.preventDefault();
+        cancelButtonRef.current.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
@@ -19,10 +51,18 @@ export default function ConfirmationModal({
         <h2 className="mb-4 text-lg font-bold">확인</h2>
         <p>{message}</p>
         <div className="mt-6 flex justify-end gap-3">
-          <button className={buttonStyles.cancel} onClick={onClose}>
+          <button
+            ref={cancelButtonRef}
+            className={buttonStyles.cancel}
+            onClick={onClose}
+          >
             {cancelButtonText}
           </button>
-          <button className={buttonStyles.confirm} onClick={onConfirm}>
+          <button
+            ref={confirmButtonRef}
+            className={buttonStyles.confirm}
+            onClick={onConfirm}
+          >
             {confirmButtonText}
           </button>
         </div>
